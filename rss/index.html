@@ -1,11 +1,191 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Left of Null]]></title><description><![CDATA[Covering Coding, Technology, and Life.]]></description><link>http://leftofnull.com/</link><generator>Ghost v0.4.1</generator><lastBuildDate>Mon, 10 Feb 2014 04:09:54 GMT</lastBuildDate><atom:link href="http://leftofnull.com/rss/" rel="self" type="application/rss+xml"/><author><![CDATA[Alexander Kahoun]]></author><ttl>60</ttl><item><title><![CDATA[Using GitHub Pages with Ghost and Buster on Windows (part 1)]]></title><description><![CDATA[<h1 id="takinginventoryandsettingup">Taking Inventory and Setting Up  </h1>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Left of Null]]></title><description><![CDATA[Covering Coding, Technology, and Life.]]></description><link>http://leftofnull.com/</link><generator>Ghost v0.4.1</generator><lastBuildDate>Tue, 25 Feb 2014 04:59:49 GMT</lastBuildDate><atom:link href="http://leftofnull.com/rss/" rel="self" type="application/rss+xml"/><author><![CDATA[Alexander Kahoun]]></author><ttl>60</ttl><item><title><![CDATA[Using GitHub Pages with Ghost and Buster on Windows (part 2)]]></title><description><![CDATA[<h1 id="hackingbusteranddeploying">Hacking Buster and Deploying  </h1>
+
+<p><strong>Series:</strong><br/>
+<a href='http://leftofnull.com/2014/02/07/using-github-pages-with-ghost-and-buster-on-windows-part-1' >Part 1: Taking Inventory and Setting Up</a><br/>
+Part 2: Hacking Buster and Deploying</p>
+
+<h2 id="recap">Recap</h2>
+
+<p>In the first part of the series we talked about setting up your Windows machine with Node.js, Python, MinGW, Git Bash, and Pip. If you haven't done so already, please use the link to part one above.</p>
+
+<h2 id="gettingghost">Getting Ghost</h2>
+
+<p>Let's get start on getting you set up with the Ghost blogging engine. You should start by heading over to the <a href='https://github.com/tryghost/Ghost' >Ghost GitHub Repository</a>. The README has a lot of great info in it and goes over various ways to install. We'll cover cloning the repo so you can run it locally. Let's start by firing up your Git Bash and entering the following:</p>
+
+<pre><code>$ cd ~
+</code></pre>
+
+<p>This assumes that you want to run everything in your users directory, if not change to a path where you want to install ghost. Now we'll clone ghost.</p>
+
+<pre><code>$ git clone https://github.com/TryGhost/Ghost.git
+$ cd ghost
+$ npm install --production
+$ npm start
+</code></pre>
+
+<p>You should have Ghost running on the default url <code>http://127.0.0.1:2368</code>. You can start to create an admin profile and access the admin settings any time at <code>http://127.0.0.1:2368/ghost</code>. Now if you want to set a specific URL for your GitHub Page let's set that repo up on GitHub first. Go ahead and hit <code>Ctrl+C</code> in your Git Bash.</p>
+
+<h2 id="settingupyourgithubrepoforgithubpages">Setting up your GitHub repo for GitHub pages</h2>
+
+<p>The best info, as always, can be found from GitHub themselves at <a href='http://pages.github.com/' >GitHub Pages</a>. As a quick abbreviated version, we'll set up a new repo for this exercise. Go to your GitHub account and create a new repo.  </p>
+
+<iframe src='https://onedrive.live.com/embed?cid=B1874DF728CD0FC6&resid=B1874DF728CD0FC6%219654&authkey=ACZ-3NSLodjpZhM'  width="240" height="153" frameborder="0" scrolling="no"></iframe>  
+
+<p>Name the new repo whatever makes sense to you. Make sure to select Initialize with README. It's not necessary but it makes the next step that much quicker. Now in your new repo, create a new branch called <code>gh-pages</code>. It's very important that it be exact, this is what GitHub Pages works on.  </p>
+
+<iframe src='https://onedrive.live.com/embed?cid=B1874DF728CD0FC6&resid=B1874DF728CD0FC6%219656&authkey=AFH88ehOx1cmsxo'  width="247" height="190" frameborder="0" scrolling="no"></iframe>  
+
+<p>When you're finished it should look like this:  </p>
+
+<iframe src='https://onedrive.live.com/embed?cid=B1874DF728CD0FC6&resid=B1874DF728CD0FC6%219657&authkey=ADo432-85ddiU7M'  width="189" height="204" frameborder="0" scrolling="no"></iframe>  
+
+<h3 id="settingupyournewsiteingitlocally">Setting up your new site in git locally</h3>
+
+<p>Now that you have the repo set up, let's pull it down. There should be a link in the bottom right of your repo page on GitHub that looks like this:  </p>
+
+<iframe src='https://onedrive.live.com/embed?cid=B1874DF728CD0FC6&resid=B1874DF728CD0FC6%219658&authkey=AKFukIEDiA2OKe4'  width="191" height="94" frameborder="0" scrolling="no"></iframe>  
+
+<p>Click the "copy to clipboard button to grab the clone url" <br />
+Fire up your Git Bash again and use the following commands:</p>
+
+<pre><code>$ cd ~
+$ git clone https://github.com/leftofnull/mywebsite.git &lt;this will be the url you copied, not this exact one&gt;
+$ git checkout -b gh-pages
+</code></pre>
+
+<p>You should now have your repo set up!</p>
+
+<h2 id="modifyingthedefaulturlinghost">Modifying the default URL in Ghost</h2>
+
+<p>Make sure Ghost is not running. Navigate in the file explorer to where you cloned Ghost and look for <code>config.js</code>. Open it any any text editor and find the <code>url:</code> property and change it to http://<em>username</em>.github.io/<em>repository</em>.</p>
+
+<h2 id="hackingbuster">Hacking Buster</h2>
+
+<p>Unfortunately for Windows users Buster was not designed with Windows in mind. So we'll have to do a little hacking. I have a forked version of the Buster repo that can be cloned here:</p>
+
+<pre><code>$ cd ~
+$ git clone https://github.com/leftofnull/buster.git
+$ cd buster
+</code></pre>
+
+<p>The original repo can be found at <a href='https://github.com/axitkhurana/buster' >https://github.com/axitkhurana/buster</a>. The main differences are in the <code>buster/buster.py</code> file.</p>
+
+<p>Starting at line 39, original:</p>
+
+<pre><code>if arguments['generate']:
+    command = ("wget \\"
+               "--recursive \\"
+               "--convert-links \\"
+               "--page-requisites \\"
+               "--no-parent \\"
+               "--directory-prefix {1} \\"
+               "--no-host-directories \\"
+               "{0}").format(arguments['--domain'], static_path)
+</code></pre>
+
+<p>And the modified version: </p>
+
+<pre><code>if arguments['generate']:
+    command = ("wget "
+               "--recursive "
+               "--convert-links "
+               "--page-requisites "
+               "--no-parent "
+               "--directory-prefix {1} "
+               "--no-host-directories "
+               "--restrict-file-names=unix "
+               "{0}").format(arguments['--domain'], static_path)
+</code></pre>
+
+<p>We've removed the <code>\\</code> characters as they cause Windows to escape the string, in *nix based systems it allows you to use a carriage return and keep typing the same command. We've also added the <code>--restrict-file-names=unix</code> flag which will prevent some of the default escaping in html files that Windows performs with <code>wget</code>. This also negates the <code>--convert-links</code> flag unfortunately, we'll fix that in a minute.</p>
+
+<p>Next on line 50, original:</p>
+
+<pre><code>file_regex = re.compile(r'.*?(\?.*)')
+</code></pre>
+
+<p>We'll need to modify and add another regex:</p>
+
+<pre><code>file_regex = re.compile(r".*?(@.*)")
+html_regex = re.compile(r".*?(\.html)")
+</code></pre>
+
+<p>We have to modify the file_regex for Windows and we're going to create another to identify html files.</p>
+
+<p>At line 52 in the original:</p>
+
+<pre><code>for filename in filenames:
+    if file_regex.match(filename):
+        newname = re.sub(r'\?.*', '', filename)
+        print "Rename", filename, "=&gt;", newname
+        os.rename(os.path.join(root, filename), os.path.join(root, newname))
+</code></pre>
+
+<p>We'll tweak to: </p>
+
+<pre><code>for filename in filenames:
+    if html_regex.match(filename):
+        path = ("{0}").format(os.path.join(root, filename).replace("\\", "/"))
+        with open(path, "r+") as f:
+            file_contents = f.read()
+            file_contents = file_contents.replace(arguments['--domain'], "")
+            f.seek(0)
+            f.write(file_contents)
+            f.close()
+    if file_regex.match(filename):
+        newname = re.sub(r'@.*', '', filename)
+        print "Rename", filename, "=&gt;", newname
+        os.rename(os.path.join(root, filename), os.path.join(root, newname))
+</code></pre>
+
+<p>Here's our big cheat. We're going through all html files and swapping out any instances of the root url, in this case <a href='http://127.0.0.1:2368/' >http://127.0.0.1:2368</a> or where ever you're running it locally and replacing it with a relative url path. <strong>Hacking Complete!</strong> As you can imagine, this has some built in performance degradation, but it works!</p>
+
+<h2 id="installingyourmodifiedbuster">Installing your modified Buster</h2>
+
+<p>Open your Git Bash, if you haven't already, and use the following commands:</p>
+
+<pre><code>$ cd ~
+$ cd buster
+$ python setup.py install
+$ buster --version
+0.1.2
+</code></pre>
+
+<p>That's it!</p>
+
+<h2 id="settingupbuster">Setting up Buster</h2>
+
+<p>Run the setup and when it asks for your GitHub url, use the one you will be using for your gh-pages that you set up earlier. If you need to, grab the clone url again before you start.</p>
+
+<pre><code>$ buster setup
+</code></pre>
+
+<p>And follow the prompts.</p>
+
+<p>Now you'll need to open another instance of Git Bash and run:</p>
+
+<pre><code>$ cd ~
+$ cd ghost
+$ npm start
+</code></pre>
+
+<p>If you didn't finish setting up the admin stuff before, you'll need to set it up now. You should have the welcome post by default, we'll leave that for now so we can test it out. Once that's finished, leave Ghost running and switch back to the Git Bash where you ran the setup for Buster from. </p>
+
+<pre><code>$ buster generate --domain=http://127.0.0.1:2368 --dir=~/mywebsite
+$ buster deploy --dir=~/mywebsite
+</code></pre>
+
+<p>This will generate the static content and deploy your site to the gh-pages branch in GitHub. You can try navigating there by putting the http://<em>username</em>.github.io/<em>repository</em> in the location bar of any browser window.</p>
+
+<p>That's it! You now have a blog on GitHub Pages with Ghost and Buster. Any time you want to add new blogs or modify it, just run ghost locally, make the changes, and run the buster generate and deploy commands. Let me know in the comments if you run into any issues. Happy Coding!</p>]]></description><link>http://leftofnull.com/2014/02/24/using-github-pages-with-ghost-and-buster-on-windows-part-2/</link><guid isPermaLink="false">e9921512-c54e-4bc6-9752-90addf06fdef</guid><category><![CDATA[node.js]]></category><category><![CDATA[blog]]></category><category><![CDATA[gh-pages]]></category><category><![CDATA[github pages]]></category><category><![CDATA[ghost]]></category><category><![CDATA[buster]]></category><category><![CDATA[windows]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Tue, 25 Feb 2014 04:57:14 GMT</pubDate></item><item><title><![CDATA[Using GitHub Pages with Ghost and Buster on Windows (part 1)]]></title><description><![CDATA[<h1 id="takinginventoryandsettingup">Taking Inventory and Setting Up  </h1>
 
 <blockquote>
   <p>First and foremost, if you are using Linux or OSX, follow this guide <a href='http://genescissors.github.io/deploying-ghost-blog-to-gh-pages/' >here</a> and save yourself a <strong>lot</strong> of time.</p>
 </blockquote>
 
-<p>Part 2: The Hacking Buster and Deploying (Coming Soon)</p>
+<p><strong>Series:</strong><br/>
+Part 1: Taking Inventory and Setting Up<br/><a href='http://leftofnull.com/2014/02/24/using-github-pages-with-ghost-and-buster-on-windows-part-2' >Part 2: Hacking Buster and Deploying</a></p>
 
 <h2 id="listofsoftware">List of software</h2>
 
