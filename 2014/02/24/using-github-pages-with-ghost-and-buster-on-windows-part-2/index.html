@@ -16,7 +16,7 @@
     <link rel="shortcut icon" href="../../../../favicon.ico">
 
     
-    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css?v=3fef901f70" />
+    <link rel="stylesheet" type="text/css" href="http:///assets/css/screen.css?v=1986dc2672" />
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
 
     
@@ -77,7 +77,7 @@ $ npm install --production
 $ npm start
 </code></pre>
 
-<p>You should have Ghost running on the default url <code></code>. You can start to create an admin profile and access the admin settings any time at <code>/ghost</code>. Now if you want to set a specific URL for your GitHub Page let's set that repo up on GitHub first. Go ahead and hit <code>Ctrl+C</code> in your Git Bash.</p>
+<p>You should have Ghost running on the default url <code>http://</code>. You can start to create an admin profile and access the admin settings any time at <code>http:///ghost</code>. Now if you want to set a specific URL for your GitHub Page let's set that repo up on GitHub first. Go ahead and hit <code>Ctrl+C</code> in your Git Bash.</p>
 
 <h2 id="settingupyourgithubrepoforgithubpages">Setting up your GitHub repo for GitHub pages</h2>
 
@@ -192,7 +192,7 @@ html_regex = re.compile(r".*?(\.html)")
         os.rename(os.path.join(root, filename), os.path.join(root, newname))
 </code></pre>
 
-<p>Here's our big cheat. We're going through all html files and swapping out any instances of the root url, in this case <a href='../../../../index.html'></a> or where ever you're running it locally and replacing it with a relative url path. <strong>Hacking Complete!</strong> As you can imagine, this has some built in performance degradation, but it works!</p>
+<p>Here's our big cheat. We're going through all html files and swapping out any instances of the root url, in this case <a href='../../../../index.html'>http://</a> or where ever you're running it locally and replacing it with a relative url path. <strong>Hacking Complete!</strong> As you can imagine, this has some built in performance degradation, but it works!</p>
 
 <h2 id="installingyourmodifiedbuster">Installing your modified Buster</h2>
 
@@ -225,7 +225,7 @@ $ npm start
 
 <p>If you didn't finish setting up the admin stuff before, you'll need to set it up now. You should have the welcome post by default, we'll leave that for now so we can test it out. Once that's finished, leave Ghost running and switch back to the Git Bash where you ran the setup for Buster from. </p>
 
-<pre><code>$ buster generate --domain= --dir=/c/users/username/mywebsite
+<pre><code>$ buster generate --domain=http:// --dir=/c/users/username/mywebsite
 $ buster deploy --dir=/c/users/username/mywebsite
 </code></pre>
 
@@ -291,11 +291,11 @@ $ buster deploy --dir=/c/users/username/mywebsite
     </footer>
 
     
-    <script src="/shared/vendor/jquery/jquery.js?v=3fef901f70"></script>
+    <script src="http:///shared/vendor/jquery/jquery.js?v=1986dc2672"></script>
 
     
-    <script type="text/javascript" src="/assets/js/jquery.fitvids.js?v=3fef901f70"></script>
-    <script type="text/javascript" src="/assets/js/index.js?v=3fef901f70"></script>
+    <script type="text/javascript" src="http:///assets/js/jquery.fitvids.js?v=1986dc2672"></script>
+    <script type="text/javascript" src="http:///assets/js/index.js?v=1986dc2672"></script>
 
 </body>
 </html>
