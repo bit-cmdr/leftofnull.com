@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Left of Null]]></title><description><![CDATA[Covering Coding, Technology, and Life.]]></description><link>http://leftofnull.com/</link><generator>Ghost v0.4.1</generator><lastBuildDate>Thu, 20 Mar 2014 02:54:53 GMT</lastBuildDate><atom:link href="http://leftofnull.com/rss/" rel="self" type="application/rss+xml"/><author><![CDATA[Alexander Kahoun]]></author><ttl>60</ttl><item><title><![CDATA[Constant Vigilance: Classes or Structs in C#]]></title><description><![CDATA[<p>I'm going to have a recurring theme on the blog from time to time. I'll probably have several, but this is the first. The theme here is constant vigilance. The same advice that Mad-Eye Moody gives to Harry Potter in the books. The constant vigilance theme will address poor coding habits that are encouraged by the tools we use. Don't get defensive just yet, and read on. If you disagree, I welcome your comments and will do my best to keep up.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Left of Null]]></title><description><![CDATA[Covering Coding, Technology, and Life.]]></description><link>http://leftofnull.com/</link><generator>Ghost v0.4.1</generator><lastBuildDate>Thu, 20 Mar 2014 02:58:21 GMT</lastBuildDate><atom:link href="http://leftofnull.com/rss/" rel="self" type="application/rss+xml"/><author><![CDATA[Alexander Kahoun]]></author><ttl>60</ttl><item><title><![CDATA[Constant Vigilance: Classes or Structs in C#]]></title><description><![CDATA[<p>I'm going to have a recurring theme on the blog from time to time. I'll probably have several, but this is the first. The theme here is constant vigilance. The same advice that Mad-Eye Moody gives to Harry Potter in the books. The constant vigilance theme will address poor coding habits that are encouraged by the tools we use. Don't get defensive just yet, and read on. If you disagree, I welcome your comments and will do my best to keep up.</p>
 
 <h2 id="constantvigilance">Constant Vigilance</h2>
 
@@ -96,7 +96,7 @@ $ npm install --production
 $ npm start
 </code></pre>
 
-<p>You should have Ghost running on the default url <code>http://</code>. You can start to create an admin profile and access the admin settings any time at <code>http:///ghost</code>. Now if you want to set a specific URL for your GitHub Page let's set that repo up on GitHub first. Go ahead and hit <code>Ctrl+C</code> in your Git Bash.</p>
+<p>You should have Ghost running on the default url <code></code>. You can start to create an admin profile and access the admin settings any time at <code>/ghost</code>. Now if you want to set a specific URL for your GitHub Page let's set that repo up on GitHub first. Go ahead and hit <code>Ctrl+C</code> in your Git Bash.</p>
 
 <h2 id="settingupyourgithubrepoforgithubpages">Setting up your GitHub repo for GitHub pages</h2>
 
@@ -211,7 +211,7 @@ html_regex = re.compile(r".*?(\.html)")
         os.rename(os.path.join(root, filename), os.path.join(root, newname))
 </code></pre>
 
-<p>Here's our big cheat. We're going through all html files and swapping out any instances of the root url, in this case <a href='http:///' >http://</a> or where ever you're running it locally and replacing it with a relative url path. <strong>Hacking Complete!</strong> As you can imagine, this has some built in performance degradation, but it works!</p>
+<p>Here's our big cheat. We're going through all html files and swapping out any instances of the root url, in this case <a href='/' ></a> or where ever you're running it locally and replacing it with a relative url path. <strong>Hacking Complete!</strong> As you can imagine, this has some built in performance degradation, but it works!</p>
 
 <h2 id="installingyourmodifiedbuster">Installing your modified Buster</h2>
 
@@ -244,7 +244,7 @@ $ npm start
 
 <p>If you didn't finish setting up the admin stuff before, you'll need to set it up now. You should have the welcome post by default, we'll leave that for now so we can test it out. Once that's finished, leave Ghost running and switch back to the Git Bash where you ran the setup for Buster from. </p>
 
-<pre><code>$ buster generate --domain=http:// --dir=/c/users/username/mywebsite
+<pre><code>$ buster generate --domain= --dir=/c/users/username/mywebsite
 $ buster deploy --dir=/c/users/username/mywebsite
 </code></pre>
 
