@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Left of Null]]></title><description><![CDATA[Covering Coding, Technology, and Life.]]></description><link>http://leftofnull.com/</link><generator>Ghost v0.4.1</generator><lastBuildDate>Thu, 20 Mar 2014 02:58:21 GMT</lastBuildDate><atom:link href="http://leftofnull.com/rss/" rel="self" type="application/rss+xml"/><author><![CDATA[Alexander Kahoun]]></author><ttl>60</ttl><item><title><![CDATA[Constant Vigilance: Classes or Structs in C#]]></title><description><![CDATA[<p>I'm going to have a recurring theme on the blog from time to time. I'll probably have several, but this is the first. The theme here is constant vigilance. The same advice that Mad-Eye Moody gives to Harry Potter in the books. The constant vigilance theme will address poor coding habits that are encouraged by the tools we use. Don't get defensive just yet, and read on. If you disagree, I welcome your comments and will do my best to keep up.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Left of Null]]></title><description><![CDATA[Covering Coding, Technology, and Life.]]></description><link>http://leftofnull.com/</link><generator>Ghost v0.4.1</generator><lastBuildDate>Sat, 05 Apr 2014 04:16:37 GMT</lastBuildDate><atom:link href="http://leftofnull.com/rss/" rel="self" type="application/rss+xml"/><author><![CDATA[Alexander Kahoun]]></author><ttl>60</ttl><item><title><![CDATA[Why are you using source control?]]></title><description><![CDATA[<h1 id="topreasons">Top Reasons  </h1>
+
+<h4 id="1savecodeotherthanonalocaldrive">1. Save code other than on a local drive</h4>
+
+<h4 id="2sharecodeamongteams">2. Share code among teams</h4>
+
+<h4 id="3versioncontrol">3. Version Control</h4>
+
+<p>Everyone that uses source control will list these reasons. I list all these reasons. They're all perfectly accurate too, butare you <em>really</em> using it for all three reasons?</p>
+
+<h3 id="savecodeotherthanonalocaldrive">Save code other than on a local drive</h3>
+
+<p>Of course you do this, if you're using any kind of source control server you can't get away from it. This is, after all, one of the prime selling points to business if they don't understand why you need it. All you have to do is explain that if you don't do this all of the code could be lost in the blink of an eye. You're laptop or computer could get stolen, you're hard drive could fail, you could get hit by a bus... The list goes on, but I'm sure you're well familiar with it.</p>
+
+<h3 id="sharecodeamongteams">Share code among teams</h3>
+
+<p>Again, if you're on a team you most likely are already doing this. Unless you're emailing eachother the zipped up source code or all working on a network share. ::shudder::</p>
+
+<h3 id="versioncontrol">Version Control</h3>
+
+<blockquote>
+  <p>...</p>
+</blockquote>
+
+<p>Here's where it gets interesting. Are you really taking advantage of the version control capabilities of your source control provider? Every change you commit is stored in the history. To truly realize this functionality you should be committing as often as possible. Depending on your version control system, this doesn't always mean pushing it to the source control server, but creating a bookmark for yourself. More of a personal stash that's stored locally or on a server.</p>
+
+<p>Far too often I encounter a file/module/component with the suffix V2 with no good reason. There are always exceptions to this, so if you encounter a V2 or Vn don't fly off the handle until you're sure previous versions truly aren't needed... <em>then</em> fly off the handle. ;)</p>
+
+<p>See if you are concerned about rolling back or commenting out old code, please don't. This is exactly one of the reasons that version control exists in the first place.</p>]]></description><link>http://leftofnull.com/2014/04/04/why-are-you-using-source-control/</link><guid isPermaLink="false">9d145aae-adf1-4183-9b40-e3646b8ab71d</guid><category><![CDATA[Development]]></category><category><![CDATA[Source Control]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Sat, 05 Apr 2014 03:38:31 GMT</pubDate></item><item><title><![CDATA[Constant Vigilance: Classes or Structs in C#]]></title><description><![CDATA[<p>I'm going to have a recurring theme on the blog from time to time. I'll probably have several, but this is the first. The theme here is constant vigilance. The same advice that Mad-Eye Moody gives to Harry Potter in the books. The constant vigilance theme will address poor coding habits that are encouraged by the tools we use. Don't get defensive just yet, and read on. If you disagree, I welcome your comments and will do my best to keep up.</p>
 
 <h2 id="constantvigilance">Constant Vigilance</h2>
 
@@ -71,7 +99,7 @@
 }
 </code></pre>
 
-<p>There really isn't much difference between the two, but there's no reason at this point to make it a Class. I say 'at this point' because you may need to change it down the road. <strong>That's okay.</strong> Software changes, it's inevitable. This is where YAGNI comes into play. If you don't need it <em>right now</em>, then don't waste effort on building it right now. This again is a balancing act, but the point is to not do more than you need to, because what you think you need may change tomorrow.</p>]]></description><link>http://leftofnull.com/2014/03/19/constant-vigilance-classes-or-structs-in-c/</link><guid isPermaLink="false">25b83864-0ce7-4b37-bd09-f83f62e59ed1</guid><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Thu, 20 Mar 2014 02:52:46 GMT</pubDate></item><item><title><![CDATA[Using GitHub Pages with Ghost and Buster on Windows (part 2)]]></title><description><![CDATA[<h1 id="hackingbusteranddeploying">Hacking Buster and Deploying  </h1>
+<p>There really isn't much difference between the two, but there's no reason at this point to make it a Class. I say 'at this point' because you may need to change it down the road. <strong>That's okay.</strong> Software changes, it's inevitable. This is where YAGNI comes into play. If you don't need it <em>right now</em>, then don't waste effort on building it right now. This again is a balancing act, but the point is to not do more than you need to, because what you think you need may change tomorrow.</p>]]></description><link>http://leftofnull.com/2014/03/19/constant-vigilance-classes-or-structs-in-c/</link><guid isPermaLink="false">25b83864-0ce7-4b37-bd09-f83f62e59ed1</guid><category><![CDATA[C#]]></category><category><![CDATA[YAGNI]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Thu, 20 Mar 2014 02:52:46 GMT</pubDate></item><item><title><![CDATA[Using GitHub Pages with Ghost and Buster on Windows (part 2)]]></title><description><![CDATA[<h1 id="hackingbusteranddeploying">Hacking Buster and Deploying  </h1>
 
 <p><strong>Series:</strong><br/>
 <a href='http://leftofnull.com/2014/02/07/using-github-pages-with-ghost-and-buster-on-windows-part-1' >Part 1: Taking Inventory and Setting Up</a><br/>
