@@ -183,6 +183,7 @@ html_regex = re.compile(r".*?(\.html)")
         with open(path, "r+") as f:
             file_contents = f.read()
             file_contents = file_contents.replace(arguments['--domain'], "")
+            file_contents = file_contents.replace("%hurl", arguments['--domain'])
             f.seek(0)
             f.write(file_contents)
             f.close()

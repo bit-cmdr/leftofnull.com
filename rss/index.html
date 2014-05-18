@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Left of Null]]></title><description><![CDATA[Covering Coding, Technology, and Life.]]></description><link>http://leftofnull.com/</link><generator>Ghost v0.4.1</generator><lastBuildDate>Sun, 18 May 2014 15:45:49 GMT</lastBuildDate><atom:link href="http://leftofnull.com/rss/" rel="self" type="application/rss+xml"/><author><![CDATA[Alexander Kahoun]]></author><ttl>60</ttl><item><title><![CDATA[Why are you using source control?]]></title><description><![CDATA[<h1 id="topreasons">Top Reasons  </h1>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Left of Null]]></title><description><![CDATA[Covering Coding, Technology, and Life.]]></description><link>http://leftofnull.com/</link><generator>Ghost v0.4.1</generator><lastBuildDate>Sun, 18 May 2014 16:08:25 GMT</lastBuildDate><atom:link href="http://leftofnull.com/rss/" rel="self" type="application/rss+xml"/><author><![CDATA[Alexander Kahoun]]></author><ttl>60</ttl><item><title><![CDATA[Why are you using source control?]]></title><description><![CDATA[<h1 id="topreasons">Top Reasons  </h1>
 
 <h4 id="1savecodeotherthanonalocaldrive">1. Save code other than on a local drive</h4>
 
@@ -230,6 +230,7 @@ html_regex = re.compile(r".*?(\.html)")
         with open(path, "r+") as f:
             file_contents = f.read()
             file_contents = file_contents.replace(arguments['--domain'], "")
+            file_contents = file_contents.replace("%hurl", arguments['--domain'])
             f.seek(0)
             f.write(file_contents)
             f.close()
@@ -272,7 +273,7 @@ $ npm start
 
 <p>If you didn't finish setting up the admin stuff before, you'll need to set it up now. You should have the welcome post by default, we'll leave that for now so we can test it out. Once that's finished, leave Ghost running and switch back to the Git Bash where you ran the setup for Buster from. </p>
 
-<pre><code>$ buster generate --domain= --dir=/c/users/username/mywebsite
+<pre><code>$ buster generate --domain=http://127.0.0.1:2368 --dir=/c/users/username/mywebsite
 $ buster deploy --dir=/c/users/username/mywebsite
 </code></pre>
 
