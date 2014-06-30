@@ -1,5 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Left of Null]]></title><description><![CDATA[Covering Coding, Technology, and Life.]]></description><link>http://leftofnull.com/</link><generator>Ghost v0.4.1</generator><lastBuildDate>Sun, 18 May 2014 16:08:25 GMT</lastBuildDate><atom:link href="http://leftofnull.com/rss/" rel="self" type="application/rss+xml"/><author><![CDATA[Alexander Kahoun]]></author><ttl>60</ttl><item><title><![CDATA[Why are you using source control?]]></title><description><![CDATA[<h1 id="topreasons">Top Reasons  </h1>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Left of Null]]></title><description><![CDATA[Covering Coding, Technology, and Life.]]></description><link>http://leftofnull.com/</link><generator>Ghost v0.4.2</generator><lastBuildDate>Mon, 30 Jun 2014 04:13:48 GMT</lastBuildDate><atom:link href="http://leftofnull.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[The Importance of the Ubiquitous Language]]></title><description><![CDATA[<h3 id="ubiquitousyoobikwitx259ss">Ubiquitous: <em>/yoo-bikwit&#x259;ss/</em></h3>
+
+<ul>
+<li><strong>existing everywhere: present everywhere at once, or seeming to be</strong></li>
+</ul>
+
+<h3 id="languagelaacutenggwij">Language: <em>/l&aacute;ng-gwij/</em></h3>
+
+<ul>
+<li>communication with words: the human use of spoken or written words as a communication system</li>
+<li>speech of group: the speech of a country, region, or group of people, including its vocabulary, syntax, and grammar</li>
+<li><strong>system of communication: a system of communication with its own set of conventions or special words</strong></li>
+</ul>
+
+<h3 id="ubiquitouslanguage">Ubiquitous Language:</h3>
+
+<ul>
+<li><strong>system of communication: a system of communication with its own set of conventions or special words that exists everywhere within a given business domain</strong></li>
+</ul>
+
+<p>Eric Evans first coined the term in his book on <a href='http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software-ebook/dp/B00794TAUG/ref=tmm_kin_title_0' >Domain Driven Design</a>, which is available in kindle-edition now by the way. If you haven't read it, I recommend adding it to you reasing list. I'll hone in on the same excerpt that Martin Fowler did in his <a href='http://martinfowler.com/bliki/UbiquitousLanguage.html' >post on the topic</a>.</p>
+
+<blockquote>
+  <p>By using the model-based language pervasively and not being satisfied until it flows, we approach a model that is complete and comprehensible, made up of simple elements that combine to express complex ideas.</p>
+  
+  <p>Domain experts should object to terms or structures that are awkward or inadequate to convey domain understanding; developers should watch for ambiguity or inconsistency that will trip up design.</p>
+  
+  <p>-- Eric Evans</p>
+</blockquote>
+
+<p>When I start a new project, no matter how big or small, I like to take the time to fully understand what the users do as a workflow. I think all of us do to some extent. UX experts create <a href='http://www.uxmatters.com/mt/archives/2011/09/the-value-of-customer-journey-maps-a-ux-designers-personal-journey.php' >Journey Maps</a> to illustrate what they've learned from such sessions. I like to put together a Ubiquitous Language Dictionary. It's more of a wiki though, to be honest.</p>
+
+<p>I'm sure you're familiar with the adage, "Measure twice, cut once." This is part of the measuring process. You are measuring your, and potentially the team's, understanding of the domain you are working in. In some cases you will be testing the users' knowledge as well. People are creatures of habit and we tend to do things without asking why, because it simply works. Your job is to ask why and to keep asking it until you've reached the bottom. Case in point, <a href='http://www.etymonline.com/index.php?term=Wednesday' >why is Wednesday spelled as it is?</a></p>
+
+<p>When I set out to start my dictionary for a project, I aim to gather two things right away; Nouns and Verbs. Nouns are, well, nouns. They are things like Product, Order, Employee, Manager, User, etc. Verbs are what you do with the nouns, Place an Order, Hire an Employee, Sell a Product, etc. In terms of self-documenting code, you can take the Nouns and make them your Domain classes or abstractions; Verbs become your methods either on the Domain classes or in an Application Service layer, if you've chosen that path. That's really another discussion though. This allows me to have a solid foundation to start with before the complexities come into play.</p>
+
+<p>The complexities are that you almost always are going to have different user types or personas that use the system in different ways. A Product to a Customer means something different than a Product means to a Seller. They may have many similar properties, but the verbs around them to each persona could vary greatly. A Seller <em>Sells</em> a Product, a Customer <em>Buys</em> a Product. It's these nuances that you have to identify and figure out. This is where it gets complex in that you need to make sure you identify the global domain definition of a Product and its Verbs and what the Product means to all the different personas. It's okay to have a Noun and/or Verb listed multiple times in different, or similar, ways for each persona involved. So expect to have global Nouns and Verbs along with persona specific Nouns and Verbs. The separation is what Evans refers to as Contexts. In a given context Product means [insert definition here].</p>
+
+<p>So why is this any more important than any other requirements gathering? Well this is where it all starts and ends, communication. If you're taking the time to speak and write code in the language of the customer, you reduce miscommunication and increase supportability of your software. It's been said that <a href='http://www.jeremybytes.com/Downloads/CleanCode.pdf' >homicidal maniacs read code too</a>, make it easy on them so that when a user says, "Hey, I can't place an order," the next developer supporting the software can easily find the PlaceOrder method and start there. Your code now mimics the language of the user(s).</p>
+
+<p>At the end of the day, if you're able to articulate to users the issues you're having or ask them about processes in their own language you will get a much more valuable response if you're all using the same vernacular. One thing that should set off red flags for you is when someone says you can use multiple terms for the same thing. Why? Are they truly the same? Are they the same thing, but at different phases in its life-cycle? Who uses which term when? These are the questions you need to ask when you encounter this. Keep in mind that language is a complex medium. It won't always be easy, but you can do it.</p>
+
+<h3 id="conwayslawhttpenwikipediaorgwikiconway27s_law"><a href='http://en.wikipedia.org/wiki/Conway%27s_Law' >Conway's Law</a></h3>
+
+<blockquote>
+  <p>organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations</p>
+  
+  <p>-- Melvin Conway</p>
+</blockquote>
+
+<p>Another way of putting it is, why not try to change the communication structure of a team to match a system design that you want to build.</p>
+
+<p>Happy Coding!</p>]]></description><link>http://leftofnull.com/2014/06/29/the-importance-of-the-ubiquitous-language-2/</link><guid isPermaLink="false">937222bf-f5d8-4446-9912-447db5905fe6</guid><category><![CDATA[Development]]></category><category><![CDATA[Coding]]></category><category><![CDATA[Ubiquitous Language]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Mon, 30 Jun 2014 04:02:38 GMT</pubDate></item><item><title><![CDATA[Why are you using source control?]]></title><description><![CDATA[<h1 id="topreasons">Top Reasons  </h1>
 
 <h4 id="1savecodeotherthanonalocaldrive">1. Save code other than on a local drive</h4>
 
@@ -27,7 +79,7 @@
 
 <p>Far too often I encounter a file/module/component with the suffix V2 with no good reason. There are always exceptions to this, so if you encounter a V2 or Vn don't fly off the handle until you're sure previous versions truly aren't needed... <em>then</em> fly off the handle. ;)</p>
 
-<p>See if you are concerned about rolling back or commenting out old code, please don't. This is exactly one of the reasons that version control exists in the first place.</p>]]></description><link>http://leftofnull.com/2014/04/04/why-are-you-using-source-control/</link><guid isPermaLink="false">9d145aae-adf1-4183-9b40-e3646b8ab71d</guid><category><![CDATA[Development]]></category><category><![CDATA[Source Control]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Sat, 05 Apr 2014 03:38:31 GMT</pubDate></item><item><title><![CDATA[Constant Vigilance: Classes or Structs in C#]]></title><description><![CDATA[<p>I'm going to have a recurring theme on the blog from time to time. I'll probably have several, but this is the first. The theme here is constant vigilance. The same advice that Mad-Eye Moody gives to Harry Potter in the books. The constant vigilance theme will address poor coding habits that are encouraged by the tools we use. Don't get defensive just yet, and read on. If you disagree, I welcome your comments and will do my best to keep up.</p>
+<p>See if you are concerned about rolling back or commenting out old code, please don't. This is exactly one of the reasons that version control exists in the first place.</p>]]></description><link>http://leftofnull.com/2014/04/04/why-are-you-using-source-control/</link><guid isPermaLink="false">9d145aae-adf1-4183-9b40-e3646b8ab71d</guid><category><![CDATA[Source Control]]></category><category><![CDATA[Development]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Sat, 05 Apr 2014 03:38:31 GMT</pubDate></item><item><title><![CDATA[Constant Vigilance: Classes or Structs in C#]]></title><description><![CDATA[<p>I'm going to have a recurring theme on the blog from time to time. I'll probably have several, but this is the first. The theme here is constant vigilance. The same advice that Mad-Eye Moody gives to Harry Potter in the books. The constant vigilance theme will address poor coding habits that are encouraged by the tools we use. Don't get defensive just yet, and read on. If you disagree, I welcome your comments and will do my best to keep up.</p>
 
 <h2 id="constantvigilance">Constant Vigilance</h2>
 
@@ -99,7 +151,7 @@
 }
 </code></pre>
 
-<p>There really isn't much difference between the two, but there's no reason at this point to make it a Class. I say 'at this point' because you may need to change it down the road. <strong>That's okay.</strong> Software changes, it's inevitable. This is where YAGNI comes into play. If you don't need it <em>right now</em>, then don't waste effort on building it right now. This again is a balancing act, but the point is to not do more than you need to, because what you think you need may change tomorrow.</p>]]></description><link>http://leftofnull.com/2014/03/19/constant-vigilance-classes-or-structs-in-c/</link><guid isPermaLink="false">25b83864-0ce7-4b37-bd09-f83f62e59ed1</guid><category><![CDATA[C#]]></category><category><![CDATA[YAGNI]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Thu, 20 Mar 2014 02:52:46 GMT</pubDate></item><item><title><![CDATA[Using GitHub Pages with Ghost and Buster on Windows (part 2)]]></title><description><![CDATA[<h1 id="hackingbusteranddeploying">Hacking Buster and Deploying  </h1>
+<p>There really isn't much difference between the two, but there's no reason at this point to make it a Class. I say 'at this point' because you may need to change it down the road. <strong>That's okay.</strong> Software changes, it's inevitable. This is where YAGNI comes into play. If you don't need it <em>right now</em>, then don't waste effort on building it right now. This again is a balancing act, but the point is to not do more than you need to, because what you think you need may change tomorrow.</p>]]></description><link>http://leftofnull.com/2014/03/19/constant-vigilance-classes-or-structs-in-c/</link><guid isPermaLink="false">25b83864-0ce7-4b37-bd09-f83f62e59ed1</guid><category><![CDATA[YAGNI]]></category><category><![CDATA[C#]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Thu, 20 Mar 2014 02:52:46 GMT</pubDate></item><item><title><![CDATA[Using GitHub Pages with Ghost and Buster on Windows (part 2)]]></title><description><![CDATA[<h1 id="hackingbusteranddeploying">Hacking Buster and Deploying  </h1>
 
 <p><strong>Series:</strong><br/>
 <a href='http://leftofnull.com/2014/02/07/using-github-pages-with-ghost-and-buster-on-windows-part-1' >Part 1: Taking Inventory and Setting Up</a><br/>
@@ -279,7 +331,7 @@ $ buster deploy --dir=/c/users/username/mywebsite
 
 <p>This will generate the static content and deploy your site to the gh-pages branch in GitHub. You can try navigating there by putting the http://<em>username</em>.github.io/<em>repository</em> in the location bar of any browser window.</p>
 
-<p>That's it! You now have a blog on GitHub Pages with Ghost and Buster. Any time you want to add new blogs or modify it, just run ghost locally, make the changes, and run the buster generate and deploy commands. Let me know in the comments if you run into any issues. Happy Coding!</p>]]></description><link>http://leftofnull.com/2014/02/24/using-github-pages-with-ghost-and-buster-on-windows-part-2/</link><guid isPermaLink="false">e9921512-c54e-4bc6-9752-90addf06fdef</guid><category><![CDATA[node.js]]></category><category><![CDATA[blog]]></category><category><![CDATA[gh-pages]]></category><category><![CDATA[github pages]]></category><category><![CDATA[ghost]]></category><category><![CDATA[buster]]></category><category><![CDATA[windows]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Tue, 25 Feb 2014 04:57:14 GMT</pubDate></item><item><title><![CDATA[Using GitHub Pages with Ghost and Buster on Windows (part 1)]]></title><description><![CDATA[<h1 id="takinginventoryandsettingup">Taking Inventory and Setting Up  </h1>
+<p>That's it! You now have a blog on GitHub Pages with Ghost and Buster. Any time you want to add new blogs or modify it, just run ghost locally, make the changes, and run the buster generate and deploy commands. Let me know in the comments if you run into any issues. Happy Coding!</p>]]></description><link>http://leftofnull.com/2014/02/24/using-github-pages-with-ghost-and-buster-on-windows-part-2/</link><guid isPermaLink="false">e9921512-c54e-4bc6-9752-90addf06fdef</guid><category><![CDATA[blog]]></category><category><![CDATA[buster]]></category><category><![CDATA[gh-pages]]></category><category><![CDATA[windows]]></category><category><![CDATA[ghost]]></category><category><![CDATA[node.js]]></category><category><![CDATA[github pages]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Tue, 25 Feb 2014 04:57:14 GMT</pubDate></item><item><title><![CDATA[Using GitHub Pages with Ghost and Buster on Windows (part 1)]]></title><description><![CDATA[<h1 id="takinginventoryandsettingup">Taking Inventory and Setting Up  </h1>
 
 <blockquote>
   <p>First and foremost, if you are using Linux or OSX, follow this guide <a href='http://genescissors.github.io/deploying-ghost-blog-to-gh-pages/' >here</a> and save yourself a <strong>lot</strong> of time.</p>
@@ -397,7 +449,7 @@ $ python get-pip.py
 
 <h2 id="setupcomplete">Setup Complete!</h2>
 
-<p>You're now ready to move on to the next part which will be getting Ghost and buster running.</p>]]></description><link>http://leftofnull.com/2014/02/07/using-github-pages-with-ghost-and-buster-on-windows-part-1/</link><guid isPermaLink="false">5298623a-7437-45a0-891e-6d252ab23bf0</guid><category><![CDATA[node.js]]></category><category><![CDATA[blog]]></category><category><![CDATA[gh-pages]]></category><category><![CDATA[github pages]]></category><category><![CDATA[ghost]]></category><category><![CDATA[buster]]></category><category><![CDATA[windows]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Sat, 08 Feb 2014 04:21:43 GMT</pubDate></item><item><title><![CDATA[Choose Your Tools Wisely]]></title><description><![CDATA[<iframe src='https://skydrive.live.com/embed?cid=B1874DF728CD0FC6&resid=B1874DF728CD0FC6%219360&authkey=ABhRgc_rp_VPUME'  width="320" height="213" frameborder="0" scrolling="no"></iframe>  
+<p>You're now ready to move on to the next part which will be getting Ghost and buster running.</p>]]></description><link>http://leftofnull.com/2014/02/07/using-github-pages-with-ghost-and-buster-on-windows-part-1/</link><guid isPermaLink="false">5298623a-7437-45a0-891e-6d252ab23bf0</guid><category><![CDATA[ghost]]></category><category><![CDATA[windows]]></category><category><![CDATA[github pages]]></category><category><![CDATA[buster]]></category><category><![CDATA[gh-pages]]></category><category><![CDATA[blog]]></category><category><![CDATA[node.js]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Sat, 08 Feb 2014 04:21:43 GMT</pubDate></item><item><title><![CDATA[Choose Your Tools Wisely]]></title><description><![CDATA[<iframe src='https://skydrive.live.com/embed?cid=B1874DF728CD0FC6&resid=B1874DF728CD0FC6%219360&authkey=ABhRgc_rp_VPUME'  width="320" height="213" frameborder="0" scrolling="no"></iframe>  
 
 <p>Let's face it programming a computer is a little more involved than programming a VCR (if you're old enough to remember those, <a href='http://en.wikipedia.org/wiki/Vcr' >Wikipedia</a> for those that don't). Those of us that have been doing it for a while can make it look easy but part of that starts with our tools. Let's look at the developers second most critical tool. An <a href='http://en.wikipedia.org/wiki/Integrated_development_environment' >IDE</a>.</p>
 
@@ -453,4 +505,4 @@ $ python get-pip.py
 
 <blockquote>
   <p>No matter what IDE you choose, make sure you learn the ins and outs of it. There are things that an IDE can do to make your life so much easier when coding. Don't ignore those things and make sure you fully explore. Happy Coding!</p>
-</blockquote>]]></description><link>http://leftofnull.com/2014/02/04/choose-your-tools-wisely/</link><guid isPermaLink="false">abff37fd-9c63-4510-9a4c-5b3771fe3bc0</guid><category><![CDATA[Coding]]></category><category><![CDATA[Development]]></category><category><![CDATA[JavaScript]]></category><category><![CDATA[.NET]]></category><category><![CDATA[IDE]]></category><category><![CDATA[Tools]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Wed, 05 Feb 2014 04:09:05 GMT</pubDate></item></channel></rss>
+</blockquote>]]></description><link>http://leftofnull.com/2014/02/04/choose-your-tools-wisely/</link><guid isPermaLink="false">abff37fd-9c63-4510-9a4c-5b3771fe3bc0</guid><category><![CDATA[Tools]]></category><category><![CDATA[Coding]]></category><category><![CDATA[Development]]></category><category><![CDATA[IDE]]></category><category><![CDATA[.NET]]></category><category><![CDATA[JavaScript]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Wed, 05 Feb 2014 04:09:05 GMT</pubDate></item></channel></rss>
