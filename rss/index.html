@@ -1,5 +1,207 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Left of Null]]></title><description><![CDATA[Covering Coding, Technology, and Life.]]></description><link>http://leftofnull.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Sun, 24 Aug 2014 22:25:28 GMT</lastBuildDate><atom:link href="http://leftofnull.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Virtual Desktops for Windows]]></title><description><![CDATA[<p>There's been some speculation of Windows finally getting virtual desktops as a feature in <a href='http://www.pcworld.com/article/2462641/windows-9-goodbye-charms-bar-hello-virtual-desktops.html' >Windows 9</a>. To be honest, this is a very welcome change. After all, Linux has had it for almost 20 years now.</p>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Left of Null]]></title><description><![CDATA[Covering Coding, Technology, and Life.]]></description><link>http://leftofnull.com/</link><generator>Ghost 0.5</generator><lastBuildDate>Wed, 29 Oct 2014 02:33:16 GMT</lastBuildDate><atom:link href="http://leftofnull.com/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title><![CDATA[Setting up the package.json for node.js. The short, short version]]></title><description><![CDATA[<h3 id="packagejson">Package.json</h3>
+
+<p>Most tutorials start with the package.json. This is a very important step. Here's an example of a live package.json, this is Ghost v0.5's package.json:</p>
+
+<pre><code>{
+  "name"        : "ghost",
+  "version"     : "0.5.0",
+  "description" : "Just a blogging platform.",
+  "author"      : "Ghost Foundation",
+  "homepage"    : "http://ghost.org",
+  "keywords"    : [
+      "ghost",
+      "blog",
+      "cms"
+  ],
+  "repository"  : {
+      "type": "git",
+      "url": "git://github.com/TryGhost/Ghost.git"
+  },
+  "bugs"        : "https://github.com/TryGhost/Ghost/issues",
+  "contributors": "https://github.com/TryGhost/Ghost/graphs/contributors",
+  "licenses"    : [
+      {
+          "type": "MIT",
+          "url": "https://raw.github.com/TryGhost/Ghost/master/LICENSE"
+      }
+  ],
+  "main": "./core/index",
+  "scripts": {
+      "start": "node index",
+      "test": "./node_modules/.bin/grunt validate --verbose"
+  },
+  "engines": {
+      "node": "~0.10.0"
+  },
+  "engineStrict": true,
+  "dependencies": {
+      "bcryptjs": "0.7.10",
+      "body-parser": "1.6.3",
+      "bookshelf": "0.7.6",
+      "busboy": "0.2.3",
+      "colors": "0.6.2",
+      "compression": "^1.0.2",
+      "connect": "3.0.0-rc.1",
+      "connect-slashes": "1.2.0",
+      "cookie-parser": "1.0.1",
+      "downsize": "0.0.5",
+      "express": "4.8.3",
+      "express-hbs": "0.7.10",
+      "express-session": "1.0.4",
+      "fs-extra": "0.8.1",
+      "html-to-text": "^0.1.0",
+      "knex": "0.6.21",
+      "lodash": "2.4.1",
+      "moment": "2.4.0",
+      "morgan": "1.0.0",
+      "node-polyglot": "0.3.0",
+      "node-uuid": "1.4.1",
+      "nodemailer": "0.5.13",
+      "oauth2orize": "1.0.1",
+      "passport": "0.2.0",
+      "passport-http-bearer": "1.0.1",
+      "passport-oauth2-client-password": "0.1.1",
+      "rss": "0.2.1",
+      "semver": "2.2.1",
+      "showdown": "https://github.com/ErisDS/showdown/archive/v0.3.2-ghost.tar.gz",
+      "sqlite3": "2.2.3",
+      "static-favicon": "1.0.2",
+      "unidecode": "0.1.3",
+      "validator": "3.4.0",
+      "when": "3.2.3",
+      "xml": "0.0.12"
+  },
+  "optionalDependencies": {
+      "mysql": "2.1.1"
+  },
+  "devDependencies": {
+      "blanket": "~1.1.5",
+      "bower": "~1.3.5",
+      "grunt": "~0.4.1",
+      "grunt-cli": "~0.1.13",
+      "grunt-concat-sourcemap": "~0.4.3",
+      "grunt-contrib-clean": "~0.5.0",
+      "grunt-contrib-compress": "~0.5.2",
+      "grunt-contrib-concat": "~0.4.0",
+      "grunt-contrib-copy": "~0.4.1",
+      "grunt-contrib-jshint": "~0.8.0",
+      "grunt-contrib-uglify": "~0.5.0",
+      "grunt-contrib-watch": "~0.5.3",
+      "grunt-docker": "~0.0.8",
+      "grunt-ember-templates": "~0.4.18",
+      "grunt-es6-module-transpiler": "~0.6.0",
+      "grunt-express-server": "~0.4.11",
+      "grunt-mocha-cli": "~1.4.0",
+      "grunt-shell": "~0.7.0",
+      "grunt-update-submodules": "~0.4.0",
+      "matchdep": "~0.3.0",
+      "mocha": "~1.15.1",
+      "nock": "0.27.2",
+      "rewire": "~2.0.0",
+      "request": "~2.29.0",
+      "require-dir": "~0.1.0",
+      "should": "~2.1.1",
+      "sinon": "~1.7.3",
+      "supertest": "~0.8.2"
+  }
+}
+</code></pre>
+
+<p>Notice the <code>dependencies</code>, <code>optionalDependencies</code>, and <code>devDependencies</code> sections. These list the referenced packages that are required for the system to work. When you clone Ghost you can run <code>~/ghost $ npm install</code> from inside the Ghost directory and all the dependent packages will be retrived. If you're a .NET developer, you can think of these as References, or better yet, NuGet packages with the "auto-download missing packages" feature enabled.</p>
+
+<p>The scripts section allow you to run the application by aliasing <code>~/ghost $ node index</code> for <code>~/ghost $ npm start</code>. Additionally you can run the test suite by using <code>~/ghost $ npm test</code>. <code>npm</code> "understands" these as default scripts. So what makes this the short, short version?</p>
+
+<h3 id="rapidsetup">Rapid setup</h3>
+
+<p>Don't bother with trying to create the package.json yourself. You can tweak it by hand for sure, but there are much simpler ways to create it. Ways like this:</p>
+
+<pre><code>~ $ mkdir myProj
+~ $ cd myProj
+~/myProj $ npm init
+</code></pre>
+
+<p><strong><code>npm init</code></strong> is a tool that will walk you through creating a package.json via a cli wizard. Just answer the questions it asks you like this:</p>
+
+<pre><code>This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sane defaults.
+
+See 'npm help json' for definitive documentation on these fields
+and exactly what they do.
+
+Use 'npm install &lt;pkg&gt; --save' afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+name: (myProj) MyProj
+version: (1.0.0) 0.0.1
+description: Sample npm init
+entry point: (index.js) app.js
+test command:
+git repository: &lt;git repo url (if applicable)&gt;
+keywords: npm, node, tutorial, package.json
+author: Alexander Kahoun
+license: (ISC) MIT
+{
+  "name": "MyProj",
+  "version": "0.0.1",
+  "description": "Sample npm init",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" &amp;&amp; exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "&lt;git repo url (if applicable)&gt;"
+  },
+  "keywords": [
+    "npm",
+    "node",
+    "tutorial",
+    "package.json"
+  ],
+  "author": "Alexander Kahoun",
+  "license": "MIT"
+}
+
+
+Is this ok? (yes) yes
+</code></pre>
+
+<p>Now you have a package.json all ready to go. Another cool tip, you can auto-save dependencies to your package.json as you go. All you need to do is add a flag to your <code>npm install &lt;packageName&gt;</code> command. For instance: <br />
+<code>~/myProj $ npm install mongoose --save</code>
+will both install mongoose into your myProj directory <em>and</em> it will add the following to your package.json:</p>
+
+<pre><code>"dependencies": {
+    "mongoose": "^3.8.18"
+}
+</code></pre>
+
+<p>Alternatively <code>npm install mongoose --save-dev</code> or <code>npm install mongoose --save-optional</code> will install the packages just the same, but put them into your package.json in the <code>devDependencies</code> section or <code>optionalDependencies</code> sections respectively.</p>
+
+<h3 id="tldr">Tl;dr</h3>
+
+<h4 id="toolongdidntread">Too long; didn't read</h4>
+
+<p>Make sure you use <code>npm init</code> and <code>npm install &lt;package&gt; --save</code> for quick setup of a project:</p>
+
+<pre><code>~ $ mkdir myProj
+~ $ cd myProj
+~/myProj $ npm init
+</code></pre>
+
+<p>Answer the questions it asks you, don't be afraid to leave them blank if you don't know.</p>
+
+<pre><code>~/myProj $ npm install &lt;package&gt; --save
+</code></pre>
+
+<p>Repeat as necessary.</p>
+
+<h3 id="gotchas">Gotcha's</h3>
+
+<p>You may want to be careful with some of the packages. Some packages like express.js are great for rapid setup, but when you run the <code>express</code> command to set up your project, it <em>will</em> overwrite any existing package.json. So if you have a package that sets up your package.json for you, make sure to install your dependencies <em>after</em> you run the command.</p>
+
+<h4 id="happycoding">Happy coding!</h4>]]></description><link>http://leftofnull.com/2014/10/28/setting-up-the-package-json-for-node-js-the-short-short-version/</link><guid isPermaLink="false">c7bae75e-1189-4ddf-ba2d-07e6b9adb754</guid><category><![CDATA[node.js]]></category><category><![CDATA[node]]></category><category><![CDATA[package.json]]></category><category><![CDATA[tutorial]]></category><category><![CDATA[npm]]></category><category><![CDATA[npm install]]></category><category><![CDATA[npm init]]></category><dc:creator><![CDATA[Alexander Kahoun]]></dc:creator><pubDate>Wed, 29 Oct 2014 02:31:38 GMT</pubDate></item><item><title><![CDATA[Virtual Desktops for Windows]]></title><description><![CDATA[<p>There's been some speculation of Windows finally getting virtual desktops as a feature in <a href='http://www.pcworld.com/article/2462641/windows-9-goodbye-charms-bar-hello-virtual-desktops.html' >Windows 9</a>. To be honest, this is a very welcome change. After all, Linux has had it for almost 20 years now.</p>
 
 <p>If you'd like to get it now and you're running XP, Vista, 7, 8, or 8.1 (meaning you're not from the past), you can get the functionality right now with <a href='http://www.dexpot.de/' >Dexpot</a>!</p>
 
@@ -219,7 +421,7 @@ $ npm install --production
 $ npm start
 </code></pre>
 
-<p>You should have Ghost running on the default url <code></code>. You can start to create an admin profile and access the admin settings any time at <code>/ghost</code>. Now if you want to set a specific URL for your GitHub Page let's set that repo up on GitHub first. Go ahead and hit <code>Ctrl+C</code> in your Git Bash.</p>
+<p>You should have Ghost running on the default url <code>http://127.0.0.1:2368</code>. You can start to create an admin profile and access the admin settings any time at <code>http://127.0.0.1:2368/ghost</code>. Now if you want to set a specific URL for your GitHub Page let's set that repo up on GitHub first. Go ahead and hit <code>Ctrl+C</code> in your Git Bash.</p>
 
 <h2 id="settingupyourgithubrepoforgithubpages">Setting up your GitHub repo for GitHub pages</h2>
 
@@ -335,7 +537,7 @@ html_regex = re.compile(r".*?(\.html)")
         os.rename(os.path.join(root, filename), os.path.join(root, newname))
 </code></pre>
 
-<p>Here's our big cheat. We're going through all html files and swapping out any instances of the root url, in this case <a href='/' ></a> or where ever you're running it locally and replacing it with a relative url path. <strong>Hacking Complete!</strong> As you can imagine, this has some built in performance degradation, but it works!</p>
+<p>Here's our big cheat. We're going through all html files and swapping out any instances of the root url, in this case <a href='http://127.0.0.1:2368/' >http://127.0.0.1:2368</a> or where ever you're running it locally and replacing it with a relative url path. <strong>Hacking Complete!</strong> As you can imagine, this has some built in performance degradation, but it works!</p>
 
 <h2 id="installingyourmodifiedbuster">Installing your modified Buster</h2>
 
@@ -368,7 +570,7 @@ $ npm start
 
 <p>If you didn't finish setting up the admin stuff before, you'll need to set it up now. You should have the welcome post by default, we'll leave that for now so we can test it out. Once that's finished, leave Ghost running and switch back to the Git Bash where you ran the setup for Buster from. </p>
 
-<pre><code>$ buster generate --domain=http://127.0.0.1:2368 --dir=/c/users/username/mywebsite
+<pre><code>$ buster generate --domain=http://localhost:2368 --dir=/c/users/username/mywebsite
 $ buster deploy --dir=/c/users/username/mywebsite
 </code></pre>
 

@@ -12,16 +12,26 @@
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="shortcut icon" href="/assets/images/leftofnull_icon_final.svg?v=86ad874a7d">
+    <link rel="shortcut icon" href="/assets/images/leftofnull_icon_final.svg?v=02b74e5a1b">
 
     
-    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css?v=86ad874a7d" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css?v=02b74e5a1b" />
     <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400" />
 
     
     <meta name="generator" content="Ghost 0.5" />
 <link rel="alternate" type="application/rss+xml" title="Left of Null" href="../../../../rss/index.html">
 <link rel="canonical" href="http://leftofnull.com/2014/02/24/using-github-pages-with-ghost-and-buster-on-windows-part-2/" />
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-56155652-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
 </head>
 <body class="post-template tag-blog tag-buster tag-gh-pages tag-windows tag-ghost-post tag-node-js tag-github-pages">
 
@@ -76,7 +86,7 @@ $ npm install --production
 $ npm start
 </code></pre>
 
-<p>You should have Ghost running on the default url <code></code>. You can start to create an admin profile and access the admin settings any time at <code>/ghost</code>. Now if you want to set a specific URL for your GitHub Page let's set that repo up on GitHub first. Go ahead and hit <code>Ctrl+C</code> in your Git Bash.</p>
+<p>You should have Ghost running on the default url <code>http://127.0.0.1:2368</code>. You can start to create an admin profile and access the admin settings any time at <code>http://127.0.0.1:2368/ghost</code>. Now if you want to set a specific URL for your GitHub Page let's set that repo up on GitHub first. Go ahead and hit <code>Ctrl+C</code> in your Git Bash.</p>
 
 <h2 id="settingupyourgithubrepoforgithubpages">Setting up your GitHub repo for GitHub pages</h2>
 
@@ -192,7 +202,7 @@ html_regex = re.compile(r".*?(\.html)")
         os.rename(os.path.join(root, filename), os.path.join(root, newname))
 </code></pre>
 
-<p>Here's our big cheat. We're going through all html files and swapping out any instances of the root url, in this case <a href='../../../../index.html'></a> or where ever you're running it locally and replacing it with a relative url path. <strong>Hacking Complete!</strong> As you can imagine, this has some built in performance degradation, but it works!</p>
+<p>Here's our big cheat. We're going through all html files and swapping out any instances of the root url, in this case <a href='http://127.0.0.1:2368'>http://127.0.0.1:2368</a> or where ever you're running it locally and replacing it with a relative url path. <strong>Hacking Complete!</strong> As you can imagine, this has some built in performance degradation, but it works!</p>
 
 <h2 id="installingyourmodifiedbuster">Installing your modified Buster</h2>
 
@@ -225,7 +235,7 @@ $ npm start
 
 <p>If you didn't finish setting up the admin stuff before, you'll need to set it up now. You should have the welcome post by default, we'll leave that for now so we can test it out. Once that's finished, leave Ghost running and switch back to the Git Bash where you ran the setup for Buster from. </p>
 
-<pre><code>$ buster generate --domain=http://127.0.0.1:2368 --dir=/c/users/username/mywebsite
+<pre><code>$ buster generate --domain=http://localhost:2368 --dir=/c/users/username/mywebsite
 $ buster deploy --dir=/c/users/username/mywebsite
 </code></pre>
 
@@ -292,11 +302,11 @@ $ buster deploy --dir=/c/users/username/mywebsite
     </footer>
 
     
-    <script src="/public/jquery.js?v=86ad874a7d"></script>
+    <script src="/public/jquery.js?v=02b74e5a1b"></script>
 
     
-    <script type="text/javascript" src="/assets/js/jquery.fitvids.js?v=86ad874a7d"></script>
-    <script type="text/javascript" src="/assets/js/index.js?v=86ad874a7d"></script>
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js?v=02b74e5a1b"></script>
+    <script type="text/javascript" src="/assets/js/index.js?v=02b74e5a1b"></script>
 
 </body>
 </html>
