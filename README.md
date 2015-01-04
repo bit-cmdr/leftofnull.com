@@ -1,4 +1,1 @@
-leftofnull.com
-==============
-
-leftofnull.com blog
+# leftofnull

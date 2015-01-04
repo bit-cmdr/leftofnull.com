@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang=" en-US ">
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width,maximum-scale=2">
+  <meta name="description" content="Left of Null : Covering Coding, Technology, and Life.">
+
+  <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=9b981c4dfe1a62cdb9ea90b401fa46c9de527d87"> <!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>Using GitHub Pages with Ghost and Buster on Windows (part 2) | Left of Null</title>
+<meta property="og:title" content="Using GitHub Pages with Ghost and Buster on Windows (part 2)" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Hacking Buster and Deploying Series: Part 1: Taking Inventory and Setting Up Part 2: Hacking Buster and Deploying Recap In the first part of the series we talked about setting up your Windows machine with Node.js, Python, MinGW, Git Bash, and Pip. If you haven’t done so already, please use the link to part one above. Getting Ghost Let’s get start on getting you set up with the Ghost blogging engine. You should start by heading over to the Ghost GitHub Repository. The README has a lot of great info in it and goes over various ways to install. We’ll cover cloning the repo so you can run it locally. Let’s start by firing up your Git Bash and entering the following: $ cd ~ This assumes that you want to run everything in your users directory, if not change to a path where you want to install ghost. Now we’ll clone ghost. $ git clone https://github.com/TryGhost/Ghost.git $ cd ghost $ npm install --production $ npm start You should have Ghost running on the default url http://127.0.0.1:2368. You can start to create an admin profile and access the admin settings any time at http://127.0.0.1:2368/ghost. Now if you want to set a specific URL for your GitHub Page let’s set that repo up on GitHub first. Go ahead and hit Ctrl+C in your Git Bash. Setting up your GitHub repo for GitHub pages The best info, as always, can be found from GitHub themselves at GitHub Pages. As a quick abbreviated version, we’ll set up a new repo for this exercise. Go to your GitHub account and create a new repo. Name the new repo whatever makes sense to you. Make sure to select Initialize with README. It’s not necessary but it makes the next step that much quicker. Now in your new repo, create a new branch called gh-pages. It’s very important that it be exact, this is what GitHub Pages works on. When you’re finished it should look like this: Setting up your new site in git locally Now that you have the repo set up, let’s pull it down. There should be a link in the bottom right of your repo page on GitHub that looks like this: Click the “copy to clipboard button to grab the clone url” Fire up your Git Bash again and use the following commands: $ cd ~ $ git clone https://github.com/leftofnull/mywebsite.git &lt;this will be the url you copied, not this exact one&gt; $ git checkout -b gh-pages You should now have your repo set up! Modifying the default URL in Ghost Make sure Ghost is not running. Navigate in the file explorer to where you cloned Ghost and look for config.js. Open it any any text editor and find the url: property and change it to http://username.github.io/repository. Hacking Buster Unfortunately for Windows users Buster was not designed with Windows in mind. So we’ll have to do a little hacking. I have a forked version of the Buster repo that can be cloned here: $ cd ~ $ git clone https://github.com/leftofnull/buster.git $ cd buster The original repo can be found at https://github.com/axitkhurana/buster. The main differences are in the buster/buster.py file. Starting at line 39, original: if arguments[&#39;generate&#39;]: command = (&quot;wget \\&quot; &quot;--recursive \\&quot; &quot;--convert-links \\&quot; &quot;--page-requisites \\&quot; &quot;--no-parent \\&quot; &quot;--directory-prefix {1} \\&quot; &quot;--no-host-directories \\&quot; &quot;{0}&quot;).format(arguments[&#39;--domain&#39;], static_path) And the modified version: if arguments[&#39;generate&#39;]: command = (&quot;wget &quot; &quot;--recursive &quot; &quot;--convert-links &quot; &quot;--page-requisites &quot; &quot;--no-parent &quot; &quot;--directory-prefix {1} &quot; &quot;--no-host-directories &quot; &quot;--restrict-file-names=unix &quot; &quot;{0}&quot;).format(arguments[&#39;--domain&#39;], static_path) We’ve removed the \\ characters as they cause Windows to escape the string, in *nix based systems it allows you to use a carriage return and keep typing the same command. We’ve also added the --restrict-file-names=unix flag which will prevent some of the default escaping in html files that Windows performs with wget. This also negates the --convert-links flag unfortunately, we’ll fix that in a minute. Next on line 50, original: file_regex = re.compile(r&#39;.*?(\?.*)&#39;) We’ll need to modify and add another regex: file_regex = re.compile(r&quot;.*?(@.*)&quot;) html_regex = re.compile(r&quot;.*?(\.html)&quot;) We have to modify the file_regex for Windows and we’re going to create another to identify html files. At line 52 in the original: for filename in filenames: if file_regex.match(filename): newname = re.sub(r&#39;\?.*&#39;, &#39;&#39;, filename) print &quot;Rename&quot;, filename, &quot;=&gt;&quot;, newname os.rename(os.path.join(root, filename), os.path.join(root, newname)) We’ll tweak to: for filename in filenames: if html_regex.match(filename): path = (&quot;{0}&quot;).format(os.path.join(root, filename).replace(&quot;\\&quot;, &quot;/&quot;)) with open(path, &quot;r+&quot;) as f: file_contents = f.read() file_contents = file_contents.replace(arguments[&#39;--domain&#39;], &quot;&quot;) file_contents = file_contents.replace(&quot;%hurl&quot;, arguments[&#39;--domain&#39;]) f.seek(0) f.write(file_contents) f.close() if file_regex.match(filename): newname = re.sub(r&#39;@.*&#39;, &#39;&#39;, filename) print &quot;Rename&quot;, filename, &quot;=&gt;&quot;, newname os.rename(os.path.join(root, filename), os.path.join(root, newname)) Here’s our big cheat. We’re going through all html files and swapping out any instances of the root url, in this case http://127.0.0.1:2368 or where ever you’re running it locally and replacing it with a relative url path. Hacking Complete! As you can imagine, this has some built in performance degradation, but it works! Installing your modified Buster Open your Git Bash, if you haven’t already, and use the following commands: $ cd ~ $ cd buster $ python setup.py install $ buster --version 0.1.2 That’s it! Setting up Buster Run the setup and when it asks for your GitHub url, use the one you will be using for your gh-pages that you set up earlier. If you need to, grab the clone url again before you start. $ buster setup And follow the prompts. Now you’ll need to open another instance of Git Bash and run: $ cd ~ $ cd ghost $ npm start If you didn’t finish setting up the admin stuff before, you’ll need to set it up now. You should have the welcome post by default, we’ll leave that for now so we can test it out. Once that’s finished, leave Ghost running and switch back to the Git Bash where you ran the setup for Buster from. $ buster generate --domain=%hurl% --dir=/c/users/username/mywebsite $ buster deploy --dir=/c/users/username/mywebsite This will generate the static content and deploy your site to the gh-pages branch in GitHub. You can try navigating there by putting the http://username.github.io/repository in the location bar of any browser window. That’s it! You now have a blog on GitHub Pages with Ghost and Buster. Any time you want to add new blogs or modify it, just run ghost locally, make the changes, and run the buster generate and deploy commands. Let me know in the comments if you run into any issues. Happy Coding!" />
+<meta property="og:description" content="Hacking Buster and Deploying Series: Part 1: Taking Inventory and Setting Up Part 2: Hacking Buster and Deploying Recap In the first part of the series we talked about setting up your Windows machine with Node.js, Python, MinGW, Git Bash, and Pip. If you haven’t done so already, please use the link to part one above. Getting Ghost Let’s get start on getting you set up with the Ghost blogging engine. You should start by heading over to the Ghost GitHub Repository. The README has a lot of great info in it and goes over various ways to install. We’ll cover cloning the repo so you can run it locally. Let’s start by firing up your Git Bash and entering the following: $ cd ~ This assumes that you want to run everything in your users directory, if not change to a path where you want to install ghost. Now we’ll clone ghost. $ git clone https://github.com/TryGhost/Ghost.git $ cd ghost $ npm install --production $ npm start You should have Ghost running on the default url http://127.0.0.1:2368. You can start to create an admin profile and access the admin settings any time at http://127.0.0.1:2368/ghost. Now if you want to set a specific URL for your GitHub Page let’s set that repo up on GitHub first. Go ahead and hit Ctrl+C in your Git Bash. Setting up your GitHub repo for GitHub pages The best info, as always, can be found from GitHub themselves at GitHub Pages. As a quick abbreviated version, we’ll set up a new repo for this exercise. Go to your GitHub account and create a new repo. Name the new repo whatever makes sense to you. Make sure to select Initialize with README. It’s not necessary but it makes the next step that much quicker. Now in your new repo, create a new branch called gh-pages. It’s very important that it be exact, this is what GitHub Pages works on. When you’re finished it should look like this: Setting up your new site in git locally Now that you have the repo set up, let’s pull it down. There should be a link in the bottom right of your repo page on GitHub that looks like this: Click the “copy to clipboard button to grab the clone url” Fire up your Git Bash again and use the following commands: $ cd ~ $ git clone https://github.com/leftofnull/mywebsite.git &lt;this will be the url you copied, not this exact one&gt; $ git checkout -b gh-pages You should now have your repo set up! Modifying the default URL in Ghost Make sure Ghost is not running. Navigate in the file explorer to where you cloned Ghost and look for config.js. Open it any any text editor and find the url: property and change it to http://username.github.io/repository. Hacking Buster Unfortunately for Windows users Buster was not designed with Windows in mind. So we’ll have to do a little hacking. I have a forked version of the Buster repo that can be cloned here: $ cd ~ $ git clone https://github.com/leftofnull/buster.git $ cd buster The original repo can be found at https://github.com/axitkhurana/buster. The main differences are in the buster/buster.py file. Starting at line 39, original: if arguments[&#39;generate&#39;]: command = (&quot;wget \\&quot; &quot;--recursive \\&quot; &quot;--convert-links \\&quot; &quot;--page-requisites \\&quot; &quot;--no-parent \\&quot; &quot;--directory-prefix {1} \\&quot; &quot;--no-host-directories \\&quot; &quot;{0}&quot;).format(arguments[&#39;--domain&#39;], static_path) And the modified version: if arguments[&#39;generate&#39;]: command = (&quot;wget &quot; &quot;--recursive &quot; &quot;--convert-links &quot; &quot;--page-requisites &quot; &quot;--no-parent &quot; &quot;--directory-prefix {1} &quot; &quot;--no-host-directories &quot; &quot;--restrict-file-names=unix &quot; &quot;{0}&quot;).format(arguments[&#39;--domain&#39;], static_path) We’ve removed the \\ characters as they cause Windows to escape the string, in *nix based systems it allows you to use a carriage return and keep typing the same command. We’ve also added the --restrict-file-names=unix flag which will prevent some of the default escaping in html files that Windows performs with wget. This also negates the --convert-links flag unfortunately, we’ll fix that in a minute. Next on line 50, original: file_regex = re.compile(r&#39;.*?(\?.*)&#39;) We’ll need to modify and add another regex: file_regex = re.compile(r&quot;.*?(@.*)&quot;) html_regex = re.compile(r&quot;.*?(\.html)&quot;) We have to modify the file_regex for Windows and we’re going to create another to identify html files. At line 52 in the original: for filename in filenames: if file_regex.match(filename): newname = re.sub(r&#39;\?.*&#39;, &#39;&#39;, filename) print &quot;Rename&quot;, filename, &quot;=&gt;&quot;, newname os.rename(os.path.join(root, filename), os.path.join(root, newname)) We’ll tweak to: for filename in filenames: if html_regex.match(filename): path = (&quot;{0}&quot;).format(os.path.join(root, filename).replace(&quot;\\&quot;, &quot;/&quot;)) with open(path, &quot;r+&quot;) as f: file_contents = f.read() file_contents = file_contents.replace(arguments[&#39;--domain&#39;], &quot;&quot;) file_contents = file_contents.replace(&quot;%hurl&quot;, arguments[&#39;--domain&#39;]) f.seek(0) f.write(file_contents) f.close() if file_regex.match(filename): newname = re.sub(r&#39;@.*&#39;, &#39;&#39;, filename) print &quot;Rename&quot;, filename, &quot;=&gt;&quot;, newname os.rename(os.path.join(root, filename), os.path.join(root, newname)) Here’s our big cheat. We’re going through all html files and swapping out any instances of the root url, in this case http://127.0.0.1:2368 or where ever you’re running it locally and replacing it with a relative url path. Hacking Complete! As you can imagine, this has some built in performance degradation, but it works! Installing your modified Buster Open your Git Bash, if you haven’t already, and use the following commands: $ cd ~ $ cd buster $ python setup.py install $ buster --version 0.1.2 That’s it! Setting up Buster Run the setup and when it asks for your GitHub url, use the one you will be using for your gh-pages that you set up earlier. If you need to, grab the clone url again before you start. $ buster setup And follow the prompts. Now you’ll need to open another instance of Git Bash and run: $ cd ~ $ cd ghost $ npm start If you didn’t finish setting up the admin stuff before, you’ll need to set it up now. You should have the welcome post by default, we’ll leave that for now so we can test it out. Once that’s finished, leave Ghost running and switch back to the Git Bash where you ran the setup for Buster from. $ buster generate --domain=%hurl% --dir=/c/users/username/mywebsite $ buster deploy --dir=/c/users/username/mywebsite This will generate the static content and deploy your site to the gh-pages branch in GitHub. You can try navigating there by putting the http://username.github.io/repository in the location bar of any browser window. That’s it! You now have a blog on GitHub Pages with Ghost and Buster. Any time you want to add new blogs or modify it, just run ghost locally, make the changes, and run the buster generate and deploy commands. Let me know in the comments if you run into any issues. Happy Coding!" />
+<link rel="canonical" href="http://localhost:4000/2014/02/24/using-github-pages-with-ghost-and-buster-on-windows-part-2.html" />
+<meta property="og:url" content="http://localhost:4000/2014/02/24/using-github-pages-with-ghost-and-buster-on-windows-part-2.html" />
+<meta property="og:site_name" content="Left of Null" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-02-24T11:08:59-07:00" />
+<script type="application/ld+json">
+{"name":null,"description":"Hacking Buster and Deploying Series: Part 1: Taking Inventory and Setting Up Part 2: Hacking Buster and Deploying Recap In the first part of the series we talked about setting up your Windows machine with Node.js, Python, MinGW, Git Bash, and Pip. If you haven’t done so already, please use the link to part one above. Getting Ghost Let’s get start on getting you set up with the Ghost blogging engine. You should start by heading over to the Ghost GitHub Repository. The README has a lot of great info in it and goes over various ways to install. We’ll cover cloning the repo so you can run it locally. Let’s start by firing up your Git Bash and entering the following: $ cd ~ This assumes that you want to run everything in your users directory, if not change to a path where you want to install ghost. Now we’ll clone ghost. $ git clone https://github.com/TryGhost/Ghost.git $ cd ghost $ npm install --production $ npm start You should have Ghost running on the default url http://127.0.0.1:2368. You can start to create an admin profile and access the admin settings any time at http://127.0.0.1:2368/ghost. Now if you want to set a specific URL for your GitHub Page let’s set that repo up on GitHub first. Go ahead and hit Ctrl+C in your Git Bash. Setting up your GitHub repo for GitHub pages The best info, as always, can be found from GitHub themselves at GitHub Pages. As a quick abbreviated version, we’ll set up a new repo for this exercise. Go to your GitHub account and create a new repo. Name the new repo whatever makes sense to you. Make sure to select Initialize with README. It’s not necessary but it makes the next step that much quicker. Now in your new repo, create a new branch called gh-pages. It’s very important that it be exact, this is what GitHub Pages works on. When you’re finished it should look like this: Setting up your new site in git locally Now that you have the repo set up, let’s pull it down. There should be a link in the bottom right of your repo page on GitHub that looks like this: Click the “copy to clipboard button to grab the clone url” Fire up your Git Bash again and use the following commands: $ cd ~ $ git clone https://github.com/leftofnull/mywebsite.git &lt;this will be the url you copied, not this exact one&gt; $ git checkout -b gh-pages You should now have your repo set up! Modifying the default URL in Ghost Make sure Ghost is not running. Navigate in the file explorer to where you cloned Ghost and look for config.js. Open it any any text editor and find the url: property and change it to http://username.github.io/repository. Hacking Buster Unfortunately for Windows users Buster was not designed with Windows in mind. So we’ll have to do a little hacking. I have a forked version of the Buster repo that can be cloned here: $ cd ~ $ git clone https://github.com/leftofnull/buster.git $ cd buster The original repo can be found at https://github.com/axitkhurana/buster. The main differences are in the buster/buster.py file. Starting at line 39, original: if arguments[&#39;generate&#39;]: command = (&quot;wget \\\\&quot; &quot;--recursive \\\\&quot; &quot;--convert-links \\\\&quot; &quot;--page-requisites \\\\&quot; &quot;--no-parent \\\\&quot; &quot;--directory-prefix {1} \\\\&quot; &quot;--no-host-directories \\\\&quot; &quot;{0}&quot;).format(arguments[&#39;--domain&#39;], static_path) And the modified version: if arguments[&#39;generate&#39;]: command = (&quot;wget &quot; &quot;--recursive &quot; &quot;--convert-links &quot; &quot;--page-requisites &quot; &quot;--no-parent &quot; &quot;--directory-prefix {1} &quot; &quot;--no-host-directories &quot; &quot;--restrict-file-names=unix &quot; &quot;{0}&quot;).format(arguments[&#39;--domain&#39;], static_path) We’ve removed the \\\\ characters as they cause Windows to escape the string, in *nix based systems it allows you to use a carriage return and keep typing the same command. We’ve also added the --restrict-file-names=unix flag which will prevent some of the default escaping in html files that Windows performs with wget. This also negates the --convert-links flag unfortunately, we’ll fix that in a minute. Next on line 50, original: file_regex = re.compile(r&#39;.*?(\\?.*)&#39;) We’ll need to modify and add another regex: file_regex = re.compile(r&quot;.*?(@.*)&quot;) html_regex = re.compile(r&quot;.*?(\\.html)&quot;) We have to modify the file_regex for Windows and we’re going to create another to identify html files. At line 52 in the original: for filename in filenames: if file_regex.match(filename): newname = re.sub(r&#39;\\?.*&#39;, &#39;&#39;, filename) print &quot;Rename&quot;, filename, &quot;=&gt;&quot;, newname os.rename(os.path.join(root, filename), os.path.join(root, newname)) We’ll tweak to: for filename in filenames: if html_regex.match(filename): path = (&quot;{0}&quot;).format(os.path.join(root, filename).replace(&quot;\\\\&quot;, &quot;/&quot;)) with open(path, &quot;r+&quot;) as f: file_contents = f.read() file_contents = file_contents.replace(arguments[&#39;--domain&#39;], &quot;&quot;) file_contents = file_contents.replace(&quot;%hurl&quot;, arguments[&#39;--domain&#39;]) f.seek(0) f.write(file_contents) f.close() if file_regex.match(filename): newname = re.sub(r&#39;@.*&#39;, &#39;&#39;, filename) print &quot;Rename&quot;, filename, &quot;=&gt;&quot;, newname os.rename(os.path.join(root, filename), os.path.join(root, newname)) Here’s our big cheat. We’re going through all html files and swapping out any instances of the root url, in this case http://127.0.0.1:2368 or where ever you’re running it locally and replacing it with a relative url path. Hacking Complete! As you can imagine, this has some built in performance degradation, but it works! Installing your modified Buster Open your Git Bash, if you haven’t already, and use the following commands: $ cd ~ $ cd buster $ python setup.py install $ buster --version 0.1.2 That’s it! Setting up Buster Run the setup and when it asks for your GitHub url, use the one you will be using for your gh-pages that you set up earlier. If you need to, grab the clone url again before you start. $ buster setup And follow the prompts. Now you’ll need to open another instance of Git Bash and run: $ cd ~ $ cd ghost $ npm start If you didn’t finish setting up the admin stuff before, you’ll need to set it up now. You should have the welcome post by default, we’ll leave that for now so we can test it out. Once that’s finished, leave Ghost running and switch back to the Git Bash where you ran the setup for Buster from. $ buster generate --domain=%hurl% --dir=/c/users/username/mywebsite $ buster deploy --dir=/c/users/username/mywebsite This will generate the static content and deploy your site to the gh-pages branch in GitHub. You can try navigating there by putting the http://username.github.io/repository in the location bar of any browser window. That’s it! You now have a blog on GitHub Pages with Ghost and Buster. Any time you want to add new blogs or modify it, just run ghost locally, make the changes, and run the buster generate and deploy commands. Let me know in the comments if you run into any issues. Happy Coding!","author":null,"@type":"BlogPosting","url":"http://localhost:4000/2014/02/24/using-github-pages-with-ghost-and-buster-on-windows-part-2.html","publisher":null,"image":null,"headline":"Using GitHub Pages with Ghost and Buster on Windows (part 2)","dateModified":"2014-02-24T11:08:59-07:00","datePublished":"2014-02-24T11:08:59-07:00","sameAs":null,"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2014/02/24/using-github-pages-with-ghost-and-buster-on-windows-part-2.html"},"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div id="header_wrap" class="outer">
+    <header class="inner">
+      <a href="http://localhost:4000">
+        <h1 id="project_title">Left of Null</h1>
+      </a>
+      <h2 id="project_tagline">Covering Coding, Technology, and Life.</h2>
+    </header>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+      <h1 id="hacking-buster-and-deploying">Hacking Buster and Deploying</h1>
+
+<p><strong>Series:</strong></p>
+
+<ul>
+  <li><a href="/2014/02/07/using-github-pages-with-ghost-and-buster-on-windows-part-1">Part 1: Taking Inventory and Setting Up</a><br /></li>
+  <li>Part 2: Hacking Buster and Deploying</li>
+</ul>
+
+<h2 id="recap">Recap</h2>
+
+<p>In the first part of the series we talked about setting up your Windows machine with Node.js, Python, MinGW, Git Bash, and Pip. If you haven’t done so already, please use the link to part one above.</p>
+
+<h2 id="getting-ghost">Getting Ghost</h2>
+
+<p>Let’s get start on getting you set up with the Ghost blogging engine. You should start by heading over to the <a href="https://github.com/tryghost/Ghost">Ghost GitHub Repository</a>. The README has a lot of great info in it and goes over various ways to install. We’ll cover cloning the repo so you can run it locally. Let’s start by firing up your Git Bash and entering the following:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~
+</code></pre></div></div>
+
+<p>This assumes that you want to run everything in your users directory, if not change to a path where you want to install ghost. Now we’ll clone ghost.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone https://github.com/TryGhost/Ghost.git
+<span class="nv">$ </span><span class="nb">cd </span>ghost
+<span class="nv">$ </span>npm install <span class="nt">--production</span>
+<span class="nv">$ </span>npm start
+</code></pre></div></div>
+
+<p>You should have Ghost running on the default url <code class="highlighter-rouge">http://127.0.0.1:2368</code>. You can start to create an admin profile and access the admin settings any time at <code class="highlighter-rouge">http://127.0.0.1:2368/ghost</code>. Now if you want to set a specific URL for your GitHub Page let’s set that repo up on GitHub first. Go ahead and hit <code class="highlighter-rouge">Ctrl+C</code> in your Git Bash.</p>
+
+<h2 id="setting-up-your-github-repo-for-github-pages">Setting up your GitHub repo for GitHub pages</h2>
+
+<p>The best info, as always, can be found from GitHub themselves at <a href="http://pages.github.com/">GitHub Pages</a>. As a quick abbreviated version, we’ll set up a new repo for this exercise. Go to your GitHub account and create a new repo.</p>
+
+<p><img src="https://hygtqg.bn1304.livefilestore.com/y4mcUMRycRr5WNn0tbrst8Rdt_2GUU8fqrjrJNiaKvD6nj2dP-RG_swQWgLXhfd3qhukbeJv3gMLSOw3smH9qkEn-z4coHDUgCcm5QzrWWD7NxeP2BNXVbqe--oArlyyyyVXCK89dC3zJx3Au5PCSMcluaZt5siK5-sGN8-8idRQL-b3PH73CczxFTKHapb60C15TPYkMaDKGg0JewHPEQxvg" alt="github profile" class="img-responsive" /></p>
+
+<p>Name the new repo whatever makes sense to you. Make sure to select Initialize with README. It’s not necessary but it makes the next step that much quicker. Now in your new repo, create a new branch called <code class="highlighter-rouge">gh-pages</code>. It’s very important that it be exact, this is what GitHub Pages works on.</p>
+
+<p><img src="https://h4gtqg.bn1304.livefilestore.com/y4mQHC-kajvDNrte1s2EhB9pbUHSniXOBnFbwz9Ei3XvhYGoUrNeTVpIof4Zos2YT19q_IlhAlxgnlFz-6EcYpGjeIsmfL_E6lFh19AlALsDr_PoY6FnzqxIOy3qwRA0TBKMoPiLgru5MQjRbHjGD2YLFWGW2BElPP1ONxRdFU8fOnzpKlADAYoeBl0tHybwU7dhIIWhCaarcK-yNP4PJgLQQ" alt="github branches" class="img-responsive" /></p>
+
+<p>When you’re finished it should look like this:</p>
+
+<p><img src="https://iigtqg.bn1304.livefilestore.com/y4m8BoYzWsO0kov9s3bKFzEmzODdG-FWcxI8MHpGOAHS2HSmcF0ZwGu78utGH5PYi5p8Q5TCNoo9bZ68WqYhcsHJYyTkO3gAIDIuxMuj7QtuEawniB6CUHijWPv3rrKibMWfnLCpEQytQyMAPBC99703AAQTBMOzj-QzlJ1LwwCmIO0yipsh11jefKCgdr-hvGsmdGmVf938NywSUI8m9GBuA" alt="github gh-pages branch" class="img-responsive" /></p>
+
+<h3 id="setting-up-your-new-site-in-git-locally">Setting up your new site in git locally</h3>
+
+<p>Now that you have the repo set up, let’s pull it down. There should be a link in the bottom right of your repo page on GitHub that looks like this:</p>
+
+<p><img src="https://gygtqg.bn1304.livefilestore.com/y4mGGqx9rvQZ7dtZKVQSrx4d2BSV_1jyRKEiDdvalHiRQMpZ9C-jjIZz6lv_0vZS0AsatD0-GiytGo5jif0lqbV6P1zu-33GPDAuILzlJkqToMOb2kkUB_w8NyKQxUZwMhyMUQ-G0RBPBD8QnRi00H3J4tgl5Mt7JmaxizUlfrva5eR0aRVBczxjOqNm825kI4LFA1nCiqdVSPVcaiHb465PQ" alt="github clone" class="img-responsive" /></p>
+
+<p>Click the “copy to clipboard button to grab the clone url”
+Fire up your Git Bash again and use the following commands:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~
+<span class="nv">$ </span>git clone https://github.com/leftofnull/mywebsite.git &lt;this will be the url you copied, not this exact one&gt;
+<span class="nv">$ </span>git checkout <span class="nt">-b</span> gh-pages
+</code></pre></div></div>
+
+<p>You should now have your repo set up!</p>
+
+<h2 id="modifying-the-default-url-in-ghost">Modifying the default URL in Ghost</h2>
+
+<p>Make sure Ghost is not running. Navigate in the file explorer to where you cloned Ghost and look for <code class="highlighter-rouge">config.js</code>. Open it any any text editor and find the <code class="highlighter-rouge">url:</code> property and change it to http://<em>username</em>.github.io/<em>repository</em>.</p>
+
+<h2 id="hacking-buster">Hacking Buster</h2>
+
+<p>Unfortunately for Windows users Buster was not designed with Windows in mind. So we’ll have to do a little hacking. I have a forked version of the Buster repo that can be cloned here:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~
+<span class="nv">$ </span>git clone https://github.com/leftofnull/buster.git
+<span class="nv">$ </span><span class="nb">cd </span>buster
+</code></pre></div></div>
+
+<p>The original repo can be found at https://github.com/axitkhurana/buster. The main differences are in the <code class="highlighter-rouge">buster/buster.py</code> file.</p>
+
+<p>Starting at line 39, original:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">arguments</span><span class="p">[</span><span class="s">'generate'</span><span class="p">]:</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="p">(</span><span class="s">"wget </span><span class="se">\\</span><span class="s">"</span>
+               <span class="s">"--recursive </span><span class="se">\\</span><span class="s">"</span>
+               <span class="s">"--convert-links </span><span class="se">\\</span><span class="s">"</span>
+               <span class="s">"--page-requisites </span><span class="se">\\</span><span class="s">"</span>
+               <span class="s">"--no-parent </span><span class="se">\\</span><span class="s">"</span>
+               <span class="s">"--directory-prefix {1} </span><span class="se">\\</span><span class="s">"</span>
+               <span class="s">"--no-host-directories </span><span class="se">\\</span><span class="s">"</span>
+               <span class="s">"{0}"</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="p">[</span><span class="s">'--domain'</span><span class="p">],</span> <span class="n">static_path</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>And the modified version:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">arguments</span><span class="p">[</span><span class="s">'generate'</span><span class="p">]:</span>
+    <span class="n">command</span> <span class="o">=</span> <span class="p">(</span><span class="s">"wget "</span>
+               <span class="s">"--recursive "</span>
+               <span class="s">"--convert-links "</span>
+               <span class="s">"--page-requisites "</span>
+               <span class="s">"--no-parent "</span>
+               <span class="s">"--directory-prefix {1} "</span>
+               <span class="s">"--no-host-directories "</span>
+               <span class="s">"--restrict-file-names=unix "</span>
+               <span class="s">"{0}"</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arguments</span><span class="p">[</span><span class="s">'--domain'</span><span class="p">],</span> <span class="n">static_path</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We’ve removed the <code class="highlighter-rouge">\\</code> characters as they cause Windows to escape the string, in *nix based systems it allows you to use a carriage return and keep typing the same command. We’ve also added the <code class="highlighter-rouge">--restrict-file-names=unix</code> flag which will prevent some of the default escaping in html files that Windows performs with <code class="highlighter-rouge">wget</code>. This also negates the <code class="highlighter-rouge">--convert-links</code> flag unfortunately, we’ll fix that in a minute.</p>
+
+<p>Next on line 50, original:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">file_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r'.*?(\?.*)'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We’ll need to modify and add another regex:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">file_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r".*?(@.*)"</span><span class="p">)</span>
+<span class="n">html_regex</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="nb">compile</span><span class="p">(</span><span class="s">r".*?(\.html)"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We have to modify the file_regex for Windows and we’re going to create another to identify html files.</p>
+
+<p>At line 52 in the original:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">file_regex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="n">newname</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'\?.*'</span><span class="p">,</span> <span class="s">''</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">"Rename"</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="s">"=&gt;"</span><span class="p">,</span> <span class="n">newname</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">filename</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">newname</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>We’ll tweak to:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">html_regex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="p">(</span><span class="s">"{0}"</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"</span><span class="se">\\</span><span class="s">"</span><span class="p">,</span> <span class="s">"/"</span><span class="p">))</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">"r+"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">file_contents</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="n">file_contents</span> <span class="o">=</span> <span class="n">file_contents</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">arguments</span><span class="p">[</span><span class="s">'--domain'</span><span class="p">],</span> <span class="s">""</span><span class="p">)</span>
+            <span class="n">file_contents</span> <span class="o">=</span> <span class="n">file_contents</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">hurl"</span><span class="p">,</span> <span class="n">arguments</span><span class="p">[</span><span class="s">'--domain'</span><span class="p">])</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">file_contents</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">file_regex</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+        <span class="n">newname</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s">r'@.*'</span><span class="p">,</span> <span class="s">''</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">"Rename"</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="s">"=&gt;"</span><span class="p">,</span> <span class="n">newname</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">filename</span><span class="p">),</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">newname</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Here’s our big cheat. We’re going through all html files and swapping out any instances of the root url, in this case http://127.0.0.1:2368 or where ever you’re running it locally and replacing it with a relative url path. <strong>Hacking Complete!</strong> As you can imagine, this has some built in performance degradation, but it works!</p>
+
+<h2 id="installing-your-modified-buster">Installing your modified Buster</h2>
+
+<p>Open your Git Bash, if you haven’t already, and use the following commands:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~
+<span class="nv">$ </span><span class="nb">cd </span>buster
+<span class="nv">$ </span>python setup.py install
+<span class="nv">$ </span>buster <span class="nt">--version</span>
+0.1.2
+</code></pre></div></div>
+
+<p>That’s it!</p>
+
+<h2 id="setting-up-buster">Setting up Buster</h2>
+
+<p>Run the setup and when it asks for your GitHub url, use the one you will be using for your gh-pages that you set up earlier. If you need to, grab the clone url again before you start.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>buster setup
+</code></pre></div></div>
+
+<p>And follow the prompts.</p>
+
+<p>Now you’ll need to open another instance of Git Bash and run:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">cd</span> ~
+<span class="nv">$ </span><span class="nb">cd </span>ghost
+<span class="nv">$ </span>npm start
+</code></pre></div></div>
+
+<p>If you didn’t finish setting up the admin stuff before, you’ll need to set it up now. You should have the welcome post by default, we’ll leave that for now so we can test it out. Once that’s finished, leave Ghost running and switch back to the Git Bash where you ran the setup for Buster from.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>buster generate <span class="nt">--domain</span><span class="o">=</span>%hurl% <span class="nt">--dir</span><span class="o">=</span>/c/users/username/mywebsite
+<span class="nv">$ </span>buster deploy <span class="nt">--dir</span><span class="o">=</span>/c/users/username/mywebsite
+</code></pre></div></div>
+
+<p>This will generate the static content and deploy your site to the gh-pages branch in GitHub. You can try navigating there by putting the http://<em>username</em>.github.io/<em>repository</em> in the location bar of any browser window.</p>
+
+<p>That’s it! You now have a blog on GitHub Pages with Ghost and Buster. Any time you want to add new blogs or modify it, just run ghost locally, make the changes, and run the buster generate and deploy commands. Let me know in the comments if you run into any issues. Happy Coding!</p>
+
+<hr/>
+<div id="disqus_thread"></div>
+<script>
+var disqus_config = function () {
+this.page.url = 'http://localhost:4000/2014/02/24/using-github-pages-with-ghost-and-buster-on-windows-part-2.html';
+this.page.identifier = '2';
+};
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//leftofnull.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  </div>
+
+  <!-- FOOTER  -->
+  <div id="footer_wrap" class="outer">
+    <footer class="inner">
+      <p class="copyright">Left of Null maintained by
+        <a href="//github.com/bitcmdr">bitcmdr</a>
+      </p>
+      <p>Follow me
+        <a href="//twitter.com/bit_cmdr">@bit_cmdr</a>
+      </p>
+    </footer>
+  </div>
+
+  
+  <script type="text/javascript">
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-56155652-1', 'auto');
+    ga('send', 'pageview');
+  </script> 
+</body>
+
+</html>
