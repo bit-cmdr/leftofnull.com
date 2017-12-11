@@ -17,7 +17,7 @@ title: "Left of Null"
 email: leftofnull@outlook.com
 description: >-
   Covering Coding, Technology, and Life.
-baseurl: ""
+baseurl: /
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: bit_cmdr
 github_username: bitcmdr
