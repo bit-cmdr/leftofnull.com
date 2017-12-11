@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,maximum-scale=2">
   <meta name="description" content="Left of Null : Covering Coding, Technology, and Life.">
 
-  <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=9b981c4dfe1a62cdb9ea90b401fa46c9de527d87"> <!-- Begin Jekyll SEO tag v2.3.0 -->
+  <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=c542f72ac7cc45868acc28d7784913483ba80d7a"> <!-- Begin Jekyll SEO tag v2.3.0 -->
 <title>Constant Vigilance: Classes or Structs in C# | Left of Null</title>
 <meta property="og:title" content="Constant Vigilance: Classes or Structs in C#" />
 <meta property="og:locale" content="en_US" />
@@ -22,6 +22,7 @@
 {"name":null,"description":"I’m going to have a recurring theme on the blog from time to time. I’ll probably have several, but this is the first. The theme here is constant vigilance. The same advice that Mad-Eye Moody gives to Harry Potter in the books. The constant vigilance theme will address poor coding habits that are encouraged by the tools we use. Don’t get defensive just yet, and read on. If you disagree, I welcome your comments and will do my best to keep up. Constant Vigilance Classes or Structs in C# Many of the tools we use, such as ORMs, require us to map to POCOs (Plain Old CLR Objects). WCF encourages POCOs for DataContracts for DTOs and SOAP Objects. This is all fine as they suit the needs of their intended purposes. There’s absolutely nothing wrong with it at all. The problem is us. The more these tools are used the more the format becomes old hat. We get used to doing things this way and never question mimicking it in our own systems, even when it’s not needed. Let’s look at the basic differences between the two. Classes Classes are generally stored on the heap and are cleaned up when the garbage collector no longer detects any references and deems it safe to destroy. Classes are also generally passed by reference. In terms of C++, you’re dealing with pointers. Albeit pointers that are managed and cleaned up for you. Keep in mind this is an overly simplistic view of classes and the same over simplicity holds true for the Structs section below. For a very in-depth analysis of stack vs heap, read this article by Eric Lippert. Classes excel at a few things. They are good at/for: Encapsulating Data Hiding Data Inheritance Polymorphism Composition Abstraction Keep that in mind when we look at the next section. Structs Structs are generally stored on the stack. This alone gives them an advantage over Classes. The stack is accessed quicker than the heap. Mind you, this is a micro-optimization and you’re at the mercy of the JITer you’re using. This also means that they are generally disposed of upon loss of scope, meaning you don’t have to wait for garbage collection to run. Structs are also good at a number of things, like: Data Encapsulation Polymorphism So which should you use? The answer, as always, is that it depends. Take a look at the lists above. Are you trying to hide implementation details? Use a Class. Are you taking advantage of abstraction, composition, or inheritance? Use a Class. Otherwise, you could use a Struct. I would even argue when you’re using abstraction, if you’re not inverting control, do you really need the abstract? True, you should strive to eliminate duplicate code, but sometimes it’s worth a little exploration to see if one performs better than the other. Remember, it’s a fine balancing act between a writing clean code and writing software that users want to use. If you’re going to go against the grain though, make sure you comment as to why you are doing so. Examples Let’s say that you need to handle some events that look like this. public class MyClassCreatedEvent { public int Id { get; set; } public DateTime Stamp { get; set; } public MyClassCreatedEvent(int id, DateTime stamp) { Id = id; Stamp = stamp; } } There’s nothing wrong with this, but couldn’t it be as simple as: public struct MyClassCreatedEvent { public int Id; public DateTime Stamp; public MyClassCreatedEvent(int id, DateTime stamp) { Id = id; Stamp = stamp; } } There really isn’t much difference between the two, but there’s no reason at this point to make it a Class. I say ‘at this point’ because you may need to change it down the road. That’s okay. Software changes, it’s inevitable. This is where YAGNI comes into play. If you don’t need it right now, then don’t waste effort on building it right now. This again is a balancing act, but the point is to not do more than you need to, because what you think you need may change tomorrow.","author":null,"@type":"BlogPosting","url":"http://localhost:4000/2014/03/19/constant-vigilance-classes-or-structs-in-c.html","publisher":null,"image":null,"headline":"Constant Vigilance: Classes or Structs in C#","dateModified":"2014-03-19T11:08:59-07:00","datePublished":"2014-03-19T11:08:59-07:00","sameAs":null,"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2014/03/19/constant-vigilance-classes-or-structs-in-c.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
+  <link rel="icon" href="http://localhost:4000//favicon.ico">
 </head>
 
 <body>
@@ -29,7 +30,7 @@
   <!-- HEADER -->
   <div id="header_wrap" class="outer">
     <header class="inner">
-      <a href="http://localhost:4000">
+      <a href="http://localhost:4000//">
         <h1 id="project_title">Left of Null</h1>
       </a>
       <h2 id="project_tagline">Covering Coding, Technology, and Life.</h2>
@@ -113,21 +114,23 @@
 
 <p>There really isn’t much difference between the two, but there’s no reason at this point to make it a Class. I say ‘at this point’ because you may need to change it down the road. <strong>That’s okay.</strong> Software changes, it’s inevitable. This is where YAGNI comes into play. If you don’t need it <em>right now</em>, then don’t waste effort on building it right now. This again is a balancing act, but the point is to not do more than you need to, because what you think you need may change tomorrow.</p>
 
+
 <hr/>
 <div id="disqus_thread"></div>
 <script>
 var disqus_config = function () {
-this.page.url = 'http://localhost:4000/2014/03/19/constant-vigilance-classes-or-structs-in-c.html';
-this.page.identifier = '5';
+  this.page.url = 'https://leftofnull.comhttp://localhost:4000/2014/03/19/constant-vigilance-classes-or-structs-in-c.html';
+  this.page.identifier = '5';
 };
 (function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = '//leftofnull.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
+  var d = document, s = d.createElement('script');
+  s.src = '//leftofnull.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
     </section>
   </div>
 
@@ -135,7 +138,7 @@ s.setAttribute('data-timestamp', +new Date());
   <div id="footer_wrap" class="outer">
     <footer class="inner">
       <p class="copyright">Left of Null maintained by
-        <a href="//github.com/bitcmdr">bitcmdr</a>
+        <a href="//github.com/bit-cmdr">bit-cmdr</a>
       </p>
       <p>Follow me
         <a href="//twitter.com/bit_cmdr">@bit_cmdr</a>

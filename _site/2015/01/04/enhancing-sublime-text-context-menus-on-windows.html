@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,maximum-scale=2">
   <meta name="description" content="Left of Null : Covering Coding, Technology, and Life.">
 
-  <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=9b981c4dfe1a62cdb9ea90b401fa46c9de527d87"> <!-- Begin Jekyll SEO tag v2.3.0 -->
+  <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=c542f72ac7cc45868acc28d7784913483ba80d7a"> <!-- Begin Jekyll SEO tag v2.3.0 -->
 <title>Enhancing Sublime Text Context Menus on Windows | Left of Null</title>
 <meta property="og:title" content="Enhancing Sublime Text Context Menus on Windows" />
 <meta property="og:locale" content="en_US" />
@@ -22,6 +22,7 @@
 {"name":null,"description":"Sublime Text It’s a great code editor. It can be an IDE if you want it to be, but at it’s heart it’s a highly extensible text editor. I love it! You can even get intellisense for C# now if you visit OmniSharp.net and follow the steps to install. I’ll do some more blogs on how I have my Sublime Text set up and one to set up OmniSharp. This is really just some quick enhancements to make a great product a little better. By the way, Sublime Text is free with some nag-ware. I highly reccomend you pay for it and support the team, I did and it was well worth it. Enhancing the Context Menu Sublime Text, by default, will give you the option to add Open with Sublime Text to the context menu when right-clicking any file. This is great and I use it a lot, make sure you’ve selected it during the install before starting this. One thing that I have trouble with is that I do have other context menu enhancements and the Open with Sublime Text doesn’t always jump out at me. So one thing we’re going to do is add the Sublime Text icon to the existing context menu option. The other thing we’re going to do is add an Open Directory with Sublime Text action to the context menu when we right-click on a directory. All it takes is creating a .reg file to update your registry. 1. Create a file on your desktop Right-click on the desktop Click New &gt; Text Document Name it “SublimeContext.reg” make sure to drop the .txt extension 2. Open in Notepad (or Sublime Text) Make note of your installation directory of Sublime Text. I’m running Windows 8.1 with Sublime Text 3 in the default location. so for me, it is C:\\Program Files\\Sublime Text 3\\sublime_text.exe If your’s is the same, no need to do anything, otherwise you’ll have to edit the block below with your default installation. Copy and paste the following block into your file. Windows Registry Editor Version 5.00 [HKEY_CLASSES_ROOT\\*\\shell\\Open with Sublime Text] &quot;Icon&quot;=&quot;C:\\\\Program Files\\\\Sublime Text 3\\\\sublime_text.exe&quot; [HKEY_CLASSES_ROOT\\*\\shell\\Open with Sublime Text\\command] @=&quot;C:\\\\Program Files\\\\Sublime Text 3\\\\sublime_text.exe \\&quot;%1\\&quot;&quot; [HKEY_CLASSES_ROOT\\Directory\\Background\\shell\\Sublime Text] @=&quot;Open Directory with Sublime Text&quot; &quot;Icon&quot;=&quot;C:\\\\Program Files\\\\Sublime Text 3\\\\sublime_text.exe&quot; [HKEY_CLASSES_ROOT\\Directory\\Background\\shell\\Sublime Text\\command] @=&quot;C:\\\\Program Files\\\\Sublime Text 3\\\\sublime_text.exe \\&quot;%V\\&quot;&quot; [HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes\\Directory\\shell\\Sublime Text] @=&quot;Open Directory with Sublime Text&quot; &quot;Icon&quot;=&quot;C:\\\\Program Files\\\\Sublime Text 3\\\\sublime_text.exe&quot; [HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes\\Directory\\shell\\Sublime Text\\command] @=&quot;C:\\\\Program Files\\\\Sublime Text 3\\\\sublime_text.exe \\&quot;%V\\&quot;&quot; Save and close your file. Double-click on it and say yes, you want to add it to the registry. What’s it doing? I know I’m suspicious of modifying the registry, so let’s walk through each line. [HKEY_CLASSES_ROOT\\*\\shell\\Open with Sublime Text] &quot;Icon&quot;=&quot;C:\\\\Program Files\\\\Sublime Text 3\\\\sublime_text.exe&quot; [HKEY_CLASSES_ROOT\\*\\shell\\Open with Sublime Text\\command] @=&quot;C:\\\\Program Files\\\\Sublime Text 3\\\\sublime_text.exe \\&quot;%1\\&quot;&quot; These two are merely updating an existing key. The first HKEY is ensuring that you have the Open with Sublime Text context menu. The Icon String Value is a new one we’re adding. It’s simply adding the Sublime Text icon to the context menu. The second HKEY was an existing key that executes the command of opening the file you right-click in Sublime Text. [HKEY_CLASSES_ROOT\\Directory\\Background\\shell\\Sublime Text] @=&quot;Open Directory with Sublime Text&quot; &quot;Icon&quot;=&quot;C:\\\\Program Files\\\\Sublime Text 3\\\\sublime_text.exe&quot; [HKEY_CLASSES_ROOT\\Directory\\Background\\shell\\Sublime Text\\command] @=&quot;C:\\\\Program Files\\\\Sublime Text 3\\\\sublime_text.exe \\&quot;%V\\&quot;&quot; These two add the new Open Directory with Sublime Text to the background context menu, we’ll cover each line specifically below which adds to the right-click context menu in the same way. [HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes\\Directory\\shell\\Sublime Text] @=&quot;Open Directory with Sublime Text&quot; &quot;Icon&quot;=&quot;C:\\\\Program Files\\\\Sublime Text 3\\\\sublime_text.exe&quot; [HKEY_LOCAL_MACHINE\\SOFTWARE\\Classes\\Directory\\shell\\Sublime Text\\command] @=&quot;C:\\\\Program Files\\\\Sublime Text 3\\\\sublime_text.exe \\&quot;%V\\&quot;&quot; These two are completely new. This is what adds Open Directory with Sublime Text to the right-click context menu. The first HKEY adds the text to the context menu and the Icon. The second HKEY adds the command of opening the directory you right-clicked in Sublime Text. It’s not much, but it adds a nice little touch to an amazing product. Have fun with it!","author":null,"@type":"BlogPosting","url":"http://localhost:4000/2015/01/04/enhancing-sublime-text-context-menus-on-windows.html","publisher":null,"image":null,"headline":"Enhancing Sublime Text Context Menus on Windows","dateModified":"2015-01-04T11:08:59-07:00","datePublished":"2015-01-04T11:08:59-07:00","sameAs":null,"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2015/01/04/enhancing-sublime-text-context-menus-on-windows.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
+  <link rel="icon" href="http://localhost:4000//favicon.ico">
 </head>
 
 <body>
@@ -29,7 +30,7 @@
   <!-- HEADER -->
   <div id="header_wrap" class="outer">
     <header class="inner">
-      <a href="http://localhost:4000">
+      <a href="http://localhost:4000//">
         <h1 id="project_title">Left of Null</h1>
       </a>
       <h2 id="project_tagline">Covering Coding, Technology, and Life.</h2>
@@ -121,21 +122,23 @@
 
 <p>It’s not much, but it adds a nice little touch to an amazing product. Have fun with it!</p>
 
+
 <hr/>
 <div id="disqus_thread"></div>
 <script>
 var disqus_config = function () {
-this.page.url = 'http://localhost:4000/2015/01/04/enhancing-sublime-text-context-menus-on-windows.html';
-this.page.identifier = '11';
+  this.page.url = 'https://leftofnull.comhttp://localhost:4000/2015/01/04/enhancing-sublime-text-context-menus-on-windows.html';
+  this.page.identifier = '11';
 };
 (function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = '//leftofnull.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
+  var d = document, s = d.createElement('script');
+  s.src = '//leftofnull.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
     </section>
   </div>
 
@@ -143,7 +146,7 @@ s.setAttribute('data-timestamp', +new Date());
   <div id="footer_wrap" class="outer">
     <footer class="inner">
       <p class="copyright">Left of Null maintained by
-        <a href="//github.com/bitcmdr">bitcmdr</a>
+        <a href="//github.com/bit-cmdr">bit-cmdr</a>
       </p>
       <p>Follow me
         <a href="//twitter.com/bit_cmdr">@bit_cmdr</a>

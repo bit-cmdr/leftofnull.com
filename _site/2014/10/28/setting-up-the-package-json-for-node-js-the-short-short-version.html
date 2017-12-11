@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,maximum-scale=2">
   <meta name="description" content="Left of Null : Covering Coding, Technology, and Life.">
 
-  <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=9b981c4dfe1a62cdb9ea90b401fa46c9de527d87"> <!-- Begin Jekyll SEO tag v2.3.0 -->
+  <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=c542f72ac7cc45868acc28d7784913483ba80d7a"> <!-- Begin Jekyll SEO tag v2.3.0 -->
 <title>Setting up the package.json for node.js. The short, short version | Left of Null</title>
 <meta property="og:title" content="Setting up the package.json for node.js. The short, short version" />
 <meta property="og:locale" content="en_US" />
@@ -22,6 +22,7 @@
 {"name":null,"description":"Package.json Most tutorials start with the package.json. This is a very important step. Here’s an example of a live package.json, this is Ghost v0.5’s package.json: { &quot;name&quot; : &quot;ghost&quot;, &quot;version&quot; : &quot;0.5.0&quot;, &quot;description&quot; : &quot;Just a blogging platform.&quot;, &quot;author&quot; : &quot;Ghost Foundation&quot;, &quot;homepage&quot; : &quot;http://ghost.org&quot;, &quot;keywords&quot; : [ &quot;ghost&quot;, &quot;blog&quot;, &quot;cms&quot; ], &quot;repository&quot; : { &quot;type&quot;: &quot;git&quot;, &quot;url&quot;: &quot;git://github.com/TryGhost/Ghost.git&quot; }, &quot;bugs&quot; : &quot;https://github.com/TryGhost/Ghost/issues&quot;, &quot;contributors&quot;: &quot;https://github.com/TryGhost/Ghost/graphs/contributors&quot;, &quot;licenses&quot; : [ { &quot;type&quot;: &quot;MIT&quot;, &quot;url&quot;: &quot;https://raw.github.com/TryGhost/Ghost/master/LICENSE&quot; } ], &quot;main&quot;: &quot;./core/index&quot;, &quot;scripts&quot;: { &quot;start&quot;: &quot;node index&quot;, &quot;test&quot;: &quot;./node_modules/.bin/grunt validate --verbose&quot; }, &quot;engines&quot;: { &quot;node&quot;: &quot;~0.10.0&quot; }, &quot;engineStrict&quot;: true, &quot;dependencies&quot;: { &quot;bcryptjs&quot;: &quot;0.7.10&quot;, &quot;body-parser&quot;: &quot;1.6.3&quot;, &quot;bookshelf&quot;: &quot;0.7.6&quot;, &quot;busboy&quot;: &quot;0.2.3&quot;, &quot;colors&quot;: &quot;0.6.2&quot;, &quot;compression&quot;: &quot;^1.0.2&quot;, &quot;connect&quot;: &quot;3.0.0-rc.1&quot;, &quot;connect-slashes&quot;: &quot;1.2.0&quot;, &quot;cookie-parser&quot;: &quot;1.0.1&quot;, &quot;downsize&quot;: &quot;0.0.5&quot;, &quot;express&quot;: &quot;4.8.3&quot;, &quot;express-hbs&quot;: &quot;0.7.10&quot;, &quot;express-session&quot;: &quot;1.0.4&quot;, &quot;fs-extra&quot;: &quot;0.8.1&quot;, &quot;html-to-text&quot;: &quot;^0.1.0&quot;, &quot;knex&quot;: &quot;0.6.21&quot;, &quot;lodash&quot;: &quot;2.4.1&quot;, &quot;moment&quot;: &quot;2.4.0&quot;, &quot;morgan&quot;: &quot;1.0.0&quot;, &quot;node-polyglot&quot;: &quot;0.3.0&quot;, &quot;node-uuid&quot;: &quot;1.4.1&quot;, &quot;nodemailer&quot;: &quot;0.5.13&quot;, &quot;oauth2orize&quot;: &quot;1.0.1&quot;, &quot;passport&quot;: &quot;0.2.0&quot;, &quot;passport-http-bearer&quot;: &quot;1.0.1&quot;, &quot;passport-oauth2-client-password&quot;: &quot;0.1.1&quot;, &quot;rss&quot;: &quot;0.2.1&quot;, &quot;semver&quot;: &quot;2.2.1&quot;, &quot;showdown&quot;: &quot;https://github.com/ErisDS/showdown/archive/v0.3.2-ghost.tar.gz&quot;, &quot;sqlite3&quot;: &quot;2.2.3&quot;, &quot;static-favicon&quot;: &quot;1.0.2&quot;, &quot;unidecode&quot;: &quot;0.1.3&quot;, &quot;validator&quot;: &quot;3.4.0&quot;, &quot;when&quot;: &quot;3.2.3&quot;, &quot;xml&quot;: &quot;0.0.12&quot; }, &quot;optionalDependencies&quot;: { &quot;mysql&quot;: &quot;2.1.1&quot; }, &quot;devDependencies&quot;: { &quot;blanket&quot;: &quot;~1.1.5&quot;, &quot;bower&quot;: &quot;~1.3.5&quot;, &quot;grunt&quot;: &quot;~0.4.1&quot;, &quot;grunt-cli&quot;: &quot;~0.1.13&quot;, &quot;grunt-concat-sourcemap&quot;: &quot;~0.4.3&quot;, &quot;grunt-contrib-clean&quot;: &quot;~0.5.0&quot;, &quot;grunt-contrib-compress&quot;: &quot;~0.5.2&quot;, &quot;grunt-contrib-concat&quot;: &quot;~0.4.0&quot;, &quot;grunt-contrib-copy&quot;: &quot;~0.4.1&quot;, &quot;grunt-contrib-jshint&quot;: &quot;~0.8.0&quot;, &quot;grunt-contrib-uglify&quot;: &quot;~0.5.0&quot;, &quot;grunt-contrib-watch&quot;: &quot;~0.5.3&quot;, &quot;grunt-docker&quot;: &quot;~0.0.8&quot;, &quot;grunt-ember-templates&quot;: &quot;~0.4.18&quot;, &quot;grunt-es6-module-transpiler&quot;: &quot;~0.6.0&quot;, &quot;grunt-express-server&quot;: &quot;~0.4.11&quot;, &quot;grunt-mocha-cli&quot;: &quot;~1.4.0&quot;, &quot;grunt-shell&quot;: &quot;~0.7.0&quot;, &quot;grunt-update-submodules&quot;: &quot;~0.4.0&quot;, &quot;matchdep&quot;: &quot;~0.3.0&quot;, &quot;mocha&quot;: &quot;~1.15.1&quot;, &quot;nock&quot;: &quot;0.27.2&quot;, &quot;rewire&quot;: &quot;~2.0.0&quot;, &quot;request&quot;: &quot;~2.29.0&quot;, &quot;require-dir&quot;: &quot;~0.1.0&quot;, &quot;should&quot;: &quot;~2.1.1&quot;, &quot;sinon&quot;: &quot;~1.7.3&quot;, &quot;supertest&quot;: &quot;~0.8.2&quot; } } Notice the dependencies, optionalDependencies, and devDependencies sections. These list the referenced packages that are required for the system to work. When you clone Ghost you can run ~/ghost $ npm install from inside the Ghost directory and all the dependent packages will be retrived. If you’re a .NET developer, you can think of these as References, or better yet, NuGet packages with the “auto-download missing packages” feature enabled. The scripts section allow you to run the application by aliasing ~/ghost $ node index for ~/ghost $ npm start. Additionally you can run the test suite by using ~/ghost $ npm test. npm “understands” these as default scripts. So what makes this the short, short version? Rapid setup Don’t bother with trying to create the package.json yourself. You can tweak it by hand for sure, but there are much simpler ways to create it. Ways like this: $ mkdir myProj $ cd myProj $ npm init npm init is a tool that will walk you through creating a package.json via a cli wizard. Just answer the questions it asks you like this: This utility will walk you through creating a package.json file. It only covers the most common items, and tries to guess sane defaults. See &#39;npm help json&#39; for definitive documentation on these fields and exactly what they do. Use &#39;npm install &lt;pkg&gt; --save&#39; afterwards to install a package and save it as a dependency in the package.json file. Press ^C at any time to quit. name: (myProj) MyProj version: (1.0.0) 0.0.1 description: Sample npm init entry point: (index.js) app.js test command: git repository: &lt;git repo url (if applicable)&gt; keywords: npm, node, tutorial, package.json author: Alexander Kahoun license: (ISC) MIT { &quot;name&quot;: &quot;MyProj&quot;, &quot;version&quot;: &quot;0.0.1&quot;, &quot;description&quot;: &quot;Sample npm init&quot;, &quot;main&quot;: &quot;app.js&quot;, &quot;scripts&quot;: { &quot;test&quot;: &quot;echo \\&quot;Error: no test specified\\&quot; &amp;&amp; exit 1&quot; }, &quot;repository&quot;: { &quot;type&quot;: &quot;git&quot;, &quot;url&quot;: &quot;&lt;git repo url (if applicable)&gt;&quot; }, &quot;keywords&quot;: [ &quot;npm&quot;, &quot;node&quot;, &quot;tutorial&quot;, &quot;package.json&quot; ], &quot;author&quot;: &quot;Alexander Kahoun&quot;, &quot;license&quot;: &quot;MIT&quot; } Is this ok? (yes) yes Now you have a package.json all ready to go. Another cool tip, you can auto-save dependencies to your package.json as you go. All you need to do is add a flag to your npm install &lt;packageName&gt; command. For instance: ~/myProj $ npm install mongoose --save will both install mongoose into your myProj directory and it will add the following to your package.json: &quot;dependencies&quot;: { &quot;mongoose&quot;: &quot;^3.8.18&quot; } Alternatively npm install mongoose --save-dev or npm install mongoose --save-optional will install the packages just the same, but put them into your package.json in the devDependencies section or optionalDependencies sections respectively. Tl;dr Too long; didn’t read Make sure you use npm init and npm install &lt;package&gt; --save for quick setup of a project: $ mkdir myProj $ cd myProj $ npm init Answer the questions it asks you, don’t be afraid to leave them blank if you don’t know. $ npm install &lt;package&gt; --save Repeat as necessary. Gotcha’s You may want to be careful with some of the packages. Some packages like express.js are great for rapid setup, but when you run the express command to set up your project, it will overwrite any existing package.json. So if you have a package that sets up your package.json for you, make sure to install your dependencies after you run the command. Happy coding!","author":null,"@type":"BlogPosting","url":"http://localhost:4000/2014/10/28/setting-up-the-package-json-for-node-js-the-short-short-version.html","publisher":null,"image":null,"headline":"Setting up the package.json for node.js. The short, short version","dateModified":"2014-10-28T11:08:59-07:00","datePublished":"2014-10-28T11:08:59-07:00","sameAs":null,"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2014/10/28/setting-up-the-package-json-for-node-js-the-short-short-version.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
+  <link rel="icon" href="http://localhost:4000//favicon.ico">
 </head>
 
 <body>
@@ -29,7 +30,7 @@
   <!-- HEADER -->
   <div id="header_wrap" class="outer">
     <header class="inner">
-      <a href="http://localhost:4000">
+      <a href="http://localhost:4000//">
         <h1 id="project_title">Left of Null</h1>
       </a>
       <h2 id="project_tagline">Covering Coding, Technology, and Life.</h2>
@@ -243,21 +244,23 @@ will both install mongoose into your myProj directory <em>and</em> it will add t
 
 <h4 id="happy-coding">Happy coding!</h4>
 
+
 <hr/>
 <div id="disqus_thread"></div>
 <script>
 var disqus_config = function () {
-this.page.url = 'http://localhost:4000/2014/10/28/setting-up-the-package-json-for-node-js-the-short-short-version.html';
-this.page.identifier = '10';
+  this.page.url = 'https://leftofnull.comhttp://localhost:4000/2014/10/28/setting-up-the-package-json-for-node-js-the-short-short-version.html';
+  this.page.identifier = '10';
 };
 (function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = '//leftofnull.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
+  var d = document, s = d.createElement('script');
+  s.src = '//leftofnull.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
     </section>
   </div>
 
@@ -265,7 +268,7 @@ s.setAttribute('data-timestamp', +new Date());
   <div id="footer_wrap" class="outer">
     <footer class="inner">
       <p class="copyright">Left of Null maintained by
-        <a href="//github.com/bitcmdr">bitcmdr</a>
+        <a href="//github.com/bit-cmdr">bit-cmdr</a>
       </p>
       <p>Follow me
         <a href="//twitter.com/bit_cmdr">@bit_cmdr</a>

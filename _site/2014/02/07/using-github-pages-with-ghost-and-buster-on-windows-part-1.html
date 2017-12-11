@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width,maximum-scale=2">
   <meta name="description" content="Left of Null : Covering Coding, Technology, and Life.">
 
-  <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=9b981c4dfe1a62cdb9ea90b401fa46c9de527d87"> <!-- Begin Jekyll SEO tag v2.3.0 -->
+  <link rel="stylesheet" type="text/css" media="screen" href="/assets/css/style.css?v=c542f72ac7cc45868acc28d7784913483ba80d7a"> <!-- Begin Jekyll SEO tag v2.3.0 -->
 <title>Using GitHub Pages with Ghost and Buster on Windows (part 1) | Left of Null</title>
 <meta property="og:title" content="Using GitHub Pages with Ghost and Buster on Windows (part 1)" />
 <meta property="og:locale" content="en_US" />
@@ -22,6 +22,7 @@
 {"name":null,"description":"Taking Inventory and Setting Up First and foremost, if you are using Linux or OSX, follow this guide here and save yourself a lot of time. Series: Part 1: Taking Inventory and Setting Up Part 2: Hacking Buster and Deploying List of software I’m assuming you have a GitHub account already, if not go create one now. I’ll wait. node.js windows installer Git Bash windows installer MinGW (or Cygwin, I use MinGW for this post) Python 2.7 windows installer (any version &gt;= 3 won’t work) PIP for Python (right click and file&gt;save as “get-pip.py”) Installing node.js node.js download Installing node.js on Windows is really straight forward and very easy thanks to Joyent’s installer. It truly is just a next, next, finish install. The one thing to watch out for is to make sure that you can access node and npm after the install. You may have to reboot for it to take full effect. Let’s make sure node is installed properly. Open a console and type in: node --version If it’s installed properly, you should get a response like this: v0.10.25 keep in mind your version may be different from when this article was written. Now let’s make sure NPM is installed correctly: npm --version Expect similar output as the first statement, but the versions won’t match and they aren’t meant to either. If you’re having any trouble, try rebooting and repeating these steps first. Installing Git Bash Git Bash download The installation of the Git Bash in Windows is done equally as well. It’s another next, next, finish. There are some extra options that display during the install, but as long as you stick with all the defaults, i.e. don’t change anything, you’ll be fine. Installing MinGW MinGW download Here’s where we start to get a little more difficult. Follow the prompts and leave the default settings. Feel free to change the install directory, in fact it’s very important that you keep track of it. For this reason, I installed it to C:\\dev\\MinGW. This will come into play as we install Python and when we modify our PATH. Once you have it installed, you’ll want to set up the packages that we’ll be using. Let’s launch the MinGW Installation Manager. Select the Basic Setup from the menu on the left. We just need to make sure we have two packages here, mingw32-base and msys-base. It should look like this. Now let’s get one other package we’ll need. Click on the All Packages and scroll down to find msys-wget and set that package to install. Lastly click the Installation menu at the top and then Apply Changes. When you’re done it should look like this. As a final touch we’re going to have to modify our PATH environment variable. Modifying your PATH Use the [Windows Key] + [Pause/Break Key] to launch your System Properties dialog. From here you’ll want to click on the Advanced System settings. As soon as that dialog launches, click on the Environment Variables… button at the bottom. Select the PATH variable and click Edit. All the values are semi-colon delimited. We’ll need to add two new ones. Move to the end of the line of values and now make sure you add to following so the end looks like this: ;C:\\dev\\MINGW\\msys\\1.0\\Bin;C:\\dev\\MINGW\\Bin; This will add all the msys tools and the mingw tools to your path so you can access them from any command prompt in Windows. Installing Python Python 2.7 download Make sure you grab the 2.7.6 version or earlier. 3.0 or higher will not work right now. The author of buster is using the print statement throughout the package and in version 3 they changed it to a method call print(). Here I changed the installation directory to C:\\dev\\Python27 to keep all the libraries in the same root folder. Once complete we’ll need to modify the PATH again. Make sure you add the following to the end of the PATH values: ;C:\\dev\\Python27;C:\\dev\\Python27\\scripts; This will add Python and any scripts you install to the PATH so they can be called from any command prompt in Windows. Let’s test it! Launch your Git Bash, or preferred command prompt. Type in the following command and if you get a version number back, you’re good! python --version Installing PIP PIP download Don’t get scared when you click on that link, it’s supposed to look like that. Just right click anywhere on that page and select Save As…. Make sure to name the file get-pip.py. I would suggest saving it to the C:\\dev folder to make it easy. Once that’s done, let’s launch Git Bash and type in the following commands: $ cd /c/dev $ python get-pip.py You’ll see it install PIP. Now to test it out. If you get a version number, you’re good! pip --version Setup Complete! You’re now ready to move on to the next part which will be getting Ghost and buster running.","author":null,"@type":"BlogPosting","url":"http://localhost:4000/2014/02/07/using-github-pages-with-ghost-and-buster-on-windows-part-1.html","publisher":null,"image":null,"headline":"Using GitHub Pages with Ghost and Buster on Windows (part 1)","dateModified":"2014-02-07T11:08:59-07:00","datePublished":"2014-02-07T11:08:59-07:00","sameAs":null,"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2014/02/07/using-github-pages-with-ghost-and-buster-on-windows-part-1.html"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
+  <link rel="icon" href="http://localhost:4000//favicon.ico">
 </head>
 
 <body>
@@ -29,7 +30,7 @@
   <!-- HEADER -->
   <div id="header_wrap" class="outer">
     <header class="inner">
-      <a href="http://localhost:4000">
+      <a href="http://localhost:4000//">
         <h1 id="project_title">Left of Null</h1>
       </a>
       <h2 id="project_tagline">Covering Coding, Technology, and Life.</h2>
@@ -163,21 +164,23 @@
 
 <p>You’re now ready to move on to the next part which will be getting Ghost and buster running.</p>
 
+
 <hr/>
 <div id="disqus_thread"></div>
 <script>
 var disqus_config = function () {
-this.page.url = 'http://localhost:4000/2014/02/07/using-github-pages-with-ghost-and-buster-on-windows-part-1.html';
-this.page.identifier = '4';
+  this.page.url = 'https://leftofnull.comhttp://localhost:4000/2014/02/07/using-github-pages-with-ghost-and-buster-on-windows-part-1.html';
+  this.page.identifier = '4';
 };
 (function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = '//leftofnull.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
+  var d = document, s = d.createElement('script');
+  s.src = '//leftofnull.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
     </section>
   </div>
 
@@ -185,7 +188,7 @@ s.setAttribute('data-timestamp', +new Date());
   <div id="footer_wrap" class="outer">
     <footer class="inner">
       <p class="copyright">Left of Null maintained by
-        <a href="//github.com/bitcmdr">bitcmdr</a>
+        <a href="//github.com/bit-cmdr">bit-cmdr</a>
       </p>
       <p>Follow me
         <a href="//twitter.com/bit_cmdr">@bit_cmdr</a>
