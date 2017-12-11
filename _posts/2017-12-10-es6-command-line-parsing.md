@@ -139,3 +139,5 @@ $ node app --exponent 3 --base 2
 ```
 
 `opts` will now have the value of `{ base: '2', exponent: '3' }` no matter which way you ran the command line. It's also a lot easier to read in the code instead of trying to figure out which variable is in what index.
+
+I also have a [Gist](https://gist.github.com/bit-cmdr/48b7d82ad93fe9e3043d61e842c0ebe3) available for easy commenting and copying.

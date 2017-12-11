@@ -9,7 +9,7 @@ comments: true
 <div id="disqus_thread"></div>
 <script>
 var disqus_config = function () {
-  this.page.url = '{{ page.url | absolute_url }}';
+  this.page.url = 'https://leftofnull.com{{ page.url | absolute_url }}';
   this.page.identifier = '{{ page.disqus_id }}';
 };
 (function() { // DON'T EDIT BELOW THIS LINE
