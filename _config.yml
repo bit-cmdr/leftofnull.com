@@ -20,7 +20,7 @@ description: >-
 baseurl: /
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: bit_cmdr
-github_username: bitcmdr
+github_username: bit-cmdr
 google_analytics: UA-56155652-1
 show_downloads: false
 
