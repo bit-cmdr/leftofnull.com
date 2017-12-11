@@ -10,7 +10,7 @@ comments: true
 <script>
 var disqus_config = function () {
   this.page.url = '{{ page.url | absolute_url }}';
-  this.page.identifier = '{{ page.disqus_id | page.url }}';
+  this.page.identifier = '{{ page.disqus_id }}';
 };
 (function() { // DON'T EDIT BELOW THIS LINE
   var d = document, s = d.createElement('script');
