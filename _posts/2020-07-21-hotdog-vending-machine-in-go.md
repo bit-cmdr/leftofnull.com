@@ -12,7 +12,7 @@ disqus_id: 20200721
 
 # Hot Dog Vending Machine in Go
 
-Some years ago I had the pleasure of learning Clojure. We're not going to talk about Clojure much today, this post is about Go. One of the main resources I used when learning Clojure was a book by Daniel Higgenbotham called Clojure for the Brave and True. You can read it online at https://www.braveclojure.com/clojure-for-the-brave-and-true/. I highly recommend this book if you're learning Clojure. This was one of my favorite programming books that I've read. 
+Some years ago I had the pleasure of learning Clojure. We're not going to talk about Clojure much today, this post is about Go. One of the main resources I used when learning Clojure was a book by Daniel Higginbotham called Clojure for the Brave and True. You can read it online at https://www.braveclojure.com/clojure-for-the-brave-and-true/. I highly recommend this book if you're learning Clojure. This was one of my favorite programming books that I've read. 
 In one of the later chapters we're introduced to concurrent processes with asyncrounous programming. One of the ways we can envision this is by creating a Hot Dog Vending Machine. Clojure has a concept for async programming in common with Go, channels. We're going to look more at channels and then build our Hot Dog Vending Machine using them.
 
 ## What are channels in Go?
