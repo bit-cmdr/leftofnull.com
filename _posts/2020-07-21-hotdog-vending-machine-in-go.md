@@ -1,13 +1,16 @@
 ---
 layout: post
 title: "Hot Dog Vending Machine in Go"
-date: 2020-07-21 11:00:00 -0700
+author: alexander
 tags:
   - Go
   - GoLang
   - Threading
   - Async
-disqus_id: 20200721
+categories:
+  - GoLang
+image: assets/images/hotdog.jpg
+featured: true
 ---
 
 # Hot Dog Vending Machine in Go

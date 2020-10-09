@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Using GitHub Pages with Ghost and Buster on Windows (part 1)"
-date: 2014-02-07 11:08:59 -0700
+author: alexander
 tags: 
     - ghost
     - windows
@@ -10,7 +10,8 @@ tags:
     - gh-pages
     - blog
     - node.js
-disqus_id: 4
+categories:
+  - Ghost
 ---
 
 Taking Inventory and Setting Up

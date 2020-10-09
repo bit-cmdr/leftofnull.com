@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Setting up the package.json for node.js. The short, short version"
-date: 2014-10-28 11:08:59 -0700
+author: alexander
 tags:
     - node.js
     - node
@@ -10,7 +10,8 @@ tags:
     - npm
     - npm install
     - npm init
-disqus_id: 10
+categories:
+  - Tools
 ---
 
 Package.json

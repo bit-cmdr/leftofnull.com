@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Enhancing Sublime Text Context Menus on Windows"
-date:   2015-01-04 11:08:59 -0700
+author: alexander
 tags:
     - windows
     - Sublime Text
@@ -9,7 +9,8 @@ tags:
     - Right Click
     - Open Directory
     - Open Folder
-disqus_id: 11
+categories:
+  - Tools
 ---
 
 **[Sublime Text](http://http://www.sublimetext.com/)**

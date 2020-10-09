@@ -1,14 +1,16 @@
 ---
 layout: post
 title:  "Virtual Desktops for Windows"
-date:   2014-08-24 11:08:59 -0700
+author: alexander
 tags:
     - windows
     - Tools
     - Software
     - Virtual Desktops
     - Multiple Desktops
-disqus_id: 9
+categories:
+  - Tools
+image: assets/images/monitors.jpg
 ---
 
 There's been some speculation of Windows finally getting virtual desktops as a feature in [Windows 9](http://www.pcworld.com/article/2462641/windows-9-goodbye-charms-bar-hello-virtual-desktops.html). To be honest, this is a very welcome change. After all, Linux has had it for almost 20 years now.

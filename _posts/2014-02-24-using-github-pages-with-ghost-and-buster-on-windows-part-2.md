@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Using GitHub Pages with Ghost and Buster on Windows (part 2)"
-date: 2014-02-24 11:08:59 -0700
+author: alexander
 tags:
     - blog
     - buster
@@ -10,7 +10,8 @@ tags:
     - ghost
     - node.js
     - github pages
-disqus_id: 2
+categories:
+  - Ghost
 ---
 
 Hacking Buster and Deploying

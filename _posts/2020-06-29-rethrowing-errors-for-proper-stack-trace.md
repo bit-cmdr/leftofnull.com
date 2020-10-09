@@ -1,11 +1,14 @@
 ---
 layout: post
 title: "Rethrowing Errors for Proper Stack Trace"
-date: 2020-06-29 11:00:00 -0700
+author: alexander
 tags:
   - Javascript
   - Error Handling
-disqus_id: 20200629
+categories:
+  - Javascript
+  - Error Handling
+image: assets/images/throwing.jpg
 ---
 
 # Rethrowing Errors for Proper Stack Trace

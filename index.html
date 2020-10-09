@@ -1,28 +1,61 @@
---- 
-layout: default
 ---
-<!-- This loops through the paginated posts -->
+layout: default
+title: Home
+---
 
-{% for post in paginator.posts %}
-<hr />
-<h1>
-  <a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
-</h1>
-<p class="author">
-  <span class="date post-meta">Published {{ post.date | date: '%B %d, %Y' }}</span>
-</p>
-{% endfor %}
+{% if page.url == "/" %}
 
-<div class="pagination">
-  {% if paginator.previous_page %}
-  <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
-  {% else %}
-  <span class="previous">Previous</span>
-  {% endif %}
-  <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
-  {% if paginator.next_page %}
-  <a href="{{ paginator.next_page_path }}" class="next">Next</a>
-  {% else %}
-  <span class="next ">Next</span>
-  {% endif %}
+<!-- Featured
+================================================== -->
+<section class="featured-posts">
+    <div class="section-title">
+        <h2><span>Featured</span></h2>
+    </div>
+    <div class="row">
+
+    {% for post in site.posts %}
+
+        {% if post.featured == true %}
+
+            {% include featuredbox.html %}
+
+        {% endif %}
+
+    {% endfor %}
+
+    </div>
+</section>
+
+{% endif %}
+
+<!-- Posts Index
+================================================== -->
+<section class="recent-posts">
+
+    <div class="section-title">
+
+        <h2><span>All Stories</span></h2>
+
+    </div>
+
+    <div class="row listrecent">
+
+        {% for post in paginator.posts %}
+
+        {% include postbox.html %}
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<!-- Pagination
+================================================== -->
+<div class="bottompagination">
+<div class="pointerup"><i class="fa fa-caret-up"></i></div>
+<span class="navigation" role="navigation">
+    {% include pagination.html %}
+</span>
 </div>
+
