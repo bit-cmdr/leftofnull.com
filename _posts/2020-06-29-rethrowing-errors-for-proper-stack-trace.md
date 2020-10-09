@@ -6,6 +6,8 @@ tags:
   - Javascript
   - Error Handling
 image: assets/images/throwing.jpg
+categories:
+  - Node
 ---
 
 # Rethrowing Errors for Proper Stack Trace

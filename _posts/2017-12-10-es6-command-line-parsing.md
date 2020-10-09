@@ -6,6 +6,8 @@ tags:
   - node.js
   - cli
 image: assets/images/terminal.jpg
+categories:
+  - Node
 ---
 
 # ES6 Command-Line Parsing

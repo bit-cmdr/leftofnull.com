@@ -8,6 +8,8 @@ tags:
     - Ubiquitous Language
 image: assets/images/language.jpg
 featured: true
+categories:
+  - Development
 ---
 
 ### Ubiquitous: */yoo-bikwit&#x259;ss/*

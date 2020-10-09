@@ -9,6 +9,8 @@ tags:
     - Virtual Desktops
     - Multiple Desktops
 image: assets/images/monitors.jpg
+categories:
+  - Tools
 ---
 
 There's been some speculation of Windows finally getting virtual desktops as a feature in [Windows 9](http://www.pcworld.com/article/2462641/windows-9-goodbye-charms-bar-hello-virtual-desktops.html). To be honest, this is a very welcome change. After all, Linux has had it for almost 20 years now.

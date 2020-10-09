@@ -10,6 +10,8 @@ tags:
     - ghost
     - node.js
     - github pages
+categories:
+  - Ghost
 ---
 
 Hacking Buster and Deploying

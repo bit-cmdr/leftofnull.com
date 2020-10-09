@@ -9,6 +9,8 @@ tags:
   - Async
 image: assets/images/hotdog.jpg
 featured: true
+categories:
+  - GoLang
 ---
 
 # Hot Dog Vending Machine in Go
