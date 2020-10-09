@@ -5,8 +5,6 @@ author: alexander
 tags:
   - node.js
   - cli
-categories:
-  - Node
 image: assets/images/terminal.jpg
 ---
 

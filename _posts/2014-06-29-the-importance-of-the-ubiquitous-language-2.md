@@ -6,8 +6,6 @@ tags:
     - Development
     - Coding
     - Ubiquitous Language
-categories:
-  - Development
 image: assets/images/language.jpg
 featured: true
 ---

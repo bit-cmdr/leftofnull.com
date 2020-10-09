@@ -7,8 +7,6 @@ tags:
   - GoLang
   - Threading
   - Async
-categories:
-  - GoLang
 image: assets/images/hotdog.jpg
 featured: true
 ---

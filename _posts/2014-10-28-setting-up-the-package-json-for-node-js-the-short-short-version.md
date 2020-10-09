@@ -10,8 +10,6 @@ tags:
     - npm
     - npm install
     - npm init
-categories:
-  - Tools
 ---
 
 Package.json

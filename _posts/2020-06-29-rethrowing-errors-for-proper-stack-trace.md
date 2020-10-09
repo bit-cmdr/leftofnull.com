@@ -5,9 +5,6 @@ author: alexander
 tags:
   - Javascript
   - Error Handling
-categories:
-  - Javascript
-  - Error Handling
 image: assets/images/throwing.jpg
 ---
 

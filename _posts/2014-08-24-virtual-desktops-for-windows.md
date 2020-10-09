@@ -8,8 +8,6 @@ tags:
     - Software
     - Virtual Desktops
     - Multiple Desktops
-categories:
-  - Tools
 image: assets/images/monitors.jpg
 ---
 

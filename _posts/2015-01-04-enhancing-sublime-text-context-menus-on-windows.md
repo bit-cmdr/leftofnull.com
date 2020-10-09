@@ -9,8 +9,6 @@ tags:
     - Right Click
     - Open Directory
     - Open Folder
-categories:
-  - Tools
 ---
 
 **[Sublime Text](http://http://www.sublimetext.com/)**

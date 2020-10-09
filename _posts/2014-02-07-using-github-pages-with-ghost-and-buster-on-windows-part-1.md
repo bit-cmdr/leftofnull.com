@@ -10,8 +10,6 @@ tags:
     - gh-pages
     - blog
     - node.js
-categories:
-  - Ghost
 ---
 
 Taking Inventory and Setting Up

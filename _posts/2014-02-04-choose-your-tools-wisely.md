@@ -9,8 +9,6 @@ tags:
   - IDE 
   - .NET 
   - JavaScript
-categories:
-  - Tools
 ---
 
 ![choose your weapon](https://ucruhw.bn1304.livefilestore.com/y4mAmf8-ciaySzHWFU9conuLSKgzOEXd0rdaGWLGU3DJWMvb3nO-tkq11VM6IqYdvxid6IQdEqzyaW8u2npEpkLhrZEaSN2ulfyC33mIS5H5CNXWXil25OLaAHJh1bnDuaqs6d9BfaYfk8Zo9xnYs48jHdLH63IVcklv-7FcNovAz2IvPOtcVjD7mL9ZVplmN7bQh35B13nM9c4d7fIgLJO0g){:class="img-responsive"}

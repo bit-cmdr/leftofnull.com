@@ -5,8 +5,6 @@ author: alexander
 tags: 
   - YAGNI 
   - C#
-categories:
-  - C#
 ---
 
 I'm going to have a recurring theme on the blog from time to time. I'll probably have several, but this is the first. The theme here is constant vigilance. The same advice that Mad-Eye Moody gives to Harry Potter in the books. The constant vigilance theme will address poor coding habits that are encouraged by the tools we use. Don't get defensive just yet, and read on. If you disagree, I welcome your comments and will do my best to keep up.
