@@ -1,12 +1,15 @@
 ---
 layout: post
 title: "The Importance of the Ubiquitous Language"
-date: 2014-06-29 11:08:59 -0700
+author: alexander
 tags:
     - Development
     - Coding
     - Ubiquitous Language
-disqus_id: 3
+categories:
+  - Development
+image: assets/images/language.jpg
+featured: true
 ---
 
 ### Ubiquitous: */yoo-bikwit&#x259;ss/*

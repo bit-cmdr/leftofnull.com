@@ -1,43 +1,63 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
+# Site
+name: "Left of Null"
 title: "Left of Null"
-email: leftofnull@outlook.com
-description: >-
-  Covering Coding, Technology, and Life.
-baseurl: /
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: bit_cmdr
-github_username: bit-cmdr
-google_analytics: UA-56155652-1
-show_downloads: false
-paginate: 5
+description: "Covering Coding, Technology, and Life."
+logo: 'assets/images/logo.png'
+favicon: 'assets/images/logo.png'
+baseurl: /testblog
+google_analytics: 'UA-56155652-1'
+disqus: 'leftofnull'
+include: ["_pages"]
+permalink: /:title/
 
-# Build settings
-markdown: kramdown
-theme: jekyll-theme-slate
+# Authors
+authors:
+  alexander:
+    name: Alexander Kahoun
+    display_name: Alexander    
+    avatar: 'assets/images/author.png'
+    gravatar: 0c6078b355fe79d8daf0f24dfde6fb44
+    email: leftofnull@outlook.com
+    web: https://leftofnull.com
+    twitter: https://twitter.com/bit_cmdr
+    description: "Bit Commander, Geek, Software Engineer, Technologist, Gamer, Husband, Dad, and Jedi Knight. I do what I love."
+
+# Plugins
 plugins:
-  - jekyll-feed
+  - jekyll-paginate
   - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-archives
+    
+# Archives
+jekyll-archives:
+  enabled:
+    - categories
+  layout: archive
+  permalinks:
+    category: '/category/:name/'
+    
+# Pagination 
+paginate: 6
+paginate_path: /page:num/
+    
+# Other
+markdown: kramdown
 
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-  - README.md
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
+
+# Adsense (change to "enabled" to activate, also your client id and ad slot. Create a new ad unit from your Adsense account to get the slot.)
+adsense: "disabled"
+adsense-data-ad-client: "ca-pub-3412143450191416"
+adsense-data-ad-slot: "1363087678"
+
+# Lazy Images ("enabled" or "disabled")
+lazyimages: "disabled"
+
+exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]

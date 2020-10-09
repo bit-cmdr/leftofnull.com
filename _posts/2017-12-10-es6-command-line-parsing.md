@@ -1,11 +1,13 @@
 ---
 layout: post
 title:  "ES6 Command-Line Parsing"
-date:   2017-12-10 11:00:00 -0700
+author: alexander
 tags:
   - node.js
   - cli
-disqus_id: 20171210
+categories:
+  - Node
+image: assets/images/terminal.jpg
 ---
 
 # ES6 Command-Line Parsing

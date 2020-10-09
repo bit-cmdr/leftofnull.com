@@ -1,11 +1,12 @@
 ---
 layout: post
 title: "Why are you using source control?"
-date: 2014-04-04 11:08:59 -0700
+author: alexander
 tags:
     - Development
     - Source Control
-disqus_id: 7
+categories:
+  - Development
 ---
 
 Top Reasons
