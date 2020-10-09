@@ -4,10 +4,11 @@ title: "Left of Null"
 description: "Covering Coding, Technology, and Life."
 logo: 'assets/images/logo.png'
 favicon: 'assets/images/logo.png'
-baseurl: /
+baseurl: 
 google_analytics: 'UA-56155652-1'
 disqus: 'leftofnull'
 include: ["_pages"]
+permalink: /:year/:month/:day/:title
 
 # Authors
 authors:
