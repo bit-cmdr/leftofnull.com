@@ -18,8 +18,6 @@
 
 <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
 
-</head>
-
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{site.google_analytics}}"></script>
 <script>
@@ -29,6 +27,8 @@
 
   gtag('config', '{{site.google_analytics}}');
 </script>
+
+</head>
 
 {% capture layout %}{% if page.layout %}layout-{{ page.layout }}{% endif %}{% endcapture %}
 <body class="{{layout}}">
