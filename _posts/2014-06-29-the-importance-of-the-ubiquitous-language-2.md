@@ -26,7 +26,7 @@ categories:
 
 - **system of communication: a system of communication with its own set of conventions or special words that exists everywhere within a given business domain**
 
-Eric Evans first coined the term in his book on [Domain Driven Design](http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software-ebook/dp/B00794TAUG/ref=tmm_kin_title_0), which is available in kindle-edition now by the way. If you haven't read it, I recommend adding it to you reasing list. I'll hone in on the same excerpt that Martin Fowler did in his [post on the topic](http://martinfowler.com/bliki/UbiquitousLanguage.html).
+Eric Evans first coined the term in his book on [Domain Driven Design](http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software-ebook/dp/B00794TAUG/ref=tmm_kin_title_0), which is available in kindle-edition now by the way. If you haven't read it, I recommend adding it to you reading list. I'll hone in on the same excerpt that Martin Fowler did in his [post on the topic](http://martinfowler.com/bliki/UbiquitousLanguage.html).
 
 > By using the model-based language pervasively and not being satisfied until it flows, we approach a model that is complete and comprehensible, made up ofsimple elements that combine to express complex ideas.
 >
