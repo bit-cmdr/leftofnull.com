@@ -19,7 +19,6 @@ authors:
     gravatar: 0c6078b355fe79d8daf0f24dfde6fb44
     email: leftofnull@outlook.com
     web: https://leftofnull.com
-    twitter: https://twitter.com/bit_cmdr
     description: "Bit Commander, Geek, Software Engineer, Technologist, Gamer, and Jedi Knight. I do what I love."
 
 # Plugins
@@ -60,4 +59,17 @@ adsense-data-ad-slot: "1363087678"
 # Lazy Images ("enabled" or "disabled")
 lazyimages: "disabled"
 
-exclude: [changelog.md, LICENSE.txt, README.md, Gemfile, Gemfile.lock]
+exclude: 
+  - changelog.md
+  - LICENSE.txt
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
