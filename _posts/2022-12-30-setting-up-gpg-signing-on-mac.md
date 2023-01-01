@@ -80,7 +80,7 @@ mine looks like this
 pinentry-program /opt/homebrew/bin/pinentry-mac
 ```
 
-Save the file and rune `killall gpg-agent` to restart the gpg-agent.
+Save the file and run `killall gpg-agent` to restart the gpg-agent.
 
 Let's test that everything is working by running
 
