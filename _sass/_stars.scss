@@ -23,14 +23,15 @@ $rating-icons-paths: (
 /// Creates a dynamic list of values that increment each .25 from 0 to 5
 /// @return {list}
 @function rating-values() {
-  $rating-values: ();
+  $rating-values: (
+  );
 
-  @for $i from $rating-min-value through ($rating-max-value / $rating-steps-value) {
-    $rating-value: abs($i * $rating-steps-value);
-    $rating-values: append($rating-values, $rating-value, 'comma');
-  }
+@for $i from $rating-min-value through ($rating-max-value / $rating-steps-value) {
+  $rating-value: abs($i * $rating-steps-value);
+  $rating-values: append($rating-values, $rating-value, 'comma');
+}
 
-  @return $rating-values;
+@return $rating-values;
 }
 
 /// Generates an SVG with a given fill color depending on the type of icon passed as parameter. The SVG string is scaped for cross-browser support.
@@ -41,7 +42,7 @@ $rating-icons-paths: (
   @if not index(quarter half three-quarters full, $icon) {
     @error "Interaction type must be either `quarter`, `half`, `three-quarters` or `full`.";
   }
-  
+
   @return url('data:image/svg+xml;utf8,%3Csvg%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22512%22%20height%3D%22512%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20fill%3D%22' + $color + '%22%20d%3D%22' + map-get($rating-icons-paths, $icon) + '%22%3E%3C%2Fpath%3E%3C%2Fsvg%3E') center / cover no-repeat;
 }
 
@@ -65,7 +66,7 @@ $rating-icons-paths: (
   @if not index(clickable representative, $interaction-type) {
     @error "Interaction type must be either `clickable` or `representative`.";
   }
-  
+
   #{$star-element} {
     display: inline-block;
     float: left;
@@ -77,8 +78,8 @@ $rating-icons-paths: (
     background: get-icon(full, $rating-color-empty);
 
   }
-  
-@each $rating-value in rating-values() {
+
+  @each $rating-value in rating-values() {
     // Get the next higher integer.
     $rating-value-ceil: ceil($rating-value);
 
@@ -88,14 +89,17 @@ $rating-icons-paths: (
       }
 
       #{$star-element}:nth-child(#{$rating-value-ceil}) {
+
         // Evaluate which fraction of a star this value is and add the proper background
-        @if str-slice("#{$rating-value}", 2, 4) == '.25' {
+        @if str-slice("#{$rating-value}", 2, 4)=='.25' {
           background: get-icon(quarter, $rating-color-full), get-icon(full, $rating-color-empty)
         }
-        @else if str-slice("#{$rating-value}", 2, 4) == '.5' {
+
+        @else if str-slice("#{$rating-value}", 2, 4)=='.5' {
           background: get-icon(half, $rating-color-full), get-icon(full, $rating-color-empty)
         }
-        @else if str-slice("#{$rating-value}", 2, 4) == '.75' {
+
+        @else if str-slice("#{$rating-value}", 2, 4)=='.75' {
           background: get-icon(three-quarters, $rating-color-full), get-icon(full, $rating-color-empty)
         }
       }
@@ -108,7 +112,7 @@ $rating-icons-paths: (
 /// @param {number} context [$msuxf-font-size] The base font size
 /// @return {em} value
 @function toem($target, $context: 16px) {
-  @if $target == 0 {
+  @if $target ==0 {
     @return 0
   }
 
@@ -126,11 +130,11 @@ $rating-icons-paths: (
 
 .c-rating {
   @include c-rating(toem(20px), button, clickable);
-  
+
   &--small {
     font-size: 50%
   }
-  
+
   &--big {
     font-size: 150%;
   }

@@ -12,7 +12,7 @@ categories:
 
 # ES6 Command-Line Parsing
 
-ECMA Script has come a really long way and continues to add more great features. A lot of them borrowed from functional languages and libraries. Typically there isn't a lot of need for command-line argument parsing in this manner, there's a lot of great tools and libraries that already exist for handling more complex situations. There are times when you just want to write a quick little CLI tool to do one-off work. Without futher ado, here's how to do it.
+ECMA Script has come a really long way and continues to add more great features. A lot of them borrowed from functional languages and libraries. Typically there isn't a lot of need for command-line argument parsing in this manner, there's a lot of great tools and libraries that already exist for handling more complex situations. There are times when you just want to write a quick little CLI tool to do one-off work. Without further ado, here's how to do it.
 
 ### Desired input
 
@@ -22,7 +22,7 @@ Let's take a look at what we want the startup to look like. Typically you can ru
 node app 2 3
 ```
 
-The problem is that when you use the default node tools, `process.argv`, to get the agruments passed in, you read everything, including `node` and `app` in the above example. The startup parameters aren't very clear either. What are 2 and 3? If you wrote the code, I would hope you would know, but maybe you inherited this or you wrote this tool for other devs on your team. What about them?
+The problem is that when you use the default node tools, `process.argv`, to get the arguments passed in, you read everything, including `node` and `app` in the above example. The startup parameters aren't very clear either. What are 2 and 3? If you wrote the code, I would hope you would know, but maybe you inherited this or you wrote this tool for other devs on your team. What about them?
 
 #### Doesn't this look nicer?
 

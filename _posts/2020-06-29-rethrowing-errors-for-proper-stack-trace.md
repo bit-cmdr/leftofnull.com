@@ -16,7 +16,7 @@ Javascript, like many other languages provides the try/catch block for error han
 
 Why would you want to log and rethrow then? Maybe you have a very deeply nested function and it has a lot of information that simply isn't available in functions that are higher up on the call stack. In this case maybe you do want to log and info or a warning message before rethrowing. There's decent arguments for this, especially in debugging. Regardless of your reasoning, here you are.
 
-Let's look at two seemingly similar statements and see how differnt they really are.
+Let's look at two seemingly similar statements and see how different they really are.
 
 Example A:
 
@@ -34,7 +34,7 @@ catch (e) {
 }
 ```
 
-If you use either of these and look at the error message in a calling function they will look identical, so what's the big deal? The big deal isn't the error message, but the stack trace. In **A** we're resetting the stack trace. In **B** we're preserving the stack trace. This concept is not unique to Javascript, many languages support it, especially if they support stack traces and try/catch. C# handles it in a similar way, however you can reset the stack trace in C# with `throw new Error(e)` *or* `throw e`, to presere it you just need to call `throw;` again. 
+If you use either of these and look at the error message in a calling function they will look identical, so what's the big deal? The big deal isn't the error message, but the stack trace. In **A** we're resetting the stack trace. In **B** we're preserving the stack trace. This concept is not unique to Javascript, many languages support it, especially if they support stack traces and try/catch. C# handles it in a similar way, however you can reset the stack trace in C# with `throw new Error(e)` *or* `throw e`, to preserve it you just need to call `throw;` again. 
 
 ## What does any of this really mean? Let's look at some more robust examples.
 

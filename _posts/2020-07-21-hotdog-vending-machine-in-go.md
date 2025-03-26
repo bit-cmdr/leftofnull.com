@@ -16,11 +16,11 @@ categories:
 # Hot Dog Vending Machine in Go
 
 Some years ago I had the pleasure of learning Clojure. We're not going to talk about Clojure much today, this post is about Go. One of the main resources I used when learning Clojure was a book by Daniel Higginbotham called Clojure for the Brave and True. You can read it online at https://www.braveclojure.com/clojure-for-the-brave-and-true/. I highly recommend this book if you're learning Clojure. This was one of my favorite programming books that I've read. 
-In one of the later chapters we're introduced to concurrent processes with asyncrounous programming. One of the ways we can envision this is by creating a Hot Dog Vending Machine. Clojure has a concept for async programming in common with Go, channels. We're going to look more at channels and then build our Hot Dog Vending Machine using them.
+In one of the later chapters we're introduced to concurrent processes with asynchronous programming. One of the ways we can envision this is by creating a Hot Dog Vending Machine. Clojure has a concept for async programming in common with Go, channels. We're going to look more at channels and then build our Hot Dog Vending Machine using them.
 
 ## What are channels in Go?
 
-Channels in Go are used for interprocess communication between different goroutines. It's a lightweight thread of execution that can run concurrently with the main thread. Let's look at some concrete examples. We'll start with [Go Routines](https://golang.org/doc/effective_go.html#goroutines), you'll also notice the next section is Channels.
+Channels in Go are used for inter-process communication between different goroutines. It's a lightweight thread of execution that can run concurrently with the main thread. Let's look at some concrete examples. We'll start with [Go Routines](https://golang.org/doc/effective_go.html#goroutines), you'll also notice the next section is Channels.
 
 Here's a straightforward function
 
@@ -237,7 +237,7 @@ func main() {
 
 You can see we've added a call to `hotdogMachine` and we're using the `in` and `out` channels. Next we have to remember to `defer close(in)` since it's a sending channel. We have a new go routine that's going to listen to messages coming out and print them to the screen. Last is a call to `in` to pass in some `"pocket lint"` to see if we get `"wilted lettuce"` followed by a loop for the number of hot dogs you asked for. Hitting enter an extra time will end the program.
 
-That's it, a fully functional hot dog vending machine. Hopefully this helps you understand channels and go routines a litte better, sometimes they can be very confusing concepts at first. Another recommendation is if you're building your app for the first time, try it without go routines and channels first. The reason is twofold. First is that it's easier to reason about and much easier to find potential logical errors when getting started. The other being that there is an overhead to channels and go routines, you may sometimes find it faster to go without, but that may be getting into some micro-optimizations and if that's you're only issue, you're in a good place.
+That's it, a fully functional hot dog vending machine. Hopefully this helps you understand channels and go routines a little better, sometimes they can be very confusing concepts at first. Another recommendation is if you're building your app for the first time, try it without go routines and channels first. The reason is twofold. First is that it's easier to reason about and much easier to find potential logical errors when getting started. The other being that there is an overhead to channels and go routines, you may sometimes find it faster to go without, but that may be getting into some micro-optimizations and if that's you're only issue, you're in a good place.
 
 A challenge for you. How would you modify the program to ask if the user wants more hot dogs if the machine still has some left?
 

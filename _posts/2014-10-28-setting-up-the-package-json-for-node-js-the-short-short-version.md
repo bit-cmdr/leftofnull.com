@@ -125,7 +125,7 @@ Most tutorials start with the package.json. This is a very important step. Here'
 }
 ```
 
-Notice the `dependencies`, `optionalDependencies`, and `devDependencies` sections. These list the referenced packages that are required for the system to work. When you clone Ghost you can run `~/ghost $ npm install` from inside the Ghost directory and all the dependent packages will be retrived. If you're a .NET developer, you can think of these as References, or better yet, NuGet packages with the "auto-download missing packages" feature enabled.
+Notice the `dependencies`, `optionalDependencies`, and `devDependencies` sections. These list the referenced packages that are required for the system to work. When you clone Ghost you can run `~/ghost $ npm install` from inside the Ghost directory and all the dependent packages will be retrieved. If you're a .NET developer, you can think of these as References, or better yet, NuGet packages with the "auto-download missing packages" feature enabled.
 
 The scripts section allow you to run the application by aliasing `~/ghost $ node index` for `~/ghost $ npm start`. Additionally you can run the test suite by using `~/ghost $ npm test`. `npm` "understands" these as default scripts. So what makes this the short, short version?
 

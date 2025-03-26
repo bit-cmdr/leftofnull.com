@@ -18,7 +18,7 @@ Top Reasons
 
 #### 3. Version Control
 
-Everyone that uses source control will list these reasons. I list all these reasons. They're all perfectly accurate too, butare you *really* using it for all three reasons?
+Everyone that uses source control will list these reasons. I list all these reasons. They're all perfectly accurate too, but are you *really* using it for all three reasons?
 
 ### Save code other than on a local drive
 
@@ -26,7 +26,7 @@ Of course you do this, if you're using any kind of source control server you can
 
 ### Share code among teams
 
-Again, if you're on a team you most likely are already doing this. Unless you're emailing eachother the zipped up source code or all working on a network share. ::shudder::
+Again, if you're on a team you most likely are already doing this. Unless you're emailing each other the zipped up source code or all working on a network share. ::shudder::
 
 ### Version Control
 

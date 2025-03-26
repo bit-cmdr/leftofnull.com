@@ -16,7 +16,7 @@ categories:
 **[Sublime Text](http://http://www.sublimetext.com/)**
 =
 
-It's a great code editor. It can be an IDE if you want it to be, but at it's heart it's a highly extensible text editor. I love it! You can even get intellisense for C# now if you visit [OmniSharp.net](http://omnisharp.net) and follow the steps to install. I'll do some more blogs on how I have my Sublime Text set up and one to set up OmniSharp. This is really just some quick enhancements to make a great product a little better. By the way, Sublime Text is free with some nag-ware. I highly reccomend you pay for it and support the team, I did and it was well worth it.
+It's a great code editor. It can be an IDE if you want it to be, but at it's heart it's a highly extensible text editor. I love it! You can even get intellisense for C# now if you visit [OmniSharp.net](http://omnisharp.net) and follow the steps to install. I'll do some more blogs on how I have my Sublime Text set up and one to set up OmniSharp. This is really just some quick enhancements to make a great product a little better. By the way, Sublime Text is free with some nag-ware. I highly recommend you pay for it and support the team, I did and it was well worth it.
 
 ### Enhancing the Context Menu
 

@@ -28,7 +28,7 @@ categories:
 
 Eric Evans first coined the term in his book on [Domain Driven Design](http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software-ebook/dp/B00794TAUG/ref=tmm_kin_title_0), which is available in kindle-edition now by the way. If you haven't read it, I recommend adding it to you reading list. I'll hone in on the same excerpt that Martin Fowler did in his [post on the topic](http://martinfowler.com/bliki/UbiquitousLanguage.html).
 
-> By using the model-based language pervasively and not being satisfied until it flows, we approach a model that is complete and comprehensible, made up ofsimple elements that combine to express complex ideas.
+> By using the model-based language pervasively and not being satisfied until it flows, we approach a model that is complete and comprehensible, made up of simple elements that combine to express complex ideas.
 >
 > Domain experts should object to terms or structures that are awkward or inadequate to convey domain understanding; developers should watch for ambiguity or inconsistency that will trip up design.
 >
