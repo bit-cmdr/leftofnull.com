@@ -8,7 +8,6 @@ tags:
   - Threading
   - Async
 image: assets/images/hotdog.jpg
-featured: true
 categories:
   - GoLang
 ---
