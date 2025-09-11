@@ -94,7 +94,8 @@ What it does is ensures homebrew is on your path, then it uses the 1Password CLI
   output = json
   credential_process = /Users/<your-username>/.aws/credential_process.sh "Your 1Password Vault Name" "Your 1Password Item Name" 3600
   ```
-4. Save your config file and exit your text editor.
+
+Save your config file and exit your text editor.
 
 **note: the maximum duration you can set is 3600 seconds (1 hour). If you set it higher, sts will just set it to 1 hour.**
 
