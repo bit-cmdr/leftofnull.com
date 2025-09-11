@@ -21,13 +21,13 @@ Let's look at how to set this up.
 
 ## Prerequisites
 
-- You need to have the AWS CLI installed. You can find instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
-- You'll also need to have MFA enabled on your AWS account. You can find instructions [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html).
-- You need to have 1Password installed and set up. You can find instructions [here](https://1password.com/downloads/).
+- You need to have the AWS CLI installed. You can find instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html){:target="_blank" rel="noopener noreferrer"}.
+- You'll also need to have MFA enabled on your AWS account. You can find instructions [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html){:target="_blank" rel="noopener noreferrer"}.
+- You need to have 1Password installed and set up. You can find instructions [here](https://1password.com/downloads/){:target="_blank" rel="noopener noreferrer"}.
 
 ## Setting Up 1Password
 
-First, make sure you have 1Password CLI installed. You can find instructions [here](https://developer.1password.com/docs/cli/get-started/). Don't forget to enable `Integrate with 1Password CLI` in your 1Password app settings under `Developer`.
+First, make sure you have 1Password CLI installed. You can find instructions [here](https://developer.1password.com/docs/cli/get-started/){:target="_blank" rel="noopener noreferrer"}. Don't forget to enable `Integrate with 1Password CLI` in your 1Password app settings under `Developer`.
 
   ```sh
   brew install 1password-cli
