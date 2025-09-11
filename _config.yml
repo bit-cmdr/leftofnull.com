@@ -2,8 +2,8 @@
 name: "Left of Null"
 title: "Left of Null"
 description: "Covering Coding, Technology, and Life."
-logo: 'assets/images/logo.png'
-favicon: 'assets/images/logo.png'
+logo: 'assets/images/leftofnull-blue-180.png'
+favicon: 'assets/images/leftofnull-blue-180.png'
 baseurl: 
 google_analytics: 'UA-56155652-1'
 include: ["_pages"]
