@@ -7,7 +7,7 @@ tags:
   - Coding
   - Ubiquitous Language
 image: assets/images/maze_solution.png
-featured: true
+featured: false
 categories:
   - Development
 ---
