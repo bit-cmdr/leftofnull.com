@@ -62,19 +62,60 @@ aws_credential_duration=""
 
 export PATH="/opt/homebrew/bin:$PATH"
 
+parse_args() {
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --op-vault)
+        op_vault="$2"; shift 2 ;;
+      --op-vault=*)
+        op_vault="${1#*=}"; shift ;;
+      --op-item)
+        op_item="$2"; shift 2 ;;
+      --op-item=*)
+        op_item="${1#*=}"; shift ;;
+      --duration|--aws-credential-duration)
+        aws_credential_duration="$2"; shift 2 ;;
+      --duration=*|--aws-credential-duration=*)
+        aws_credential_duration="${1#*=}"; shift ;;
+      -h|--help)
+        usage; exit 0 ;;
+      --) # end of options
+        shift; break ;;
+      *)
+        echo "Unknown option: $1" >&2
+    esac
+  done
+
+  if [[ -z "$op_vault" || -z "$op_item" || -z "$aws_credential_duration" ]]; then
+    echo "Missing required options." >&2
+    usage; exit 1
+  fi
+
+  if ! [[ "$aws_credential_duration" =~ ^[0-9]+$ ]]; then
+    echo "Error: --duration must be an integer (seconds)." >&2
+    exit 1
+  fi
+}
+
 main() {
   local mfa_token
   local fields
-  mfa_token="$(op item get "$op_item" --otp --vault $op_vault)"
-  fields="$(op item get "$op_item" --fields "label=Access Key ID,label=Secret Access Key,label=mfa serial" --reveal --vault $op_vault)"
+  mfa_token="$(op item get "$op_item" --otp --vault "$op_vault")"
+  fields="$(op item get "$op_item" --fields "label=Access Key ID,label=Secret Access Key,label=mfa serial" --reveal --vault "$op_vault")"
   IFS=',' read -r access_key secret_key mfa_serial <<< "$fields"
-  AWS_ACCESS_KEY_ID="$access_key" AWS_SECRET_ACCESS_KEY="$secret_key" aws sts get-session-token --serial-number "$mfa_serial" --token-code "$mfa_token" --duration-seconds "$aws_credential_duration" --output json --query 'Credentials | {Version: `1`, AccessKeyId: AccessKeyId, SecretAccessKey: SecretAccessKey, SessionToken: SessionToken, Expiration: Expiration}'
+
+  AWS_ACCESS_KEY_ID="$access_key" \
+  AWS_SECRET_ACCESS_KEY="$secret_key" \
+  aws sts get-session-token \
+    --serial-number "$mfa_serial" \
+    --token-code "$mfa_token" \
+    --duration-seconds "$aws_credential_duration" \
+    --output json \
+    --query 'Credentials | {Version: `1`, AccessKeyId: AccessKeyId, SecretAccessKey: SecretAccessKey, SessionToken: SessionToken, Expiration: Expiration}'
 }
 
-op_vault=$1
-op_item=$2
-aws_credential_duration=$3
-main "$@"
+parse_args "$@"
+main
 ```
 
 You should be able to copy and paste that as-is. Once you save the file, make it executable with `chmod +x ~/.aws/credential_process.sh`.
@@ -92,7 +133,7 @@ What it does is ensures homebrew is on your path, then it uses the 1Password CLI
   [default]
   region = us-east-1 # or your preferred region
   output = json
-  credential_process = /Users/<your-username>/.aws/credential_process.sh "Your 1Password Vault Name" "Your 1Password Item Name" 3600
+  credential_process = /Users/<your-username>/.aws/credential_process.sh --op-vault "Your 1Password Vault Name" --op-item "Your 1Password Item Name" --duration 3600
   ```
 
 Save your config file and exit your text editor.
