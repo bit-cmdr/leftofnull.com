@@ -86,7 +86,7 @@ parse_args() {
 
   if [[ -z "$op_vault" || -z "$op_item" || -z "$aws_credential_duration" ]]; then
     echo "Missing required options." >&2
-    usage; exit 1
+    exit 1
   fi
 
   if ! [[ "$aws_credential_duration" =~ ^[0-9]+$ ]]; then
