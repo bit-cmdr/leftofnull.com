@@ -22,6 +22,7 @@ Let's look at how to set this up.
 ## Prerequisites
 
 - You need to have the AWS CLI installed. You can find instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html){:target="_blank" rel="noopener noreferrer"}.
+  - You can also install it with homebrew with `brew install awscli`
 - You'll also need to have MFA enabled on your AWS account. You can find instructions [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html){:target="_blank" rel="noopener noreferrer"}.
 - You need to have 1Password installed and set up. You can find instructions [here](https://1password.com/downloads/){:target="_blank" rel="noopener noreferrer"}.
 
@@ -36,13 +37,10 @@ First, make sure you have 1Password CLI installed. You can find instructions [he
   eval $(op signin)
   ```
 
-1. Add an entry in 1Password for your AWS credentials. Let's use the same one that you used to add your MFA in the Prerequisites above.
+Add an entry in 1Password for your AWS credentials. Let's use the same one that you used to add your MFA in the Prerequisites above.
   - Add a new text field named `Access Key ID` and put your AWS Access Key ID in it.
   - Add a new password field named `Secret Access Key` and put your AWS Secret Access Key in it.
   - Add a new text field named `mfa serial` and put the ARN of your MFA device in it. You can find this in the AWS console under IAM > Users > Security Credentials > Assigned MFA device. Usually it looks something like `arn:aws:iam::123456789012:mfa/your-username`.
-2. Install the 1Password aws cli plugin with `op plugin init aws`.
-3. Install the 1Password aws cdk plugin with `op plugin init cdk`.
-4. Add to your shell rc file (e.g. `~/.zshrc`, `~/.bashrc`, etc.) `source ~/.config/op/plugins.sh` to make sure your 1Password plugins are loaded on your path.
 
 Now we're ready to set up our magical script.
 
@@ -51,6 +49,8 @@ Now we're ready to set up our magical script.
 You'll want to create a file named `credential_process.sh` in your `~/.aws/` directory.
 
 The file should look like this:
+
+_note: if you're homebrew is set up to install to a different location, make sure to update the PATH variable accordingly._
 
 ```sh
 #!/bin/bash
@@ -122,7 +122,7 @@ main
 
 You should be able to copy and paste that as-is. Once you save the file, make it executable with `chmod +x ~/.aws/credential_process.sh`.
 
-What it does is ensures homebrew is on your path, then it uses the 1Password CLI to first get the current MFA token, then it reads those fields we set up for the Access Key, Secret Key, and MFA serial. Finally, it calls `aws sts get-session-token` with those values to get a temporary session token that is valid for the duration you specify. It needs to be in a very specific JSON format so AWS can read it, which is what the `--query` at the end is for. The only tools being used here are `op` and `aws sts`, the credentials are never stored on your machine or sent anywhere else.
+What it does is ensures the homebrew install directory is on your path, then it uses the 1Password CLI to first get the current MFA token, then it reads those fields we set up for the Access Key, Secret Key, and MFA serial. Finally, it calls `aws sts get-session-token` with those values to get a temporary session token that is valid for the duration you specify. It needs to be in a very specific JSON format so AWS can read it, which is what the `--query` at the end is for. The only tools being used here are `op` and `aws sts`, the credentials are never stored on your machine or sent anywhere else.
 
 ## Setting Up AWS CLI/CDK to Use 1Password
 
@@ -145,5 +145,11 @@ Save your config file and exit your text editor.
 You should now be able to test it with `aws s3 ls` and you'll get prompted to unlock 1Password if it's not already unlocked and then it will list your S3 buckets (assuming you have the necessary permissions).
 
 You can re-use that same config for other profiles in the `config` file as well, just by adding the `credential_process` line to each profile section.
+
+### Troubleshooting
+
+- If you get an error along the lines of `Credential Process Authentication is not yet supported by the AWS Shell Plugin`, it's because you're using the 1Password `aws` shell plugin which doesn't support `credential_process` and won't work with this setup. You can test it by running `unalias aws` and then trying `aws s3 ls` again. For a more permanent fix, remove the plugin by editing the `~/.config/op/plugins.sh` file and removing the line that aliases `aws`.
+
+---
 
 Happy coding!
