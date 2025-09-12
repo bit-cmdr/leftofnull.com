@@ -77,9 +77,7 @@ parse_args() {
         aws_credential_duration="$2"; shift 2 ;;
       --duration=*|--aws-credential-duration=*)
         aws_credential_duration="${1#*=}"; shift ;;
-      -h|--help)
-        usage; exit 0 ;;
-      --) # end of options
+      --) 
         shift; break ;;
       *)
         echo "Unknown option: $1" >&2
