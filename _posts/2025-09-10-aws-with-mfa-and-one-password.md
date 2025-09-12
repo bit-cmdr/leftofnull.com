@@ -85,13 +85,17 @@ parse_args() {
   done
 
   if [[ -z "$op_vault" || -z "$op_item" || -z "$aws_credential_duration" ]]; then
-    echo "Missing required options." >&2
+    echo "Missing required options" >&2
     exit 1
   fi
 
   if ! [[ "$aws_credential_duration" =~ ^[0-9]+$ ]]; then
     echo "Error: --duration must be an integer (seconds)." >&2
     exit 1
+  fi
+
+  if [[ "$aws_credential_duration" -gt 3600 ]]; then
+    echo "Warning: --duration has a max of 3600 seconds, setting to 3600." >&2
   fi
 }
 
