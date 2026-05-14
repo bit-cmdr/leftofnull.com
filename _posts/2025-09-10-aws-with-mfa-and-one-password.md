@@ -7,7 +7,7 @@ tags:
   - Coding
   - Security
 image: assets/images/security.png
-featured: true
+featured: false
 categories:
   - Development
   - Security
@@ -21,26 +21,27 @@ Let's look at how to set this up.
 
 ## Prerequisites
 
-- You need to have the AWS CLI installed. You can find instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html){:target="_blank" rel="noopener noreferrer"}.
+- You need to have the AWS CLI installed. You can find instructions [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html){:target="\_blank" rel="noopener noreferrer"}.
   - You can also install it with homebrew with `brew install awscli`
-- You'll also need to have MFA enabled on your AWS account. You can find instructions [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html){:target="_blank" rel="noopener noreferrer"}.
-- You need to have 1Password installed and set up. You can find instructions [here](https://1password.com/downloads/){:target="_blank" rel="noopener noreferrer"}.
+- You'll also need to have MFA enabled on your AWS account. You can find instructions [here](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_mfa_enable_virtual.html){:target="\_blank" rel="noopener noreferrer"}.
+- You need to have 1Password installed and set up. You can find instructions [here](https://1password.com/downloads/){:target="\_blank" rel="noopener noreferrer"}.
 
 ## Setting Up 1Password
 
-First, make sure you have 1Password CLI installed. You can find instructions [here](https://developer.1password.com/docs/cli/get-started/){:target="_blank" rel="noopener noreferrer"}. Don't forget to enable `Integrate with 1Password CLI` in your 1Password app settings under `Developer`.
+First, make sure you have 1Password CLI installed. You can find instructions [here](https://developer.1password.com/docs/cli/get-started/){:target="\_blank" rel="noopener noreferrer"}. Don't forget to enable `Integrate with 1Password CLI` in your 1Password app settings under `Developer`.
 
-  ```sh
-  brew install 1password-cli
+```sh
+brew install 1password-cli
 
-  # sign in once
-  eval $(op signin)
-  ```
+# sign in once
+eval $(op signin)
+```
 
 Add an entry in 1Password for your AWS credentials. Let's use the same one that you used to add your MFA in the Prerequisites above.
-  - Add a new text field named `Access Key ID` and put your AWS Access Key ID in it.
-  - Add a new password field named `Secret Access Key` and put your AWS Secret Access Key in it.
-  - Add a new text field named `mfa serial` and put the ARN of your MFA device in it. You can find this in the AWS console under IAM > Users > Security Credentials > Assigned MFA device. Usually it looks something like `arn:aws:iam::123456789012:mfa/your-username`.
+
+- Add a new text field named `Access Key ID` and put your AWS Access Key ID in it.
+- Add a new password field named `Secret Access Key` and put your AWS Secret Access Key in it.
+- Add a new text field named `mfa serial` and put the ARN of your MFA device in it. You can find this in the AWS console under IAM > Users > Security Credentials > Assigned MFA device. Usually it looks something like `arn:aws:iam::123456789012:mfa/your-username`.
 
 Now we're ready to set up our magical script.
 
@@ -77,7 +78,7 @@ parse_args() {
         aws_credential_duration="$2"; shift 2 ;;
       --duration=*|--aws-credential-duration=*)
         aws_credential_duration="${1#*=}"; shift ;;
-      --) 
+      --)
         shift; break ;;
       *)
         echo "Unknown option: $1" >&2
@@ -127,16 +128,18 @@ What it does is ensures the homebrew install directory is on your path, then it 
 ## Setting Up AWS CLI/CDK to Use 1Password
 
 1. Navigate to `~/.aws/` and `ls` to see if you have a `config` and `credentials` file.
-  - If you have both, then delete the `credentials` file. We won't be using it.
+
+- If you have both, then delete the `credentials` file. We won't be using it.
+
 2. Open the `config` file in your favorite text editor like `nvim config`, if you're not using nvim or vim, make sure to `touch config` to create it if it doesn't exist.
 3. We'll want our config to look something like this:
 
-  ```ini
-  [default]
-  region = us-east-1 # or your preferred region
-  output = json
-  credential_process = /Users/<your-username>/.aws/credential_process.sh --op-vault "Your 1Password Vault Name" --op-item "Your 1Password Item Name" --duration 3600
-  ```
+```ini
+[default]
+region = us-east-1 # or your preferred region
+output = json
+credential_process = /Users/<your-username>/.aws/credential_process.sh --op-vault "Your 1Password Vault Name" --op-item "Your 1Password Item Name" --duration 3600
+```
 
 Save your config file and exit your text editor.
 
@@ -153,3 +156,4 @@ You can re-use that same config for other profiles in the `config` file as well,
 ---
 
 Happy coding!
+

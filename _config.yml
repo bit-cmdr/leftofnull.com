@@ -4,8 +4,8 @@ title: "Left of Null"
 description: "Covering Coding, Technology, and Life."
 logo: 'assets/images/leftofnull-blue-180.png'
 favicon: 'assets/images/leftofnull-blue-180.png'
-baseurl: 
-google_analytics: 'UA-56155652-1'
+url: "https://leftofnull.com"
+baseurl:
 include: ["_pages"]
 permalink: /:year/:month/:day/:title
 

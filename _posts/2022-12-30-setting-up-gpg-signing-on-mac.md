@@ -10,8 +10,6 @@ categories:
   - Tools
 ---
 
-# Setting up GPG signing on Mac
-
 The first question you might ask is why would I want to do this? Well, if you're using git and you want to sign your commits, you'll need to set up GPG signing. This is a great way to verify that the commits you're making are coming from you. You can also use this to sign your tags. Some projects require this to prevent malicious code from being added to the project.
 
 Another reason that may not be obvious is that GPG signing can be admissible in court to help prove that you are the author of a commit. This is a great way to protect yourself if you're ever in a situation where you need to prove that you wrote a piece of code _and_ which machine it came from. Mind you that GPG signing alone may not be enough to prove your case, but it is a great start. One situation that may arise in your career is if you come up with an amazing idea on your own and it takes off, some companies may try to claim their employees work as their own. As long as you didn't do anything on company time and you didn't use company hardware, GPG signing can help prove that you used your own hardware to write the code.

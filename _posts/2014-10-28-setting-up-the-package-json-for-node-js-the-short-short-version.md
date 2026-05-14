@@ -14,8 +14,7 @@ categories:
   - Node
 ---
 
-Package.json
-=
+## Package.json
 
 Most tutorials start with the package.json. This is a very important step. Here's an example of a live package.json, this is Ghost v0.5's package.json:
 

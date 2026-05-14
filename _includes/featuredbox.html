@@ -4,7 +4,7 @@
     <div class="listfeaturedtag h-100">
         <div class="row h-100">
             {% if post.image %}
-            <div class="col-12 col-md-12 col-lg-5 pr-lg-0">
+            <div class="col-12 col-md-12 col-lg-5 pe-lg-0">
                 <div class="h-100">
                     <div class="wrapthumbnail">
                         <a href="{{ site.baseurl }}{{ post.url }}">
@@ -28,7 +28,7 @@
                             <h2 class="card-title">
                                 <a class="text-dark" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
                                 {% if post.rating %}
-                                <div class="mb-2 mt-2 font-weight-normal">
+                                <div class="mb-2 mt-2 fw-normal">
                                     {% include star_rating_postbox.html %}
                                 </div>
                                 {% endif %}
@@ -50,7 +50,7 @@
                                     {% endif %}
                                 </span>
                                 <span class="author-meta">
-                                    <span class="post-name"><a target="_blank" href="{{ author.web }}">{{
+                                    <span class="post-name"><a target="_blank" rel="noopener noreferrer" href="{{ author.web }}">{{
                                             author.display_name }}</a></span><br />
                                     {% endif %}
                                     <span class="post-date">{{ post.date | date_to_string }}</span>
@@ -77,7 +77,7 @@
                             <h2 class="card-title">
                                 <a class="text-dark" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
                                 {% if post.rating %}
-                                <div class="mb-2 mt-2 font-weight-normal">
+                                <div class="mb-2 mt-2 fw-normal">
                                     {% include star_rating_postbox.html %}
                                 </div>
                                 {% endif %}
@@ -99,7 +99,7 @@
                                     {% endif %}
                                 </span>
                                 <span class="author-meta">
-                                    <span class="post-name"><a target="_blank" href="{{ author.web }}">{{
+                                    <span class="post-name"><a target="_blank" rel="noopener noreferrer" href="{{ author.web }}">{{
                                             author.display_name }}</a></span><br />
                                     {% endif %}
                                     <span class="post-date">{{ post.date | date_to_string }}</span>

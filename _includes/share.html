@@ -4,7 +4,7 @@
     </p>
     <ul>
         <li class="ms-1 me-1">
-            <a target="_blank"
+            <a target="_blank" rel="noopener noreferrer"
                 href="https://bsky.app/intent/compose?text={{ page.title }}%20{{ page.url | absolute_url }}"
                 onclick="window.open(this.href, 'bluesky-share', 'width=550,height=235');return false;">
                 <i class="fa-brands fa-bluesky"></i>
@@ -12,14 +12,14 @@
         </li>
 
         <li class="ms-1 me-1">
-            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}"
+            <a target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/sharer/sharer.php?u={{ page.url | absolute_url }}"
                 onclick="window.open(this.href, 'facebook-share', 'width=550,height=435');return false;">
                 <i class="fa-brands fa-facebook-f"></i>
             </a>
         </li>
 
         <li class="ms-1 me-1">
-            <a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url }}"
+            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/sharing/share-offsite/?url={{ page.url | absolute_url }}"
                 onclick="window.open(this.href, 'width=550,height=435');return false;">
                 <i class="fa-brands fa-linkedin-in"></i>
             </a>

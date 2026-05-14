@@ -14,8 +14,9 @@ categories:
   - Ghost
 ---
 
-Taking Inventory and Setting Up
-=
+_Note: this post is from 2014; some embedded images were hosted on a service that has since gone offline and have been removed. The tooling described here is also outdated — consider this a historical artifact._
+
+## Taking Inventory and Setting Up
 
 > First and foremost, if you are using Linux or OSX, follow this guide [here](http://genescissors.github.io/deploying-ghost-blog-to-gh-pages/) and save yourself a **lot** of time.
 
@@ -71,11 +72,7 @@ Here's where we start to get a little more difficult. Follow the prompts and lea
 
 Select the **Basic Setup** from the menu on the left. We just need to make sure we have two packages here, `mingw32-base` and `msys-base`. It should look like this.
 
-![ming settings 1](https://hhmoww.bn1304.livefilestore.com/y4mDpImDFvFe97dQQE4Gd8kd8itSTxXFpJvpVe5i-haGucCH7z2OKu4OHqaGYhLkyOzXRgTO3VsP4ldME5Q3RVedbwBxRs_XqvXGD6rddJR3gfKXg-soRH8iIrZaWC8ci8GJK5-m4elsMHwe6QMetYtu7qieA63LYcwRR9D1oKboZ_tbr2iW_p1d9ElQ1cYtO06nNCL5d_R5T9TStCWcCmi7A){:class="img-responsive"}
-
-Now let's get one other package we'll need. Click on the **All Packages** and scroll down to find msys-wget and set that package to install. Lastly click the *Installation* menu at the top and then *Apply Changes*. When you're done it should look like this.
-
-![ming settings 2](https://hxmoww.bn1304.livefilestore.com/y4mdPw4y1s7-vq_PQijvWloWjvnbPLqkJvBUBU170Cs7v3M7cNSJvPYjlpABL0-kL19X_gC2udaojpx2eSGAc63EMFhJj_TEKg5q7mN6Iymsy5sn-A0-0BIblgN-UQpzuDAuCAauNXFd5L-N5itUAjCWEhFspILiDtnCE-LPs-PfUw_U4xfcdNnN9iGEm67Sq3L9n0V3OMght3iNsqzLUGhyA){:class="img-responsive"}
+Now let's get one other package we'll need. Click on the **All Packages** and scroll down to find msys-wget and set that package to install. Lastly click the *Installation* menu at the top and then *Apply Changes*.
 
 As a final touch we're going to have to modify our `PATH` environment variable.
 
@@ -83,8 +80,6 @@ Modifying your `PATH`
 -
 
 Use the `[Windows Key] + [Pause/Break Key]` to launch your System Properties dialog. From here you'll want to click on the *Advanced System settings*. As soon as that dialog launches, click on the *Environment Variables...* button at the bottom.
-
-![path settings](https://ibmoww.bn1304.livefilestore.com/y4ma4qsHN-zGPd3Uig56HQF9nmEyFwUyKBElbj0Zx7a7nvOycO0FUz788Vrse1FRgVLsATLBCXUVBJ1J9YHBVwpGdtjL-kkB22B4uzUUEsTb-8AIhjXrBRh4Xi4GuQ15sgQIiB2-nykR25NU9yPOaixepuiNBr_C3LWRhJNWu0AHSJ-PMKnTx3IhtqWVW4NGnSUamGNk3nHeprW1lYtwa910g){:class="img-responsive"}
 
 Select the `PATH` variable and click *Edit*. All the values are semi-colon delimited. We'll need to add two new ones. Move to the end of the line of values and now make sure you add to following so the end looks like this:
 

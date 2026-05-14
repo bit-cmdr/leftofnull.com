@@ -359,6 +359,8 @@ blockquote {
 
 .featured-image {
     display: block;
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 1.5rem;
 }
 
@@ -371,23 +373,31 @@ blockquote {
     font-size: 0.95rem;
 }
 
+.share ul {
+    padding-left: 0;
+    margin-left: 0;
+    list-style: none;
+}
+
 .share ul li {
     display: inline-block;
     margin-bottom: 9px;
 }
 
-.share ul {
-    padding-left: 0;
-    margin-left: 0;
-}
-
-.share ul li i.fa {
-    border: 1px solid #ddd;
+.share ul li a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 30px;
     height: 30px;
-    line-height: 30px;
-    text-align: center;
+    border: 1px solid #ddd;
     border-radius: 50%;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.share ul li a:hover {
+    border-color: #999;
 }
 
 .svgIcon {
@@ -421,7 +431,7 @@ blockquote {
         margin-right: 15px;
     }
 
-    .jumbotron.fortags {
+    .fortags {
         margin-bottom: 0 !Important;
     }
 
@@ -777,7 +787,7 @@ iframe {
 }
 
 @media (min-width:768px) {
-    .jumbotron.fortags {
+    .fortags {
         margin-bottom: -50px;
         margin-top: 3rem;
         padding: 0;
@@ -787,17 +797,17 @@ iframe {
         background-size: cover;
     }
 
-    .jumbotron.fortags .col-md-4 {
+    .fortags .col-md-4 {
         background: rgba(0, 0, 0, 0.75);
         color: #fff;
     }
 
-    .jumbotron.fortags .row {
+    .fortags .row {
         margin: 0;
     }
 }
 
-.jumbotron.fortags {
+.fortags {
     margin-top: 3rem;
     padding: 0;
     border-radius: 0;
@@ -805,7 +815,7 @@ iframe {
     background-size: cover;
 }
 
-.jumbotron.fortags a {
+.fortags a {
     padding: 5px 10px 7px;
     background: #222;
     border-radius: 30px;
@@ -816,7 +826,7 @@ iframe {
     display: inline-block;
 }
 
-.layout-page .jumbotron.fortags {
+.layout-page .fortags {
     display: none;
 }
 

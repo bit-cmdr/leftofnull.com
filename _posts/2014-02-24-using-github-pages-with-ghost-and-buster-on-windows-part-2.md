@@ -14,8 +14,9 @@ categories:
   - Ghost
 ---
 
-Hacking Buster and Deploying
-=
+_Note: this post is from 2014; some embedded images were hosted on a service that has since gone offline and have been removed. The tooling described here is also outdated — consider this a historical artifact._
+
+## Hacking Buster and Deploying
 
 **Series:**
 
@@ -49,23 +50,11 @@ You should have Ghost running on the default url `http://127.0.0.1:2368`. You ca
 
 The best info, as always, can be found from GitHub themselves at [GitHub Pages](http://pages.github.com/). As a quick abbreviated version, we'll set up a new repo for this exercise. Go to your GitHub account and create a new repo.
 
-![github profile](https://hygtqg.bn1304.livefilestore.com/y4mcUMRycRr5WNn0tbrst8Rdt_2GUU8fqrjrJNiaKvD6nj2dP-RG_swQWgLXhfd3qhukbeJv3gMLSOw3smH9qkEn-z4coHDUgCcm5QzrWWD7NxeP2BNXVbqe--oArlyyyyVXCK89dC3zJx3Au5PCSMcluaZt5siK5-sGN8-8idRQL-b3PH73CczxFTKHapb60C15TPYkMaDKGg0JewHPEQxvg){:class="img-responsive"}
-
 Name the new repo whatever makes sense to you. Make sure to select Initialize with README. It's not necessary but it makes the next step that much quicker. Now in your new repo, create a new branch called `gh-pages`. It's very important that it be exact, this is what GitHub Pages works on.
-
-![github branches](https://h4gtqg.bn1304.livefilestore.com/y4mQHC-kajvDNrte1s2EhB9pbUHSniXOBnFbwz9Ei3XvhYGoUrNeTVpIof4Zos2YT19q_IlhAlxgnlFz-6EcYpGjeIsmfL_E6lFh19AlALsDr_PoY6FnzqxIOy3qwRA0TBKMoPiLgru5MQjRbHjGD2YLFWGW2BElPP1ONxRdFU8fOnzpKlADAYoeBl0tHybwU7dhIIWhCaarcK-yNP4PJgLQQ){:class="img-responsive"}
-
-When you're finished it should look like this:
-
-![github gh-pages branch](https://iigtqg.bn1304.livefilestore.com/y4m8BoYzWsO0kov9s3bKFzEmzODdG-FWcxI8MHpGOAHS2HSmcF0ZwGu78utGH5PYi5p8Q5TCNoo9bZ68WqYhcsHJYyTkO3gAIDIuxMuj7QtuEawniB6CUHijWPv3rrKibMWfnLCpEQytQyMAPBC99703AAQTBMOzj-QzlJ1LwwCmIO0yipsh11jefKCgdr-hvGsmdGmVf938NywSUI8m9GBuA){:class="img-responsive"}
 
 ### Setting up your new site in git locally
 
-Now that you have the repo set up, let's pull it down. There should be a link in the bottom right of your repo page on GitHub that looks like this:
-
-![github clone](https://gygtqg.bn1304.livefilestore.com/y4mGGqx9rvQZ7dtZKVQSrx4d2BSV_1jyRKEiDdvalHiRQMpZ9C-jjIZz6lv_0vZS0AsatD0-GiytGo5jif0lqbV6P1zu-33GPDAuILzlJkqToMOb2kkUB_w8NyKQxUZwMhyMUQ-G0RBPBD8QnRi00H3J4tgl5Mt7JmaxizUlfrva5eR0aRVBczxjOqNm825kI4LFA1nCiqdVSPVcaiHb465PQ){:class="img-responsive"}
-
-Click the "copy to clipboard button to grab the clone url"
+Now that you have the repo set up, let's pull it down. Grab the clone URL from your repo page on GitHub.
 Fire up your Git Bash again and use the following commands:
 
 ```sh

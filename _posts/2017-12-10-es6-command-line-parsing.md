@@ -10,8 +10,6 @@ categories:
   - Node
 ---
 
-# ES6 Command-Line Parsing
-
 ECMA Script has come a really long way and continues to add more great features. A lot of them borrowed from functional languages and libraries. Typically there isn't a lot of need for command-line argument parsing in this manner, there's a lot of great tools and libraries that already exist for handling more complex situations. There are times when you just want to write a quick little CLI tool to do one-off work. Without further ado, here's how to do it.
 
 ### Desired input

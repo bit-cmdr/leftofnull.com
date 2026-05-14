@@ -13,7 +13,7 @@ categories:
   - Tools
 ---
 
-![choose your weapon](https://ucruhw.bn1304.livefilestore.com/y4mAmf8-ciaySzHWFU9conuLSKgzOEXd0rdaGWLGU3DJWMvb3nO-tkq11VM6IqYdvxid6IQdEqzyaW8u2npEpkLhrZEaSN2ulfyC33mIS5H5CNXWXil25OLaAHJh1bnDuaqs6d9BfaYfk8Zo9xnYs48jHdLH63IVcklv-7FcNovAz2IvPOtcVjD7mL9ZVplmN7bQh35B13nM9c4d7fIgLJO0g){:class="img-responsive"}
+_Note: this post is from 2014; one embedded image was hosted on a service that has since gone offline and has been removed._
 
 Let's face it programming a computer is a little more involved than programming a VCR (if you're old enough to remember those, [Wikipedia](http://en.wikipedia.org/wiki/Vcr) for those that don't). Those of us that have been doing it for a while can make it look easy but part of that starts with our tools. Let's look at the developers second most critical tool. An [IDE](http://en.wikipedia.org/wiki/Integrated_development_environment).
 

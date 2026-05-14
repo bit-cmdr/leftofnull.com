@@ -10,8 +10,6 @@ categories:
   - Node
 ---
 
-# Rethrowing Errors for Proper Stack Trace
-
 Javascript, like many other languages provides the try/catch block for error handling. So what happens when you want to log the error but not handle it? That's when it's time to rethrow the error. Mind you there's a good argument for not doing this at all. Many times if you catch and rethrow you **will** be logging multiple errors and this isn't usually the best course of action. If all you're going to do is log the same error or similar error and rethrow, it's best not to catch the error at all, but instead just let it bubble up. Unless you're handling it in a logical way then the best place to handle errors is at the top-most functions.
 
 Why would you want to log and rethrow then? Maybe you have a very deeply nested function and it has a lot of information that simply isn't available in functions that are higher up on the call stack. In this case maybe you do want to log and info or a warning message before rethrowing. There's decent arguments for this, especially in debugging. Regardless of your reasoning, here you are.
