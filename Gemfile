@@ -29,3 +29,8 @@ platforms :mingw, :x64_mingw, :mswin, :jruby do
 gem "wdm", ">= 0.1.1", platforms: [:mingw, :x64_mingw, :mswin]
 
 gem "webrick", ">= 1.7"
+
+group :development do
+  gem "ruby-lsp", "~> 0.26.9"
+  gem "rubocop", "~> 1.42"
+end
