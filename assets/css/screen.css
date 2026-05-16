@@ -987,3 +987,34 @@ iframe {
     opacity: 0;
     transition: opacity .25s;
 }
+
+/* Dark mode toggle button */
+.theme-toggle {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 0.5rem 0.8rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.theme-toggle:hover {
+    color: var(--text);
+}
+
+.theme-toggle .theme-icon-sun {
+    display: none;
+}
+
+.theme-toggle .theme-icon-moon {
+    display: inline-block;
+}
+
+[data-theme="dark"] .theme-toggle .theme-icon-sun {
+    display: inline-block;
+}
+
+[data-theme="dark"] .theme-toggle .theme-icon-moon {
+    display: none;
+}

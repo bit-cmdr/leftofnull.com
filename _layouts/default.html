@@ -13,6 +13,18 @@
 
     <title>{{ page.title }} | {{site.name}}</title>
 
+    <script>
+        (function () {
+            try {
+                var saved = localStorage.getItem('theme');
+                var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+
     {% seo %}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -92,6 +104,13 @@
                     </li>
 
                     {% include search-lunr.html %}
+
+                    <li class="nav-item theme-toggle-item">
+                        <button id="theme-toggle" type="button" class="nav-link theme-toggle" aria-label="Toggle dark mode">
+                            <i class="fas fa-moon theme-icon-moon" aria-hidden="true"></i>
+                            <i class="fas fa-sun theme-icon-sun" aria-hidden="true"></i>
+                        </button>
+                    </li>
 
                 </ul>
 
@@ -206,6 +225,8 @@
         crossorigin="anonymous"></script>
 
     <script src="{{ site.baseurl }}/assets/js/mediumish.js"></script>
+
+    <script src="{{ site.baseurl }}/assets/js/theme.js"></script>
 
     {% if site.lazyimages == "enabled" %}
     <script src="{{ site.baseurl }}/assets/js/lazyload.js"></script>
