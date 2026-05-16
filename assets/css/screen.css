@@ -1,7 +1,76 @@
-/* 
-Template Name: Mediumish 
-Copyright: Sal, WowThemes.net, https://www.wowthemes.net 
-License: https://www.wowthemes.net/freebies-license/ 
+:root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #fafafa;
+    --text: rgba(0, 0, 0, .8);
+    --text-muted: rgba(0, 0, 0, .44);
+    --text-faint: rgba(0, 0, 0, .5);
+    --text-strong: rgba(0, 0, 0, 1);
+    --border: rgba(0, 0, 0, .125);
+    --border-faint: rgba(0, 0, 0, .05);
+    --border-soft: rgba(0, 0, 0, .09);
+    --link: #2563EB;
+    --link-hover: #1D4ED8;
+    --link-active: #1E40AF;
+    --code-bg: #ffffff;
+    --code-text: #333333;
+    --code-border: #E3EDF3;
+    --tag-bg: rgba(0, 0, 0, .05);
+    --tag-bg-hover: rgba(0, 0, 0, .07);
+    --tag-text: rgba(0, 0, 0, .6);
+    --accent-green: #1C9963;
+    --accent-green-border: #02B875;
+    --accent-green-text: #1C9963;
+    --navbar-bg: rgba(255, 255, 255, .97);
+    --footer-bg: #ffffff;
+    --shadow-card: 0 1px 7px rgba(0, 0, 0, .05);
+    --shadow-nav: 0 2px 2px -2px rgba(0, 0, 0, .15);
+    --lazy-bg: #f2f2f2;
+    --sep: #999999;
+    --bottom-border: #dddddd;
+}
+
+[data-theme="dark"] {
+    --bg: #0f1419;
+    --surface: #1a2027;
+    --surface-2: #11161b;
+    --text: rgba(255, 255, 255, .87);
+    --text-muted: rgba(255, 255, 255, .55);
+    --text-faint: rgba(255, 255, 255, .45);
+    --text-strong: rgba(255, 255, 255, 1);
+    --border: rgba(255, 255, 255, .12);
+    --border-faint: rgba(255, 255, 255, .06);
+    --border-soft: rgba(255, 255, 255, .09);
+    --link: #60A5FA;
+    --link-hover: #93C5FD;
+    --link-active: #BFDBFE;
+    --code-bg: #11161b;
+    --code-text: rgba(255, 255, 255, .87);
+    --code-border: rgba(255, 255, 255, .08);
+    --tag-bg: rgba(255, 255, 255, .08);
+    --tag-bg-hover: rgba(255, 255, 255, .12);
+    --tag-text: rgba(255, 255, 255, .7);
+    --accent-green: #10b981;
+    --accent-green-border: #10b981;
+    --accent-green-text: #34d399;
+    --navbar-bg: rgba(15, 20, 25, .97);
+    --footer-bg: #0f1419;
+    --shadow-card: 0 1px 7px rgba(0, 0, 0, .4);
+    --shadow-nav: 0 2px 2px -2px rgba(0, 0, 0, .5);
+    --lazy-bg: #11161b;
+    --sep: rgba(255, 255, 255, .25);
+    --bottom-border: rgba(255, 255, 255, .15);
+}
+
+html, body {
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+/*
+Template Name: Mediumish
+Copyright: Sal, WowThemes.net, https://www.wowthemes.net
+License: https://www.wowthemes.net/freebies-license/
 */
 @media screen and (min-width:1500px) {
     html { font-size:18px; } /* Increase the font size on higher resolutions */
