@@ -26,7 +26,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h2 class="card-title">
-                                <a class="text-dark" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+                                <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
                                 {% if post.rating %}
                                 <div class="mb-2 mt-2 fw-normal">
                                     {% include star_rating_postbox.html %}
@@ -36,7 +36,7 @@
 
                             <h4 class="card-text">{{ post.excerpt | strip_html | truncatewords:25 }}</h4>
                         </div>
-                        <div class="card-footer b-0 bg-white mt-auto">
+                        <div class="card-footer b-0 mt-auto">
                             <div class="wrapfooter">
                                 {% if post.author %}
                                 <span class="meta-footer-thumb">
@@ -75,7 +75,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h2 class="card-title">
-                                <a class="text-dark" href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
+                                <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
                                 {% if post.rating %}
                                 <div class="mb-2 mt-2 fw-normal">
                                     {% include star_rating_postbox.html %}
@@ -85,7 +85,7 @@
 
                             <h4 class="card-text">{{ post.excerpt | strip_html | truncatewords:25 }}</h4>
                         </div>
-                        <div class="card-footer b-0 bg-white mt-auto">
+                        <div class="card-footer b-0 mt-auto">
                             <div class="wrapfooter">
                                 {% if post.author %}
                                 <span class="meta-footer-thumb">

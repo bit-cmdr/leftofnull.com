@@ -535,7 +535,7 @@ blockquote {
     .alertbar input[type="email"] {
         margin-right: 0px !Important;
         display: block;
-        border-right: 1px solid #ddd !Important;
+        border-right: 1px solid var(--bottom-border) !Important;
         margin-bottom: 10px;
     }
 
@@ -681,6 +681,8 @@ ul.tags li a:hover {
     height: 34px;
     letter-spacing: 0.5px;
     margin-left: 5px;
+    background-color: var(--surface);
+    color: var(--text);
 }
 
 .alertbar input[type="submit"] {
@@ -760,7 +762,7 @@ ul.tags li a:hover {
 }
 
 .sociallinks a {
-    background: var(--text-muted);
+    background: var(--tag-text);
     color: #fff;
     width: 22px;
     height: 22px;
